@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PawPrint, FlaskConical, Leaf, Beaker, ShieldOff, Droplets, WineOff } from 'lucide-react';
@@ -37,7 +36,7 @@ export default function ProductSpecialty() {
       viewport={{ once: true }}
       className="py-16 md:py-20 overflow-hidden relative"
     >
-      <style jsx>{`
+      <style>{`
         .marquee-container {
           display: flex;
           width: fit-content;

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -83,7 +82,7 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <div className="min-h-screen bg-[#F8F2EC] font-sans text-[length:var(--font-body)] leading-[1.618]">
-      <style jsx>{`
+      <style>{`
         :root {
           --obsidian: #0F0F0F;
           --shell: #F8F2EC;

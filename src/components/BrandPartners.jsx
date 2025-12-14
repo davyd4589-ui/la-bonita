@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -36,7 +35,7 @@ export default function BrandPartners() {
           Featuring Products From The World's Finest Brands
         </h3>
         <div className="relative w-full overflow-hidden group">
-          <style jsx>{`
+          <style>{`
             .marquee-container {
               display: flex;
               width: fit-content;

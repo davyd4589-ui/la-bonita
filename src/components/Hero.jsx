@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, ArrowRight, MapPin, Users, Award } from "lucide-react";
+import { Sparkles, Star, ArrowRight, MapPin, Users, Award } from "lucide-react";
 
 const slides = [
   {
@@ -194,7 +193,7 @@ export default function Hero() {
       </div>
 
       {/* Enhanced CSS for perfect responsiveness and a subtle, faded glow effect */}
-      <style jsx>{`
+      <style>{`
         .enhanced-glow-text {
           /* A much softer, more subtle glow */
           text-shadow: 
