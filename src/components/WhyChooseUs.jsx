@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Leaf, Award, Gift, Sparkles } from "lucide-react";
@@ -6,21 +5,21 @@ import { Leaf, Award, Gift, Sparkles } from "lucide-react";
 const features = [
   {
     icon: Leaf,
-    title: "The Pinnacle of Technology",
-    subtitle: "FLAWLESS PRECISION",
-    description: "We harness state-of-the-art equipment to deliver treatments with unparalleled accuracy, ensuring visible, lasting results from your very first visit."
+    title: "Produtos Premium",
+    subtitle: "QUALIDADE SUPERIOR",
+    description: "Utilizamos produtos de alta qualidade e técnicas avançadas para garantir resultados visíveis e duradouros desde a primeira visita."
   },
   {
     icon: Award,
-    title: "The Touch of Mastery",
-    subtitle: "ELITE THERAPISTS",
-    description: "Our team comprises Kolkata's most sought-after experts, each a master of their craft, dedicated to providing personalized and deeply restorative care."
+    title: "Profissionais Especializados",
+    subtitle: "EQUIPE EXPERT",
+    description: "Nossa equipe é composta por profissionais altamente qualificados, cada um mestre em sua área, dedicados a proporcionar cuidados personalizados."
   },
   {
     icon: Gift,
-    title: "An Oasis of Calm",
-    subtitle: "ABSOLUTE SANCTUARY",
-    description: "Step into a world designed for your complete tranquility. Every detail, from the ambient lighting to the serene music, is curated for your ultimate comfort and escape."
+    title: "Ambiente Acolhedor",
+    subtitle: "SEU REFÚGIO",
+    description: "Entre em um mundo projetado para seu total conforto. Cada detalhe, da iluminação ambiente à música, é pensado para seu bem-estar."
   }
 ];
 
@@ -58,7 +57,7 @@ export default function WhyChooseUs() {
                 className="inline-flex items-center gap-2 bg-[#C8A882]/10 rounded-full px-4 py-2 mb-6"
               >
                 <Sparkles className="w-4 h-4 text-[#C8A882]" />
-                <span className="font-sans text-sm text-[#C8A882] font-medium uppercase tracking-wider">KOLKATA'S PREMIER LUXURY SPA</span>
+                <span className="font-sans text-sm text-[#C8A882] font-medium uppercase tracking-wider">SALÃO PREMIUM EM GOIÂNIA</span>
               </motion.div>
               
               <motion.h2 
@@ -68,9 +67,9 @@ export default function WhyChooseUs() {
                 viewport={{ once: true }}
                 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               >
-                <span className="text-[#0F0F0F]">Why Choose SERENITY</span>
+                <span className="text-[#0F0F0F]">Por Que Escolher</span>
                 <br />
-                <span className="text-[#C8A882]">Organic Spa & Salon</span>
+                <span className="text-[#C8A882]">La Bonita</span>
               </motion.h2>
               
               <motion.p 
@@ -80,7 +79,7 @@ export default function WhyChooseUs() {
                 viewport={{ once: true }}
                 className="font-sans text-lg text-gray-600 leading-relaxed mb-8 max-w-3xl mx-auto"
               >
-                Experience Kolkata's #1 luxury organic spa & salon where advanced technology meets expert care. Our certified therapists use premium organic products and state-of-the-art equipment to deliver transformative wellness treatments that rejuvenate your body, mind, and soul.
+                Experimente o melhor salão de beleza de Goiânia onde técnicas avançadas encontram cuidado especializado. Nossos profissionais qualificados usam produtos premium para entregar transformações que renovam sua beleza e autoestima.
               </motion.p>
             </div>
 
@@ -162,7 +161,7 @@ export default function WhyChooseUs() {
                 onClick={() => window.dispatchEvent(new CustomEvent('open-booking-modal'))}
                 className="bg-[#C8A882] text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-[#FF5C8D] transition-all duration-300 shadow-lg"
               >
-                Begin Your Transformation
+                Comece Sua Transformação
               </motion.button>
             </motion.div>
           </motion.div>

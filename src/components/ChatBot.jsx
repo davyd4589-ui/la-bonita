@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Sparkles, Bot, User } from "lucide-react";
@@ -10,7 +9,7 @@ export default function ChatBot() {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hello! I'm Serenity, your AI assistant at SERENITY Spa & Salon. I can help you with:\n\n🔹 Book appointments for any of our 42+ services\n🔹 Check service prices and details\n🔹 Find your existing bookings\n🔹 Get directions and contact info\n🔹 Learn about our organic treatments\n🔹 Answer wellness questions\n\nHow can I assist you today?",
+      text: "Olá! Sou a assistente virtual do La Bonita - Salão de Beleza. Posso ajudar você com:\n\n🔹 Agendar horários para nossos serviços\n🔹 Consultar preços e detalhes\n🔹 Informações sobre tratamentos\n🔹 Localização e contato\n🔹 Dúvidas sobre procedimentos\n\nComo posso ajudar você hoje?",
       sender: "bot",
       timestamp: new Date()
     }
@@ -31,17 +30,18 @@ export default function ChatBot() {
     // Get current appointments for context
     const recentAppointments = await Appointment.list("-created_date", 50);
     
-    return `You are Serenity, an AI assistant for SERENITY Spa & Salon, Kolkata's premier luxury wellness destination specializing in organic spa treatments. You are friendly, professional, knowledgeable about wellness and beauty, and always helpful.
+    return `Você é a assistente virtual do La Bonita - Salão de Beleza, localizado em Goiânia, especializado em tratamentos capilares, manicure, pedicure, maquiagem e sobrancelha. Você é amigável, profissional, conhecedora de beleza e sempre prestativa. SEMPRE responda em Português do Brasil.
 
-SERENITY Spa & Salon Information:
-- Location: P-145, Sector A, Metropolitan Co-Operative Housing Society Limited, Tangra, Kolkata, West Bengal 700105
-- Phone: +91 98765 43210
-- Email: info@serenitysalon.in, serenitybycece@gmail.com
-- Hours: 
-  * Monday-Friday: 10:00 AM - 8:00 PM
-  * Saturday: 9:00 AM - 7:00 PM  
-  * Sunday: 10:00 AM - 6:00 PM
-- Specializes in: 100% organic, chemical-free treatments using state-of-the-art equipment and highly skilled professionals
+Informações do La Bonita:
+- Localização: R. SB 7, Qd.13 - Lt. 01, Res. Solar Bougainville, Goiânia - GO, 74393-385
+- Telefone/WhatsApp: (62) 98278-0894
+- Redes Sociais: linktr.ee/labonitaspa
+- Horários: 
+  * Segunda: Fechado
+  * Terça a Sexta: 9:00 - 19:00
+  * Sábado: 8:00 - 13:00
+  * Domingo: 8:00 - 13:00
+- Especialidades: Tratamentos capilares (cortes, coloração, mechas, balayage), manicure, pedicure, maquiagem profissional, design de sobrancelha
 
 COMPLETE & UPDATED SERVICES MENU:
 
@@ -114,34 +114,34 @@ HAIR SERVICES:
 Recent Appointments Context (for reference when clients ask about existing bookings):
 ${recentAppointments.map(apt => `- ${apt.client_name} (${apt.email}, ${apt.phone}): ${apt.service} on ${apt.preferred_date} at ${apt.preferred_time} - Status: ${apt.status}`).join('\n')}
 
-Your capabilities:
-1. Help clients choose the right service based on their needs using the updated price list.
-2. Provide detailed information about treatments, benefits, and pricing.
-3. Guide clients through booking process (explain they'll need to use the booking form for final confirmation).
-4. Help clients find their existing appointments using email or phone number.
-5. Answer questions about organic treatments, spa policies, and wellness advice.
-6. Provide directions and contact information
-7. Explain the benefits of organic vs chemical treatments
-8. Recommend service combinations for optimal results
-9. Discuss aftercare and maintenance for treatments
+Suas capacidades:
+1. Ajudar clientes a escolher o serviço certo baseado em suas necessidades usando a lista de preços atualizada.
+2. Fornecer informações detalhadas sobre tratamentos, benefícios e preços.
+3. Orientar clientes no processo de agendamento (explicar que precisarão usar o formulário de reserva para confirmação final).
+4. Ajudar clientes a encontrar agendamentos existentes usando e-mail ou telefone.
+5. Responder perguntas sobre tratamentos capilares, políticas do salão e cuidados com a beleza.
+6. Fornecer direções e informações de contato.
+7. Recomendar combinações de serviços para resultados ideais.
+8. Discutir cuidados pós-tratamento e manutenção.
 
-Guidelines:
-- Always use the NEW prices. Be very precise.
-- For combo pricing (e.g., Gel polish with manicure), calculate it for the user (e.g., "A Classic Care Manicure is ₹700 and adding Gel Polish for ₹500 would make it a total of ₹1200.").
-- Always be warm, professional, and spa-like in tone.
-- Use emojis sparingly but effectively (✨, 🌿, 💆‍♀️, etc.).
-- Promote the spa's organic, chemical-free philosophy.
-- If you can't find specific information, suggest they call +91 98765 43210.
-- If someone wants to book, guide them step-by-step but explain they'll need to use the booking form for final confirmation
-- For existing appointment queries, search by email or phone number in the recent appointments
-- Always mention that we're located in Kolkata when relevant
-- Suggest service combinations when appropriate (e.g., Hair Spa + Hair Cut, Manicure + Pedicure)
-- Explain the benefits of regular treatments for best results
+Diretrizes:
+- SEMPRE responda em Português do Brasil.
+- Sempre use os preços NOVOS. Seja muito preciso.
+- Para preços combinados, calcule para o usuário (ex: "Um Corte Feminino é R$ 100 e uma Hidratação é R$ 120, totalizando R$ 220").
+- Sempre seja calorosa, profissional e acolhedora no tom.
+- Use emojis com moderação mas efetivamente (✨, 💇‍♀️, 💅, etc.).
+- Promova os pacotes especiais com desconto quando apropriado.
+- Se não encontrar informação específica, sugira ligar para (62) 98278-0894 ou enviar WhatsApp.
+- Se alguém quiser agendar, oriente passo a passo mas explique que precisarão usar o formulário de reserva para confirmação final.
+- Para consultas de agendamento existente, busque por e-mail ou telefone nos agendamentos recentes.
+- Sempre mencione que estamos localizados em Goiânia quando relevante.
+- Sugira combinações de serviços quando apropriado (ex: Corte + Hidratação, Escova + Coloração).
+- Explique os benefícios de tratamentos regulares para melhores resultados.
 
-Current date: ${new Date().toISOString().split('T')[0]}
-Current time: ${new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' })}
+Data atual: ${new Date().toISOString().split('T')[0]}
+Horário atual: ${new Date().toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo' })}
 
-Remember: You represent a luxury spa brand, so maintain that premium, caring, and knowledgeable tone throughout all interactions.`;
+Lembre-se: Você representa um salão de beleza premium, então mantenha um tom premium, acolhedor e conhecedor em todas as interações.`;
   };
 
   const handleSendMessage = async () => {
@@ -164,9 +164,9 @@ Remember: You represent a luxury spa brand, so maintain that premium, caring, an
       const response = await InvokeLLM({
         prompt: `${systemPrompt}
 
-User message: ${inputText}
+Mensagem do usuário: ${inputText}
 
-Please respond as Serenity, the AI assistant for SERENITY Spa & Salon. Be helpful, friendly, professional, and provide accurate information about services, appointments, and spa-related topics. Format your response nicely with line breaks where appropriate for better readability.`,
+Por favor responda como assistente virtual do La Bonita - Salão de Beleza. Seja prestativa, amigável, profissional e forneça informações precisas sobre serviços, agendamentos e tópicos relacionados à beleza. Formate sua resposta com quebras de linha quando apropriado para melhor legibilidade. SEMPRE responda em Português do Brasil.`,
         add_context_from_internet: false
       });
 
@@ -182,7 +182,7 @@ Please respond as Serenity, the AI assistant for SERENITY Spa & Salon. Be helpfu
       console.error('Chat error:', error);
       const errorMessage = {
         id: Date.now() + 1,
-        text: "I apologize, but I'm experiencing technical difficulties. Please call us directly at +91 98765 43210 or visit our contact page for assistance. Our team will be happy to help you! ✨",
+        text: "Desculpe, estou com dificuldades técnicas no momento. Por favor, ligue diretamente para (62) 98278-0894 ou envie WhatsApp. Nossa equipe terá prazer em ajudar você! ✨",
         sender: "bot",
         timestamp: new Date()
       };
@@ -235,8 +235,8 @@ Please respond as Serenity, the AI assistant for SERENITY Spa & Salon. Be helpfu
                   <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg font-bold">Serenity AI</h3>
-                  <p className="text-xs opacity-90">SERENITY Spa Assistant • Online</p>
+                  <h3 className="font-serif text-lg font-bold">La Bonita</h3>
+                  <p className="text-xs opacity-90">Assistente Virtual • Online</p>
                 </div>
               </div>
               <button
@@ -305,22 +305,22 @@ Please respond as Serenity, the AI assistant for SERENITY Spa & Salon. Be helpfu
             <div className="px-4 py-2 border-t border-gray-200 bg-gray-50">
               <div className="flex gap-2 mb-2 overflow-x-auto">
                 <button
-                  onClick={() => setInputText("I want to book an appointment")}
+                  onClick={() => setInputText("Quero agendar um horário")}
                   className="px-3 py-1 bg-[#C8A882] text-white text-xs rounded-full whitespace-nowrap hover:bg-[#FF5C8D] transition-colors"
                 >
-                  📅 Book Now
+                  📅 Agendar
                 </button>
                 <button
-                  onClick={() => setInputText("Show me your services and prices")}
+                  onClick={() => setInputText("Mostrar serviços e preços")}
                   className="px-3 py-1 bg-[#C8A882] text-white text-xs rounded-full whitespace-nowrap hover:bg-[#FF5C8D] transition-colors"
                 >
-                  💰 Prices
+                  💰 Preços
                 </button>
                 <button
-                  onClick={() => setInputText("Where are you located?")}
+                  onClick={() => setInputText("Onde vocês ficam?")}
                   className="px-3 py-1 bg-[#C8A882] text-white text-xs rounded-full whitespace-nowrap hover:bg-[#FF5C8D] transition-colors"
                 >
-                  📍 Location
+                  📍 Localização
                 </button>
               </div>
             </div>
@@ -333,7 +333,7 @@ Please respond as Serenity, the AI assistant for SERENITY Spa & Salon. Be helpfu
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Ask about services, booking, prices..."
+                  placeholder="Pergunte sobre serviços, agendamento, preços..."
                   className="flex-1 px-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:border-[#C8A882] transition-colors"
                   disabled={isTyping}
                 />
