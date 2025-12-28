@@ -93,39 +93,41 @@ export default function Team() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
             >
-              <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#0F0F0F] mb-2">Chami Chhakchhuak (Cece)</h2>
-              <p className="font-sans text-lg text-[#C8A882] font-medium mb-6">The Visionary Founder of Serenity Salon & Spa</p>
+              <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#0F0F0F] mb-2">Juliany Borges</h2>
+              <p className="font-sans text-lg text-[#C8A882] font-medium mb-6">Fundadora</p>
               
               <div className="space-y-6 font-sans text-gray-700 leading-relaxed text-base lg:text-lg">
                 <p>
-                  "Hi, I’m Cece. For me, beauty and self-care have never been just a job; they are the most meaningful way I know to connect with people. It’s my ultimate goal to help every client feel <strong>confident, comfortable, and radiant in their own skin.</strong> That deep conviction is what led me to found <strong>SERENITY</strong>."
+                  Fundadora da La Bonita Spa Beauty. Dedicada a criar experiências únicas de beleza e bem-estar, com foco em <strong>atendimento personalizado e resultados excepcionais.</strong> Com anos de experiência no setor, transformei o salão em um <strong>espaço acolhedor e moderno</strong>.
                 </p>
 
                 <div>
-                  <h3 className="font-serif text-xl lg:text-2xl font-semibold text-[#0F0F0F] mb-4 border-l-4 border-[#C8A882] pl-4">My Commitment to Mastery</h3>
-                  <p className="mb-4">
-                    My journey began with a dedication to mastering my craft, becoming a certified Lash and Permanent Makeup Artist. But I quickly realized that true mastery requires a continuous, global education. This drove me to pursue advanced training in:
-                  </p>
+                  <h3 className="font-serif text-xl lg:text-2xl font-semibold text-[#0F0F0F] mb-4 border-l-4 border-[#C8A882] pl-4">Especialidades</h3>
                   <ul className="space-y-3 list-none pl-2 text-base">
-                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Natural Asian Lash Extensions & Korean Beauty Techniques</span></li>
-                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Permanent Makeup & Laser Hair Removal</span></li>
-                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Advanced Skincare & Therapeutic Head Spas</span></li>
+                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Cabelo</span></li>
+                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Maquiagem Noivas</span></li>
+                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Penteados</span></li>
                   </ul>
                   <p className="mt-4">
-                    My unique approach is a careful blend of science with artistry, creating results that don’t just look striking but feel entirely natural and are built to last.
+                    Minha abordagem combina técnica com arte, criando resultados que não apenas impressionam visualmente, mas também são duradouros e naturais.
                   </p>
                 </div>
 
                 <div>
-                   <h3 className="font-serif text-xl lg:text-2xl font-semibold text-[#0F0F0F] mb-4 border-l-4 border-[#C8A882] pl-4">Why I Created SERENITY</h3>
+                   <h3 className="font-serif text-xl lg:text-2xl font-semibold text-[#0F0F0F] mb-4 border-l-4 border-[#C8A882] pl-4">Por Que Criei La Bonita</h3>
                    <p>
-                     After years of training, I knew I needed to create a space that reflected my full philosophy—a sanctuary where you can feel completely cared for. Whether you come for perfectly defined brows, flawless lashes, or a deeply relaxing spa experience, my promise is care that feels both <strong>luxurious and profoundly personal.</strong> Serenity Salon & Spa is the realization of my lifelong passion, and I built it to be your sanctuary, too.
+                     Minha missão é oferecer um espaço onde cada cliente se sinta <strong>especial e valorizada.</strong> La Bonita não é apenas um salão, é um lugar onde sua beleza é realçada com cuidado e profissionalismo. Cada serviço é pensado para proporcionar uma experiência completa de bem-estar.
                    </p>
                 </div>
               </div>
 
-              {/* Signature */}
-              <p className="font-serif text-3xl text-[#C8A882] mt-8">Cece</p>
+              {/* Instagram Link */}
+              <div className="mt-6">
+                <a href="https://instagram.com/labonitaspaoficial" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#C8A882] hover:text-[#FF5C8D] transition-colors">
+                  <Instagram className="w-5 h-5" />
+                  <span>@labonitaspaoficial</span>
+                </a>
+              </div>
             </motion.div>
           </div>
         </section>
