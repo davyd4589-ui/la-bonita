@@ -64,11 +64,6 @@ const galleryImages = [
     category: "Noivas"
   },
   {
-    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/1fcd6a528_WhatsAppImage2025-12-21at84637PM.jpg",
-    title: "Noiva Preparação",
-    category: "Noivas"
-  },
-  {
     src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/481497662_WhatsAppImage2025-12-21at84638PM2.jpg",
     title: "Noiva Elegância",
     category: "Noivas"
