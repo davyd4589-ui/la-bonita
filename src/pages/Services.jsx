@@ -1019,9 +1019,38 @@ export default function Services() {
                 
                 {/* Price Badge */}
                 <div className="absolute top-4 right-4 bg-[#C8A882] text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                  ₹{service.price.toLocaleString('en-IN')}
-                  {service.priceNote && <span className="text-xs ml-1">{service.priceNote}</span>}
+                  {service.priceNote && <span className="text-xs mr-1">{service.priceNote}</span>}
+                  R$ {service.price.toLocaleString('pt-BR')}
                 </div>
+
+                {/* Badge Tags */}
+                {(service.badge || service.secondBadge) && (
+                  <div className="absolute top-4 left-4 flex flex-col gap-2">
+                    {service.badge && (
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        service.badge === 'Premium' ? 'bg-yellow-400 text-black' :
+                        service.badge === 'Mais pedido' ? 'bg-orange-500 text-white' :
+                        service.badge === 'Noivas' ? 'bg-pink-500 text-white' :
+                        service.badge === 'Eventos' ? 'bg-blue-500 text-white' :
+                        service.badge === 'Pacote' ? 'bg-blue-600 text-white' :
+                        'bg-gray-700 text-white'
+                      }`}>
+                        {service.badge}
+                      </span>
+                    )}
+                    {service.secondBadge && (
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        service.secondBadge === 'Premium' ? 'bg-yellow-400 text-black' :
+                        service.secondBadge === 'Noivas' ? 'bg-pink-500 text-white' :
+                        service.secondBadge === 'Eventos' ? 'bg-blue-500 text-white' :
+                        service.secondBadge === 'Pacote' ? 'bg-blue-600 text-white' :
+                        'bg-gray-700 text-white'
+                      }`}>
+                        {service.secondBadge}
+                      </span>
+                    )}
+                  </div>
+                )}
 
                 {/* Duration Badge */}
                 <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-sm flex items-center gap-1">
