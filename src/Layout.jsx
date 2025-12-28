@@ -324,7 +324,9 @@ export default function Layout({ children, currentPageName }) {
               </p>
               <div className="flex gap-4" role="list" aria-label="Social media links">
                 <a 
-                  href="#" 
+                  href="https://www.instagram.com/labonitaspabeauty/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-[#C8A882] rounded-full flex items-center justify-center hover:bg-[#FF5C8D] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F]"
                   aria-label="Follow us on Instagram"
                   role="listitem"
@@ -332,7 +334,9 @@ export default function Layout({ children, currentPageName }) {
                   <Instagram className="w-5 h-5" aria-hidden="true" />
                 </a>
                 <a 
-                  href="#" 
+                  href="https://www.facebook.com/labonitaspabeauty" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-[#C8A882] rounded-full flex items-center justify-center hover:bg-[#FF5C8D] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F]"
                   aria-label="Follow us on Facebook"
                   role="listitem"

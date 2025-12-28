@@ -123,9 +123,9 @@ export default function Team() {
 
               {/* Instagram Link */}
               <div className="mt-6">
-                <a href="https://instagram.com/labonitaspaoficial" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#C8A882] hover:text-[#FF5C8D] transition-colors">
+                <a href="https://www.instagram.com/labonitaspabeauty/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#C8A882] hover:text-[#FF5C8D] transition-colors">
                   <Instagram className="w-5 h-5" />
-                  <span>@labonitaspaoficial</span>
+                  <span>@labonitaspabeauty</span>
                 </a>
               </div>
             </motion.div>
