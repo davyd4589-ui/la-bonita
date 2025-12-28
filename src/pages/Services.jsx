@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Clock, Star, ArrowRight, Sparkles } from "lucide-react";
@@ -586,6 +585,327 @@ const servicesData = [
     image_url: "https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     priceNote: "Starting",
     alt_text: "Transformative keratin treatment for smooth, frizz-free, and manageable hair at SERENITY salon Kolkata"
+  },
+
+  // Novos Serviços La Bonita
+  {
+    id: 62,
+    name: "Cílios Brasileiro",
+    category: "beauty",
+    description: "Aplicação de cílios fio a fio técnica brasileira",
+    price: 160,
+    duration: "2h",
+    image_url: "https://images.pexels.com/photos/7052952/pexels-photo-7052952.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Extensão de cílios brasileiro no La Bonita Salão de Beleza"
+  },
+  {
+    id: 63,
+    name: "Mega Brasileiro",
+    category: "beauty",
+    description: "Volume extra com técnica brasileira",
+    price: 200,
+    duration: "2h30",
+    badge: "Premium",
+    image_url: "https://images.pexels.com/photos/5614660/pexels-photo-5614660.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Mega volume brasileiro de cílios no La Bonita"
+  },
+  {
+    id: 64,
+    name: "Manutenção",
+    category: "beauty",
+    description: "Manutenção de cílios fio a fio",
+    price: 110,
+    duration: "1h - 1h30",
+    image_url: "https://images.pexels.com/photos/7702816/pexels-photo-7702816.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Manutenção de extensão de cílios no La Bonita"
+  },
+  {
+    id: 65,
+    name: "Design de Sobrancelha",
+    category: "beauty",
+    description: "Modelagem e design profissional de sobrancelhas",
+    price: 40,
+    duration: "30min",
+    badge: "Mais pedido",
+    image_url: "https://images.pexels.com/photos/3997378/pexels-photo-3997378.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Design de sobrancelha no La Bonita"
+  },
+  {
+    id: 66,
+    name: "Buço",
+    category: "beauty",
+    description: "Depilação de buço",
+    price: 22,
+    duration: "15min",
+    image_url: "https://images.pexels.com/photos/3997389/pexels-photo-3997389.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Depilação de buço no La Bonita"
+  },
+  {
+    id: 67,
+    name: "Henna",
+    category: "beauty",
+    description: "Coloração de sobrancelhas com henna",
+    price: 20,
+    duration: "30min",
+    image_url: "https://images.pexels.com/photos/3997394/pexels-photo-3997394.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Henna para sobrancelhas no La Bonita"
+  },
+  {
+    id: 68,
+    name: "Tonalização de Sobrancelha",
+    category: "beauty",
+    description: "Coloração profissional de sobrancelhas",
+    price: 35,
+    duration: "30min",
+    image_url: "https://images.pexels.com/photos/3997386/pexels-photo-3997386.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Tonalização de sobrancelha no La Bonita"
+  },
+  {
+    id: 69,
+    name: "Bronzeamento Natural",
+    category: "skin",
+    description: "Bronze natural com produtos de alta qualidade",
+    price: 80,
+    duration: "1h",
+    image_url: "https://images.pexels.com/photos/3762879/pexels-photo-3762879.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Bronzeamento natural no La Bonita"
+  },
+  {
+    id: 70,
+    name: "Bronze na Máquina",
+    category: "skin",
+    description: "Bronzeamento com máquina profissional",
+    price: 120,
+    duration: "30min",
+    image_url: "https://images.pexels.com/photos/4041391/pexels-photo-4041391.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Bronze na máquina no La Bonita"
+  },
+  {
+    id: 71,
+    name: "Banho de Lua",
+    category: "skin",
+    description: "Iluminador corporal para pele radiante",
+    price: 65,
+    duration: "45min",
+    image_url: "https://images.pexels.com/photos/3738349/pexels-photo-3738349.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Banho de lua no La Bonita"
+  },
+  {
+    id: 72,
+    name: "Massagem Relaxante",
+    category: "massage",
+    description: "Massagem terapêutica para relaxamento completo",
+    price: 100,
+    duration: "1h",
+    image_url: "https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Massagem relaxante no La Bonita"
+  },
+  {
+    id: 73,
+    name: "Pacote Essencial",
+    category: "beauty",
+    description: "Dia da noiva com serviços essenciais",
+    price: 400,
+    duration: "Variável",
+    badge: "Noivas",
+    secondBadge: "Pacote",
+    image_url: "https://images.pexels.com/photos/3762465/pexels-photo-3762465.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Pacote essencial para noivas no La Bonita"
+  },
+  {
+    id: 74,
+    name: "Combo Mechas",
+    category: "hair",
+    description: "Pacote completo de mechas com tratamento e finalização",
+    price: 780,
+    duration: "4h - 6h",
+    badge: "Pacote",
+    image_url: "https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Combo mechas no La Bonita"
+  },
+  {
+    id: 75,
+    name: "Reconstrução + Escova",
+    category: "hair",
+    description: "Tratamento de reconstrução profunda com finalização em escova",
+    price: 180,
+    duration: "2h - 2h30",
+    badge: "Mais pedido",
+    image_url: "https://images.pexels.com/photos/3993324/pexels-photo-3993324.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Reconstrução e escova no La Bonita"
+  },
+  {
+    id: 76,
+    name: "Nutrição + Escova",
+    category: "hair",
+    description: "Tratamento nutritivo intenso com finalização em escova",
+    price: 160,
+    duration: "2h - 2h30",
+    image_url: "https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Nutrição e escova no La Bonita"
+  },
+  {
+    id: 77,
+    name: "Hidratação + Escova",
+    category: "hair",
+    description: "Hidratação profunda com finalização em escova",
+    price: 120,
+    duration: "1h30 - 2h",
+    badge: "Mais pedido",
+    image_url: "https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Hidratação e escova no La Bonita"
+  },
+  {
+    id: 78,
+    name: "Cronograma Capilar Premium",
+    category: "hair",
+    description: "Programa completo de 4 sessões para recuperação dos fios",
+    price: 420,
+    duration: "4 sessões",
+    badge: "Pacote",
+    image_url: "https://images.pexels.com/photos/3993324/pexels-photo-3993324.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Cronograma capilar premium no La Bonita"
+  },
+  {
+    id: 79,
+    name: "Cronograma Capilar Luxury",
+    category: "hair",
+    description: "Programa premium com tratamentos avançados",
+    price: 720,
+    duration: "4 sessões",
+    badge: "Pacote",
+    secondBadge: "Premium",
+    image_url: "https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Cronograma capilar luxury no La Bonita"
+  },
+  {
+    id: 80,
+    name: "Pé + Mão",
+    category: "nails",
+    description: "Manicure e pedicure completos",
+    price: 63,
+    duration: "1h30",
+    badge: "Mais pedido",
+    image_url: "https://images.pexels.com/photos/3997378/pexels-photo-3997378.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Manicure e pedicure no La Bonita"
+  },
+  {
+    id: 81,
+    name: "Mão",
+    category: "nails",
+    description: "Manicure completa",
+    price: 35,
+    duration: "45min",
+    image_url: "https://images.pexels.com/photos/3997389/pexels-photo-3997389.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Manicure no La Bonita"
+  },
+  {
+    id: 82,
+    name: "Pé",
+    category: "nails",
+    description: "Pedicure completa",
+    price: 35,
+    duration: "45min",
+    image_url: "https://images.pexels.com/photos/3997386/pexels-photo-3997386.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Pedicure no La Bonita"
+  },
+  {
+    id: 83,
+    name: "Corte",
+    category: "hair",
+    description: "Corte feminino com acabamento profissional",
+    price: 100,
+    duration: "45min",
+    badge: "Mais pedido",
+    image_url: "https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Corte feminino no La Bonita"
+  },
+  {
+    id: 84,
+    name: "Escova",
+    category: "hair",
+    description: "Escova modeladora com finalização impecável. Selecione: Curto, Médio, Grande, Mega Hair",
+    price: 60,
+    duration: "40min - 1h30",
+    badge: "Mais pedida",
+    priceNote: "a partir de",
+    image_url: "https://images.pexels.com/photos/3993324/pexels-photo-3993324.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Escova modeladora no La Bonita"
+  },
+  {
+    id: 85,
+    name: "Penteado",
+    category: "hair",
+    description: "Penteado sofisticado para eventos especiais",
+    price: 200,
+    duration: "1h - 2h",
+    badge: "Noivas",
+    secondBadge: "Eventos",
+    image_url: "https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Penteado para noivas e eventos no La Bonita"
+  },
+  {
+    id: 86,
+    name: "Maquiagem",
+    category: "beauty",
+    description: "Maquiagem profissional para todas as ocasiões",
+    price: 180,
+    duration: "1h - 1h30",
+    badge: "Noivas",
+    secondBadge: "Eventos",
+    image_url: "https://images.pexels.com/photos/3762465/pexels-photo-3762465.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Maquiagem profissional no La Bonita"
+  },
+  {
+    id: 87,
+    name: "Progressiva",
+    category: "hair",
+    description: "Alisamento progressivo com produtos de alta qualidade",
+    price: 190,
+    duration: "3h - 5h",
+    priceNote: "a partir de",
+    image_url: "https://images.pexels.com/photos/3993324/pexels-photo-3993324.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Progressiva no La Bonita"
+  },
+  {
+    id: 88,
+    name: "Realinhamento Capilar",
+    category: "hair",
+    description: "Manutenção do alisamento progressivo",
+    price: 240,
+    duration: "2h - 3h",
+    image_url: "https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Realinhamento capilar no La Bonita"
+  },
+  {
+    id: 89,
+    name: "Esfumado de Raiz",
+    category: "hair",
+    description: "Técnica para disfarçar a raiz e transição de cores",
+    price: 180,
+    duration: "2h - 3h",
+    image_url: "https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Esfumado de raiz no La Bonita"
+  },
+  {
+    id: 90,
+    name: "Coloração Global",
+    category: "hair",
+    description: "Coloração completa dos fios",
+    price: 140,
+    duration: "2h - 3h",
+    image_url: "https://images.pexels.com/photos/3993324/pexels-photo-3993324.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Coloração global no La Bonita"
+  },
+  {
+    id: 91,
+    name: "Banho de Brilho",
+    category: "hair",
+    description: "Tratamento para realçar o brilho e a cor",
+    price: 150,
+    duration: "1h30 - 2h",
+    image_url: "https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    alt_text: "Banho de brilho no La Bonita"
   }
 ];
 
