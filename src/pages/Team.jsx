@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Award, Droplets, Beaker, ShieldCheck } from "lucide-react";
+import { Sparkles, Award, Droplets, Beaker, ShieldCheck, Instagram } from "lucide-react";
 
 // Static data for the team members
 const otherTeamMembers = [
