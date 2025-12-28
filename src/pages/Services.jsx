@@ -1079,9 +1079,9 @@ export default function Services() {
                 
                 <button 
                   onClick={() => handleServiceBooking(service)}
-                  className="w-full bg-[#C8A882]/10 text-[#C8A882] py-3 rounded-full font-medium hover:bg-[#C8A882] hover:text-white transition-all duration-300 group-hover:shadow-lg flex items-center justify-center gap-2"
+                  className="w-full bg-green-600 text-white py-3 rounded-full font-medium hover:bg-green-700 transition-all duration-300 group-hover:shadow-lg flex items-center justify-center gap-2"
                 >
-                  Book Now
+                  Agendar Agora
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
               </div>
