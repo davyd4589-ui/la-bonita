@@ -11,7 +11,7 @@ const otherTeamMembers = [
     bio: "Especialista em maquiagem e hair styling, com anos de experiência em transformar clientes com técnicas modernas e cuidado personalizado.",
     image_url: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     specialties: ["Maquiagem", "Penteados"],
-    instagram: "@rafaellemos",
+    instagram: "@rafaellemosmake",
     years_experience: 8
   },
   {
