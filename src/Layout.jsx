@@ -209,20 +209,11 @@ export default function Layout({ children, currentPageName }) {
               className="flex items-center gap-3 group transform transition-transform hover:scale-105"
               aria-label="La Bonita - Salão de beleza - Go to homepage"
             >
-              <div className="relative">
-                <Sparkles 
-                  className={`w-8 h-8 sparkle-animation ${isScrolled || isMenuOpen ? 'text-[#C8A882]' : 'text-white text-shadow-dark'}`}
-                  aria-hidden="true"
-                />
-              </div>
-              <div>
-                <h1 className={`text-[#C8A882] text-lg font-bold font-serif text-center glow-text`}>
-                  LA BONITA
-                </h1>
-                <p className={`text-xs text-center tracking-widest ${isScrolled || isMenuOpen ? 'text-[#C8A882]' : 'text-[#C8A882] text-shadow-dark'}`}>
-                  Salão de beleza
-                </p>
-              </div>
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/84a1bc056_ScreenShotTool-20251221150407.png"
+                alt="La Bonita Logo"
+                className="h-16 w-auto object-contain"
+              />
             </Link>
 
             {/* Desktop Navigation with improved accessibility */}
@@ -320,12 +311,12 @@ export default function Layout({ children, currentPageName }) {
           {/* Brand */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[clamp(1rem,2vw,2.5rem)] text-center md:text-left">
             <div className="lg:col-span-1 flex flex-col items-center md:items-start mb-[1.2em]">
-              <div className="flex items-center gap-3 mb-6">
-                <Sparkles className="w-8 h-8 text-[#C8A882] sparkle-animation" aria-hidden="true" />
-                <div>
-                  <h2 className="font-serif text-2xl font-bold glow-text">LA BONITA</h2>
-                  <p className="text-xs text-[#C8A882] tracking-widest">Salão de beleza</p>
-                </div>
+              <div className="mb-6">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/84a1bc056_ScreenShotTool-20251221150407.png"
+                  alt="La Bonita Logo"
+                  className="h-24 w-auto object-contain"
+                />
               </div>
               <p className="text-sm leading-[1.618] text-gray-300 mb-6">
                 Salão de beleza premium. Experimente um serviço incomparável 

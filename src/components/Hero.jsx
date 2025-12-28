@@ -83,6 +83,15 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
       
+      {/* Logo Watermark Overlay */}
+      <div className="absolute inset-0 flex items-center justify-center z-5 pointer-events-none">
+        <img
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/84a1bc056_ScreenShotTool-20251221150407.png"
+          alt="La Bonita Logo"
+          className="w-96 h-96 object-contain opacity-10"
+        />
+      </div>
+      
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent z-10" />
 
