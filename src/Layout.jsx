@@ -252,7 +252,7 @@ export default function Layout({ children, currentPageName }) {
                 className="bg-[#C8A882] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#0F0F0F] transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2"
                 aria-label="Open booking appointment modal"
               >
-                Book Appointment
+                Agendar Horário
               </button>
             </div>
 
@@ -301,7 +301,7 @@ export default function Layout({ children, currentPageName }) {
                 className="mt-8 bg-[#C8A882] text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-[#0F0F0F] transition-all duration-300 hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2"
                 aria-label="Open booking appointment modal"
               >
-                Book Appointment
+                Agendar Horário
               </button>
           </div>
         </div>
@@ -353,49 +353,49 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Services */}
             <div className="mb-[1.2em]">
-              <h3 className="font-serif text-lg font-semibold mb-6 text-[#C8A882]">Premium Services</h3>
+              <h3 className="font-serif text-lg font-semibold mb-6 text-[#C8A882]">Nossos Serviços</h3>
               <nav aria-label="Services navigation">
                 <ul className="space-y-3 text-sm">
-                  <li><a href="#" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Luxury Hair Styling</a></li>
-                  <li><a href="#" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Advanced Skincare</a></li>
-                  <li><a href="#" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Therapeutic Massage</a></li>
-                  <li><a href="#" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Premium Nail Care</a></li>
-                  <li><a href="#" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Wellness Treatments</a></li>
+                  <li><a href="#" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Cortes e Penteados</a></li>
+                  <li><a href="#" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Coloração e Mechas</a></li>
+                  <li><a href="#" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Manicure e Pedicure</a></li>
+                  <li><a href="#" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Maquiagem</a></li>
+                  <li><a href="#" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Design de Sobrancelha</a></li>
                 </ul>
               </nav>
             </div>
 
             {/* Contact */}
             <div className="mb-[1.2em]">
-              <h3 className="font-serif text-lg font-semibold mb-6 text-[#C8A882]">Visit Our Sanctuary</h3>
+              <h3 className="font-serif text-lg font-semibold mb-6 text-[#C8A882]">Visite-nos</h3>
               <address className="space-y-4 text-sm flex flex-col items-center md:items-start not-italic">
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-[#C8A882] mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span className="text-gray-300 leading-[1.618]">P-145, Sector A, Metropolitan Co-Operative Housing Society Limited, Tangra, Kolkata 700105</span>
+                  <span className="text-gray-300 leading-[1.618]">R. SB 7, Qd.13 - Lt. 01, Res. Solar Bougainville, Goiânia - GO, 74393-385</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-[#C8A882]" aria-hidden="true" />
-                  <a href="tel:+919876543210" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">+91 98765 43210</a>
+                  <a href="tel:+5562982780894" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">(62) 98278-0894</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-[#C8A882]" aria-hidden="true" />
-                  <a href="mailto:info@serenitysalon.in" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">info@serenitysalon.in</a>
+                  <a href="https://linktr.ee/labonitaspa" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">linktr.ee/labonitaspa</a>
                 </div>
               </address>
             </div>
 
             {/* Newsletter */}
             <div className="mb-[1.2em]">
-              <h3 className="font-serif text-lg font-semibold mb-6 text-[#C8A882]">Luxury Updates</h3>
+              <h3 className="font-serif text-lg font-semibold mb-6 text-[#C8A882]">Novidades</h3>
               <p className="text-sm text-gray-300 mb-4 leading-[1.618]">
-                Subscribe for exclusive offers and premium wellness insights.
+                Inscreva-se para receber ofertas exclusivas e novidades.
               </p>
               <form className="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto md:max-w-none" aria-label="Newsletter subscription">
-                <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+                <label htmlFor="newsletter-email" className="sr-only">Endereço de e-mail</label>
                 <input
                   id="newsletter-email"
                   type="email"
-                  placeholder="Your email"
+                  placeholder="Seu e-mail"
                   className="flex-1 px-4 py-2 bg-white/10 border border-[#C8A882]/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#C8A882] focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F]"
                   required
                 />
@@ -403,7 +403,7 @@ export default function Layout({ children, currentPageName }) {
                   type="submit"
                   className="px-4 py-2 bg-[#C8A882] text-white rounded-lg hover:bg-[#FF5C8D] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F]"
                 >
-                  Subscribe
+                  Inscrever
                 </button>
               </form>
             </div>
@@ -429,9 +429,9 @@ export default function Layout({ children, currentPageName }) {
                 </div>
               </nav>
               
-              {/* Digital Doctors Attribution */}
+              {/* La Bonita Attribution */}
               <div className="text-xs text-gray-500">
-                Created by: <span className="text-[#C8A882] hover:text-white transition-colors duration-300">Digital Doctors</span>, +91-9555-9555-95
+                La Bonita Salão de Beleza - <span className="text-[#C8A882]">Goiânia, GO</span>
               </div>
             </div>
           </div>
