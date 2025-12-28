@@ -4,51 +4,6 @@ import { Sparkles, ArrowRight } from "lucide-react";
 
 const galleryImages = [
   {
-    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/287fd6130_13.jpg?w=1200&q=90",
-    title: "Reception Area",
-    category: "Reception"
-  },
-  {
-    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/831601306_14.jpg?w=1200&q=90",
-    title: "Main Salon Floor",
-    category: "Salon"
-  },
-  {
-    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/7b593983f_15.jpg?w=1200&q=90",
-    title: "Styling Stations", 
-    category: "Salon"
-  },
-  {
-    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/572e1afba_16.jpg?w=1200&q=90",
-    title: "Private Lounge",
-    category: "Interior"
-  },
-  {
-    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/5e03cef8d_17.jpg?w=1200&q=90",
-    title: "Reception",
-    category: "Reception"
-  },
-  {
-    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/1d99ea153_24.jpg?w=1200&q=90",
-    title: "Treatment Corridor",
-    category: "Interior"
-  },
-  {
-    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/601ccd748_1.jpg?w=1200&q=90",
-    title: "Massage Room",
-    category: "Treatment"
-  },
-  {
-    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/0d0096c79_2.jpg?w=1200&q=90",
-    title: "Spa Suite",
-    category: "Treatment"
-  },
-  {
-    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/664dc3f67_15.jpg?w=1200&q=90",
-    title: "Relaxation Room",
-    category: "Treatment"
-  },
-  {
     src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/e1eafc55a_ScreenShotTool-20251222115010.png",
     title: "Cachos Perfeitos",
     category: "Cabelo"
@@ -157,6 +112,11 @@ const galleryImages = [
     src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/cc7403ac3_ScreenShotTool-20251221200707.png",
     title: "Maquiagem Sofisticada",
     category: "Maquiagem"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/651a4c460_ScreenShotTool-20251221190634.png",
+    title: "Transformação Capilar",
+    category: "Cabelo"
   }
 ];
 
