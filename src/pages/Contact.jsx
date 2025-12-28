@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Sparkles } from "lucide-react";
@@ -20,12 +19,12 @@ export default function Contact() {
           </div>
           
           <h1 className="font-serif font-medium text-[length:var(--font-h1)] text-[#0F0F0F] mb-6 leading-tight">
-            Contact SERENITY - The Best Luxury Spa in Kolkata
+            Entre em Contato - La Bonita Salão de Beleza
           </h1>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-[1.618]">
-            Experience luxury wellness at SERENITY, where premium equipment meets 
-            highly skilled professionals for the best organic spa treatments in Kolkata.
+            Experimente beleza e bem-estar na La Bonita, onde profissionais qualificados 
+            usam produtos premium para transformar seu visual em Goiânia.
           </p>
         </motion.div>
 
@@ -44,11 +43,11 @@ export default function Contact() {
                   <MapPin className="w-6 h-6 text-[#C8A882]" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-2">Visit Our Luxury Spa</h3>
+                  <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-2">Visite Nosso Salão</h3>
                   <p className="leading-[1.618] text-gray-600">
-                    P-145, Sector A<br />
-                    Metropolitan Co-Operative Housing Society Limited<br />
-                    Tangra, Kolkata, West Bengal 700105
+                    R. SB 7, Qd.13 - Lt. 01<br />
+                    Res. Solar Bougainville<br />
+                    Goiânia - GO, 74393-385
                   </p>
                 </div>
               </div>
@@ -61,10 +60,10 @@ export default function Contact() {
                   <Phone className="w-6 h-6 text-[#C8A882]" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-2">Luxury Booking Line</h3>
+                  <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-2">Telefone e WhatsApp</h3>
                   <p className="leading-[1.618] text-gray-600">
-                    +91 98765 43210<br />
-                    <span className="text-sm">Premium service available daily</span>
+                    (62) 98278-0894<br />
+                    <span className="text-sm">Atendimento de qualidade</span>
                   </p>
                 </div>
               </div>
@@ -77,10 +76,10 @@ export default function Contact() {
                   <Mail className="w-6 h-6 text-[#C8A882]" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-2">Concierge Email</h3>
+                  <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-2">Redes Sociais</h3>
                   <p className="leading-[1.618] text-gray-600">
-                    info@serenitysalon.in<br />
-                    <span className="text-sm">Premium support within 2 hours</span>
+                    linktr.ee/labonitaspa<br />
+                    <span className="text-sm">Siga-nos nas redes sociais</span>
                   </p>
                 </div>
               </div>
@@ -93,11 +92,12 @@ export default function Contact() {
                   <Clock className="w-5 h-5 text-[#C8A882]" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-2">Luxury Hours</h3>
+                  <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-2">Horário de Funcionamento</h3>
                   <div className="text-gray-600 space-y-1 leading-[1.618]">
-                    <p>Monday - Friday: 10:00 AM - 8:00 PM</p>
-                    <p>Saturday: 9:00 AM - 7:00 PM</p>
-                    <p>Sunday: 10:00 AM - 6:00 PM</p>
+                    <p>Segunda: Fechado</p>
+                    <p>Terça a Sexta: 9:00 - 19:00</p>
+                    <p>Sábado: 8:00 - 13:00</p>
+                    <p>Domingo: 8:00 - 13:00</p>
                   </div>
                 </div>
               </div>
@@ -105,7 +105,7 @@ export default function Contact() {
 
             {/* Social Media */}
             <div className="bg-white rounded-3xl p-8 shadow-lg border border-[#C8A882]/20">
-              <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-4">Follow Us</h3>
+              <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-4">Siga-nos</h3>
               <div className="flex gap-4">
                 <a href="#" className="w-12 h-12 bg-[#C8A882] rounded-2xl flex items-center justify-center hover:bg-[#FF5C8D] transition-colors duration-300 text-white">
                   <Instagram className="w-6 h-6" />
@@ -124,84 +124,84 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="bg-white rounded-3xl p-8 shadow-lg border border-[#C8A882]/20"
           >
-            <h2 className="font-serif text-[length:var(--font-h2)] font-bold text-[#0F0F0F] mb-6">Experience Luxury</h2>
+            <h2 className="font-serif text-[length:var(--font-h2)] font-bold text-[#0F0F0F] mb-6">Fale Conosco</h2>
             
             <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                    First Name
+                    Nome
                   </label>
                   <input
                     type="text"
                     id="firstName"
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
-                    placeholder="Your first name"
+                    placeholder="Seu nome"
                   />
                 </div>
                 <div>
                   <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                    Last Name
+                    Sobrenome
                   </label>
                   <input
                     type="text"
                     id="lastName"
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
-                    placeholder="Your last name"
+                    placeholder="Seu sobrenome"
                   />
                 </div>
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address
+                  E-mail
                 </label>
                 <input
                   type="email"
                   id="email"
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
-                  placeholder="your@email.com"
+                  placeholder="seu@email.com"
                 />
               </div>
 
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                  Phone Number
+                  Telefone
                 </label>
                 <input
                   type="tel"
                   id="phone"
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="(62) 98278-0894"
                 />
               </div>
 
               <div>
                 <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                  Interested Service
+                  Serviço de Interesse
                 </label>
                 <select
                   id="service"
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
                 >
-                  <option value="">Select a service</option>
-                  <option value="facial">Facial Treatments</option>
-                  <option value="massage">Massage Therapy</option>
-                  <option value="hair">Hair Services</option>
-                  <option value="nails">Nail Care</option>
-                  <option value="consultation">Consultation</option>
+                  <option value="">Selecione um serviço</option>
+                  <option value="hair">Cabelo (Corte, Coloração, Mechas)</option>
+                  <option value="nails">Unhas (Manicure e Pedicure)</option>
+                  <option value="makeup">Maquiagem</option>
+                  <option value="eyebrows">Sobrancelha</option>
+                  <option value="packages">Pacotes Especiais</option>
                 </select>
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message
+                  Mensagem
                 </label>
                 <textarea
                   id="message"
                   rows={4}
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300 resize-none"
-                  placeholder="Tell us about your wellness goals..."
+                  placeholder="Conte-nos o que você precisa..."
                 />
               </div>
 
@@ -209,7 +209,7 @@ export default function Contact() {
                 type="submit"
                 className="w-full bg-[#C8A882] text-white py-4 rounded-xl font-medium hover:bg-[#FF5C8D] transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                Send Message
+                Enviar Mensagem
               </button>
             </form>
           </motion.div>
