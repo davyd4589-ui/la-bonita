@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Award, Droplets, Beaker, ShieldCheck } from "lucide-react";
@@ -7,48 +6,40 @@ import { Sparkles, Award, Droplets, Beaker, ShieldCheck } from "lucide-react";
 const otherTeamMembers = [
   {
     id: 2,
-    name: "Elena Rodriguez",
-    title: "Senior Massage Therapist",
-    bio: "Elena brings ancient healing techniques combined with modern therapeutic practices to provide transformative massage experiences.",
-    image_url: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    specialties: ["Deep Tissue Massage", "Hot Stone Therapy", "Aromatherapy"],
-    years_experience: 12
+    name: "Rafael Lemos",
+    title: "Maquiador e Cabeleireiro",
+    bio: "Especialista em maquiagem e hair styling, com anos de experiência em transformar clientes com técnicas modernas e cuidado personalizado.",
+    image_url: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    specialties: ["Maquiagem", "Penteados"],
+    instagram: "@rafaellemos",
+    years_experience: 8
   },
   {
     id: 3,
-    name: "Marcus Chen",
-    title: "Skincare Specialist",
-    bio: "Marcus is our expert in organic skincare treatments, focusing on natural and chemical-free approaches to achieve radiant skin.",
-    image_url: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    specialties: ["Organic Facials", "Anti-Aging Treatments", "Skin Analysis"],
-    years_experience: 10
-  },
-  {
-    id: 4,
-    name: "Isabella Thompson",
-    title: "Nail Art Specialist",
-    bio: "Isabella creates beautiful nail art designs using only organic and toxin-free polishes, ensuring both beauty and health.",
+    name: "Geovana",
+    title: "Especialista em Unhas",
+    bio: "Especialista em extensão de unhas e nail art, Geovana traz técnicas avançadas e um olhar artístico para cada cliente.",
     image_url: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    specialties: ["Nail Art", "Organic Manicures", "Hand Care Treatments"],
-    years_experience: 8
+    specialties: ["Extensão de Unhas", "Nail Office"],
+    years_experience: 6
   }
 ];
 
 const expertisePillars = [
   {
     icon: ShieldCheck,
-    title: "Scientific Precision",
-    description: "Mastery of PMU, Laser technology, and advanced skin analysis for safe, lasting, and calibrated results."
+    title: "Técnicas Avançadas",
+    description: "Domínio de técnicas modernas de coloração, corte e styling para resultados seguros, duradouros e personalizados."
   },
   {
     icon: Droplets,
-    title: "Restorative Artistry",
-    description: "Expertise in Natural Asian Lash design and Korean Beauty rituals to enhance, not mask, natural beauty."
+    title: "Arte Restauradora",
+    description: "Expertise em tratamentos capilares e técnicas de beleza que realçam, não mascaram, sua beleza natural."
   },
   {
     icon: Beaker,
-    title: "Global Mastery",
-    description: "A relentless, international quest for the highest certifications and most advanced techniques in wellness."
+    title: "Excelência Profissional",
+    description: "Busca constante pelas melhores certificações e técnicas mais avançadas em beleza e bem-estar."
   }
 ];
 
@@ -66,13 +57,13 @@ export default function Team() {
         >
           <div className="inline-flex items-center gap-2 bg-[#C8A882]/10 rounded-full px-4 py-2 mb-6">
             <Sparkles className="w-4 h-4 text-[#C8A882]" />
-            <span className="text-sm text-[#C8A882] font-medium">The Heart of SERENITY</span>
+            <span className="text-sm text-[#C8A882] font-medium">Nossa Equipe</span>
           </div>
           <h1 className="font-serif font-medium text-[length:var(--font-h1)] text-[#0F0F0F] mb-6 leading-tight">
-            The Visionary & The Experts
+            Nossa Equipe
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-[1.618]">
-            Meet the driving force behind our philosophy and the certified professionals dedicated to your transformation.
+            Profissionais experientes e apaixonados, dedicados a proporcionar a melhor experiência para você.
           </p>
         </motion.div>
 
@@ -141,7 +132,7 @@ export default function Team() {
 
         {/* Expertise Pillars */}
         <section className="mb-24 text-center">
-            <h2 className="font-serif text-3xl font-bold text-[#0F0F0F] mb-12">Our Philosophy in Practice</h2>
+            <h2 className="font-serif text-3xl font-bold text-[#0F0F0F] mb-12">Nossa Filosofia na Prática</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 {expertisePillars.map((pillar, index) => (
                     <motion.div
@@ -163,7 +154,7 @@ export default function Team() {
 
         {/* Other Team Members */}
         <section>
-          <h2 className="font-serif text-3xl text-center font-bold text-[#0F0F0F] mb-12">Meet Our Certified Experts</h2>
+          <h2 className="font-serif text-3xl text-center font-bold text-[#0F0F0F] mb-12">Conheça Nossa Equipe</h2>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-[clamp(1rem,2vw,2.5rem)]">
             {otherTeamMembers.map((member, index) => (
               <motion.div
@@ -182,7 +173,7 @@ export default function Team() {
                     />
                     <div className="absolute top-4 right-4 bg-[#C8A882] text-white rounded-full px-3 py-1 flex items-center gap-1">
                       <Award className="w-3 h-3" />
-                      <span className="text-xs font-medium">{member.years_experience}+ Years</span>
+                      <span className="text-xs font-medium">{member.years_experience}+ Anos</span>
                     </div>
                   </div>
                   <div className="p-8">
@@ -191,13 +182,19 @@ export default function Team() {
                     </h3>
                     <p className="text-[#C8A882] font-medium mb-4">{member.title}</p>
                     <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3">{member.bio}</p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mb-4">
                       {member.specialties.map((specialty, idx) => (
                         <span key={idx} className="bg-[#C8A882]/10 text-[#C8A882] px-3 py-1 rounded-full text-xs font-medium">
                           {specialty}
                         </span>
                       ))}
                     </div>
+                    {member.instagram && (
+                      <a href={`https://instagram.com/${member.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#C8A882] hover:text-[#FF5C8D] transition-colors text-sm">
+                        <Instagram className="w-4 h-4" />
+                        <span>{member.instagram}</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>

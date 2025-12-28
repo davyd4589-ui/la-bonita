@@ -54,11 +54,11 @@ export default function Layout({ children, currentPageName }) {
   }, []);
 
   const navigationItems = React.useMemo(() => [
-    { name: "Home", url: "/" },
-    { name: "Services", url: createPageUrl("Services") },
-    { name: "Gallery", url: createPageUrl("Gallery") },
-    { name: "Our Team", url: createPageUrl("Team") },
-    { name: "Contact", url: createPageUrl("Contact") }
+    { name: "Início", url: "/" },
+    { name: "Serviços", url: createPageUrl("Services") },
+    { name: "Galeria", url: createPageUrl("Gallery") },
+    { name: "Equipe", url: createPageUrl("Team") },
+    { name: "Contato", url: createPageUrl("Contact") }
   ], []);
 
   // Add admin link only if URL contains admin parameter OR if accessing AdminBookings page
@@ -424,8 +424,8 @@ export default function Layout({ children, currentPageName }) {
                   >
                     Sitemap
                   </Link>
-                  <a href="#" className="text-gray-400 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Privacy Policy</a>
-                  <a href="#" className="text-gray-400 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Terms of Service</a>
+                  <a href="#" className="text-gray-400 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Política de Privacidade</a>
+                  <a href="#" className="text-gray-400 hover:text-[#C8A882] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#C8A882] focus:ring-offset-2 focus:ring-offset-[#0F0F0F] rounded">Termos de Serviço</a>
                 </div>
               </nav>
               
