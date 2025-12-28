@@ -6,8 +6,8 @@ import { useLocation } from "react-router-dom";
 // Menu de Serviços La Bonita
 const servicesData = [
   {
-    id: 2,
-    name: "Japanese Head Spa",
+    id: 62,
+    name: "Cílios Brasileiro",
     category: "massage",
     description: "Embark on a transcendent sensory journey with our state-of-the-art Japanese Head Spa. Submerge your senses in a sanctuary of tranquility as a therapeutic waterfall, enriched with potent organic elixirs, bathes your scalp and hair under the ethereal glow of chromotherapy lighting. This is not merely a treatment—it is a meticulous ritual designed to detoxify the scalp, restore hair vitality, and guide you to a state of profound, meditative calm.",
     price: 3500,
