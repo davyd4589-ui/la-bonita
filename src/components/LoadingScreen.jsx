@@ -498,17 +498,24 @@ export default function LoadingScreen({ onLoadingComplete }) {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="fixed inset-0 bg-gradient-to-br from-[#F8F2EC] via-white to-[#F5E6D8] z-50 flex flex-col items-center justify-center"
         >
-          {/* Logo and Flower Animation */}
+          {/* Logo and Brand */}
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col items-center mb-8"
           >
-            <div className="relative">
-              <AnimatedFlower />
+            <div className="relative mb-6">
+              <motion.img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/84a1bc056_ScreenShotTool-20251221150407.png"
+                alt="La Bonita Logo"
+                className="w-32 h-32 object-contain"
+                initial={{ rotate: 0 }}
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              />
               
-              {/* Subtle glow effect behind flower */}
+              {/* Subtle glow effect behind logo */}
               <div className="absolute inset-0 bg-gradient-radial from-[#C8A882]/30 via-[#FF5C8D]/20 to-transparent rounded-full blur-2xl scale-150 -z-10" />
             </div>
             
@@ -516,13 +523,13 @@ export default function LoadingScreen({ onLoadingComplete }) {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-center mt-6"
+              className="text-center"
             >
               <h1 className="font-serif text-4xl font-bold text-[#C8A882] mb-2">
-                SERENITY
+                La Bonita
               </h1>
               <p className="text-sm text-gray-600 tracking-widest uppercase">
-                Luxury Spa & Salon
+                Salão de Beleza
               </p>
             </motion.div>
           </motion.div>
@@ -549,7 +556,7 @@ export default function LoadingScreen({ onLoadingComplete }) {
             transition={{ duration: 0.5, delay: 0.7 }}
             className="text-sm text-gray-500 mt-4 font-medium"
           >
-            Preparing your luxury experience...
+            Preparando sua experiência de beleza...
           </motion.p>
         </motion.div>
       )}
