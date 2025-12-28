@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
@@ -26,8 +25,8 @@ const galleryImages = [
   },
   {
     src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/5e03cef8d_17.jpg?w=1200&q=90",
-    title: "Reception", // Updated title
-    category: "Reception" // Updated category
+    title: "Reception",
+    category: "Reception"
   },
   {
     src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/1d99ea153_24.jpg?w=1200&q=90",
@@ -48,6 +47,116 @@ const galleryImages = [
     src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/664dc3f67_15.jpg?w=1200&q=90",
     title: "Relaxation Room",
     category: "Treatment"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/e1eafc55a_ScreenShotTool-20251222115010.png",
+    title: "Cachos Perfeitos",
+    category: "Cabelo"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/b999d48cc_ScreenShotTool-20251222114951.png",
+    title: "Ondas Glamourosas",
+    category: "Cabelo"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/dc7826a03_ScreenShotTool-20251222113445.png",
+    title: "Loiro Platinado",
+    category: "Coloração"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/0fc505d2c_ScreenShotTool-20251222112128.png",
+    title: "Balayage Loiro",
+    category: "Coloração"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/f498fdcd3_ScreenShotTool-20251222112029.png",
+    title: "Ondas Naturais",
+    category: "Cabelo"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/fdb8e4347_ScreenShotTool-20251222112008.png",
+    title: "Ruivo Cobre",
+    category: "Coloração"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/e2dcf0106_ScreenShotTool-20251222111927.png",
+    title: "Penteado Elegante",
+    category: "Penteados"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/1be8a3068_ScreenShotTool-20251222111911.png",
+    title: "Semi Preso",
+    category: "Penteados"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/6fc9d8c99_ScreenShotTool-20251222111837.png",
+    title: "Loiro Ondulado",
+    category: "Coloração"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/df83737a7_ScreenShotTool-20251222111821.png",
+    title: "Mega Volume",
+    category: "Cabelo"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/5b1ae7a38_ScreenShotTool-20251222111754.png",
+    title: "Dourado Perfeito",
+    category: "Coloração"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/4a0672edd_WhatsAppImage2025-12-21at84637PM1.jpg",
+    title: "Dia da Noiva",
+    category: "Noivas"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/1fcd6a528_WhatsAppImage2025-12-21at84637PM.jpg",
+    title: "Noiva Preparação",
+    category: "Noivas"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/481497662_WhatsAppImage2025-12-21at84638PM2.jpg",
+    title: "Noiva Elegância",
+    category: "Noivas"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/6d7366577_WhatsAppImage2025-12-21at84638PM1.jpg",
+    title: "Madrinhas",
+    category: "Noivas"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/49e6339eb_WhatsAppImage2025-12-21at84638PM.jpg",
+    title: "Noiva na Recepção",
+    category: "Noivas"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/93a17ff64_WhatsAppImage2025-12-21at84454PM.jpeg",
+    title: "Chanel Hair",
+    category: "Corte"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/cbe43299b_WhatsAppImage2025-12-21at84340PM.jpg",
+    title: "Noiva com Buquê",
+    category: "Noivas"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/caa34eaaa_ScreenShotTool-20251221200807.png",
+    title: "Noiva Renda",
+    category: "Noivas"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/595f7fc0f_ScreenShotTool-20251221200747.png",
+    title: "Noiva Coroa",
+    category: "Noivas"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/2b40bee66_ScreenShotTool-20251221200723.png",
+    title: "Casal de Noivos",
+    category: "Noivas"
+  },
+  {
+    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/cc7403ac3_ScreenShotTool-20251221200707.png",
+    title: "Maquiagem Sofisticada",
+    category: "Maquiagem"
   }
 ];
 
@@ -68,12 +177,11 @@ export default function Gallery() {
           </div>
           
           <h1 className="font-serif font-medium text-[length:var(--font-h1)] text-[#0F0F0F] mb-6 leading-tight">
-            Luxury Organic Spa & Salon in Kolkata | Serenity Wellness
+            Nossa Galeria de Transformações
           </h1>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-[1.618]">
-            Step inside our tranquil sanctuary and explore the luxurious spaces designed 
-            for your ultimate relaxation and rejuvenation.
+            Conheça nosso trabalho e os resultados incríveis que conquistamos. Cada imagem conta uma história de beleza e transformação.
           </p>
         </motion.div>
 
@@ -132,16 +240,15 @@ export default function Gallery() {
         >
           <div className="bg-white rounded-3xl p-12 shadow-lg border border-[#C8A882]/20">
             <h2 className="font-serif text-[length:var(--font-h2)] font-bold text-[#0F0F0F] mb-4">
-              Ready to Experience Serenity?
+              Pronta para Sua Transformação?
             </h2>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-[1.618]">
-              Book your appointment today and step into our world of luxury, wellness, and tranquility. 
-              Our organic spa treatments await.
+              Agende seu horário hoje e venha descobrir a experiência completa de beleza e bem-estar que o La Bonita oferece.
             </p>
             <button 
               onClick={() => window.dispatchEvent(new CustomEvent('open-booking-modal'))}
               className="bg-[#C8A882] text-white px-8 py-4 rounded-full font-medium hover:bg-[#FF5C8D] transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-              Schedule Your Visit
+              Agendar Horário
             </button>
           </div>
         </motion.div>
