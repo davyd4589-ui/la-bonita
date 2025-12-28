@@ -3,19 +3,8 @@ import { motion } from "framer-motion";
 import { Clock, Star, ArrowRight, Sparkles } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
-// Complete SERENITY Spa Service Menu with updated prices, services, and SEO-optimized alt text
+// Menu de Serviços La Bonita
 const servicesData = [
-  // Massage Services (Unchanged)
-  {
-    id: 1,
-    name: "Swedish Massage",
-    category: "massage",
-    description: "Indulge in a timeless classic at Kolkata's premier wellness destination. Our Swedish Massage utilizes masterful, flowing strokes and gentle kneading to dissolve muscle tension, enhance circulation, and guide you to a state of profound relaxation. This is the perfect introduction to therapeutic massage, meticulously performed by our certified therapists in Tangra to restore your body's natural harmony.",
-    price: 2500,
-    duration: "60 min",
-    image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/77609c815_image.png?w=600&q=80",
-    alt_text: "Professional Swedish massage therapy session at SERENITY luxury spa in Kolkata - premium relaxation treatment"
-  },
   {
     id: 2,
     name: "Japanese Head Spa",
@@ -910,13 +899,12 @@ const servicesData = [
 ];
 
 const categories = [
-  { key: "all", name: "All Services" },
-  { key: "massage", name: "Massage Therapy" },
-  { key: "beauty", name: "Beauty & Cosmetics" },
-  { key: "skin", name: "Skin Treatments" },
-  { key: "laser", name: "Laser Hair Removal" },
-  { key: "nails", name: "Nail Care" },
-  { key: "hair", name: "Hair Services" }
+  { key: "all", name: "Todos os Serviços" },
+  { key: "beauty", name: "Beleza & Estética" },
+  { key: "skin", name: "Tratamentos de Pele" },
+  { key: "massage", name: "Massagem" },
+  { key: "nails", name: "Unhas" },
+  { key: "hair", name: "Cabelo" }
 ];
 
 export default function Services() {
@@ -956,16 +944,16 @@ export default function Services() {
         >
           <div className="inline-flex items-center gap-2 bg-[#C8A882]/10 rounded-full px-4 py-2 mb-6">
             <Sparkles className="w-4 h-4 text-[#C8A882]" />
-            <span className="text-sm font-medium">Our Services</span>
+            <span className="text-sm font-medium">Nossos Serviços</span>
           </div>
           
           <h1 className="font-serif font-medium text-[length:var(--font-h1)] text-[#0F0F0F] mb-6 leading-tight">
-            Premium Spa & Salon Services in Kolkata
+            Serviços de Beleza La Bonita
           </h1>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-[1.618]">
-            Discover our comprehensive menu of luxury treatments, performed by certified professionals 
-            using state-of-the-art equipment and organic products.
+            Descubra nosso menu completo de tratamentos de beleza, realizados por profissionais 
+            certificados com produtos de alta qualidade.
           </p>
         </motion.div>
 
@@ -1098,17 +1086,17 @@ export default function Services() {
         >
           <div className="bg-white rounded-3xl p-12 shadow-lg border border-[#C8A882]/20">
             <h2 className="font-serif text-[length:var(--font-h2)] font-bold text-[#0F0F0F] mb-4">
-              Ready for Your Transformation?
+              Pronta para Sua Transformação?
             </h2>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-[1.618]">
-              Book your appointment today and experience the luxury wellness treatments 
-              that have made SERENITY the #1 spa in Kolkata.
+              Agende seu horário hoje e venha descobrir a experiência completa de beleza 
+              que o La Bonita oferece.
             </p>
             <button 
               onClick={() => window.dispatchEvent(new CustomEvent('open-booking-modal'))}
               className="bg-[#C8A882] text-white px-8 py-4 rounded-full font-medium hover:bg-[#FF5C8D] transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              Book Your Experience
+              Agendar Horário
             </button>
           </div>
         </motion.div>
