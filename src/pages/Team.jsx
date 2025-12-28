@@ -9,7 +9,7 @@ const otherTeamMembers = [
     name: "Rafael Lemos",
     title: "Maquiador e Cabeleireiro",
     bio: "Especialista em maquiagem e hair styling, com anos de experiência em transformar clientes com técnicas modernas e cuidado personalizado.",
-    image_url: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/3cdf67cc1_ScreenShotTool-20251221191102.png",
     specialties: ["Maquiagem", "Penteados"],
     instagram: "@rafaellemosmake",
     years_experience: 8
@@ -104,20 +104,15 @@ export default function Team() {
                 <div>
                   <h3 className="font-serif text-xl lg:text-2xl font-semibold text-[#0F0F0F] mb-4 border-l-4 border-[#C8A882] pl-4">Especialidades</h3>
                   <ul className="space-y-3 list-none pl-2 text-base">
-                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Cabelo</span></li>
+                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Cortes</span></li>
+                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Mechas</span></li>
+                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Coloração</span></li>
                     <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Maquiagem Noivas</span></li>
                     <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Penteados</span></li>
                   </ul>
                   <p className="mt-4">
                     Minha abordagem combina técnica com arte, criando resultados que não apenas impressionam visualmente, mas também são duradouros e naturais.
                   </p>
-                </div>
-
-                <div>
-                   <h3 className="font-serif text-xl lg:text-2xl font-semibold text-[#0F0F0F] mb-4 border-l-4 border-[#C8A882] pl-4">Por Que Criei La Bonita</h3>
-                   <p>
-                     Minha missão é oferecer um espaço onde cada cliente se sinta <strong>especial e valorizada.</strong> La Bonita não é apenas um salão, é um lugar onde sua beleza é realçada com cuidado e profissionalismo. Cada serviço é pensado para proporcionar uma experiência completa de bem-estar.
-                   </p>
                 </div>
               </div>
 
