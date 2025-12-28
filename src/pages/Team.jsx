@@ -29,7 +29,7 @@ const teamMembers = [
     name: "Geovana",
     title: "Especialista em Unhas",
     bio: "Especialista em extensão de unhas e nail art, Geovana traz técnicas avançadas e um olhar artístico para cada cliente.",
-    image_url: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/f942d9ca2_WhatsAppImage2025-12-21at84454PM.jpeg",
     specialties: ["Extensão de Unhas", "Nail Office"],
     years_experience: 6
   }
