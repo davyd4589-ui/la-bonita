@@ -5,38 +5,38 @@ import { Sparkles, Star, ArrowRight, MapPin, Users, Award } from "lucide-react";
 const slides = [
   {
     id: 1,
-    image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/831601306_14.jpg?w=2560&q=90",
-    headline: "#1 Luxury Spa & Salon in Kolkata",
-    subheading: "Where Wellness Meets Luxury at SERENITY Tangra",
-    description: "Transform Your Look. Rejuvenate Your Soul. Experience Kolkata's Most Exclusive Organic Spa Treatments & Premium Massage Therapy.",
-    cta_text: "BOOK YOUR LUXURY ESCAPE",
+    image_url: "https://la-bonita-spa-mobile-zlfp.bolt.host/gallery/screenshot_tool_-20251222112029.png",
+    headline: "Seu Cabelo Merece o Melhor",
+    subheading: "La Bonita - Salão de Beleza Premium",
+    description: "Transformações capilares que elevam sua autoestima. Coloração, mechas, cortes e penteados profissionais.",
+    cta_text: "AGENDAR AGORA",
     isH1: true,
   },
   {
     id: 2,
-    image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/07d005974_12.jpg?w=2560&q=90",
-    headline: "5-Star Rated Luxury Spa Experience",
-    subheading: "Premium Interior Design & Certified Therapists",
-    description: "Experience our meticulously designed spa interiors in Tangra, Kolkata where every detail reflects sophistication and tranquility for your ultimate comfort.",
-    cta_text: "EXPLORE OUR SANCTUARY",
+    image_url: "https://la-bonita-spa-mobile-zlfp.bolt.host/gallery/screenshot_tool_-20251222113445.png",
+    headline: "Atendimento 5 Estrelas",
+    subheading: "Profissionais Altamente Qualificados",
+    description: "Experiência premium com produtos de qualidade e técnicas avançadas para resultados incríveis.",
+    cta_text: "CONHEÇA NOSSOS SERVIÇOS",
     isH1: false,
   },
   {
     id: 3,
-    image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/4289f0848_13.jpg?w=2560&q=90",
-    headline: "Award-Winning Organic Spa Treatments",
-    subheading: "Sophisticated Treatment Spaces in Kolkata",
-    description: "Indulge in our beautifully crafted treatment rooms designed for privacy, comfort, and the ultimate organic spa experience in Tangra.",
-    cta_text: "DISCOVER PREMIUM WELLNESS",
+    image_url: "https://la-bonita-spa-mobile-zlfp.bolt.host/gallery/screenshot_tool_-20251222114951.png",
+    headline: "Transformações Reais",
+    subheading: "Resultados que Transformam",
+    description: "Ambiente aconchegante onde cada detalhe é pensado para seu bem-estar e beleza.",
+    cta_text: "VER GALERIA",
     isH1: false,
   }
 ];
 
 // Trust indicators data
 const trustIndicators = [
-  { icon: Users, text: "2000+ Happy Clients", color: "text-white" },
-  { icon: Award, text: "5-Star Rated Spa", color: "text-[#C8A882]" },
-  { icon: MapPin, text: "Prime Tangra Location", color: "text-white" }
+  { icon: Users, text: "1000+ Clientes Atendidas", color: "text-white" },
+  { icon: Award, text: "Avaliação 5.0", color: "text-[#C8A882]" },
+  { icon: MapPin, text: "Goiânia - GO", color: "text-white" }
 ];
 
 export default function Hero() {
@@ -69,7 +69,7 @@ export default function Hero() {
         >
           <img
             src={currentSlide.image_url}
-            alt={`SERENITY Luxury Spa & Salon in Kolkata Tangra - ${currentSlide.headline}. Offering Organic Spa Treatments and Premium Massage Therapy.`}
+            alt={`La Bonita Salão de Beleza em Goiânia - ${currentSlide.headline}. Oferecendo tratamentos capilares, coloração e styling profissional.`}
             className="w-full h-full object-cover object-center"
             style={{
               objectPosition: 'center center',
@@ -151,10 +151,10 @@ export default function Hero() {
                 </button>
                 
                 <button
-                  onClick={() => window.location.href = 'tel:+919876543210'}
+                  onClick={() => window.open('https://wa.me/5562982780894?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio.', '_blank')}
                   className="group bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-6 sm:px-8 py-4 sm:py-5 rounded-full font-sans font-semibold text-sm sm:text-base lg:text-lg hover:bg-white hover:text-[#0F0F0F] transition-all duration-500 flex items-center justify-center gap-2 sm:gap-3 min-h-[48px] sm:min-h-[56px] lg:min-h-[60px] w-full sm:w-auto"
                 >
-                  <span className="whitespace-nowrap">Call Now: +91 98765 43210</span>
+                  <span className="whitespace-nowrap">WhatsApp: (62) 98278-0894</span>
                 </button>
               </div>
 
@@ -167,10 +167,10 @@ export default function Hero() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <Sparkles className="w-4 h-4 text-[#C8A882] flex-shrink-0" />
-                  <span className="text-[#C8A882] font-medium text-xs sm:text-sm">LIMITED TIME OFFER</span>
+                  <span className="text-[#C8A882] font-medium text-xs sm:text-sm">HORÁRIO DE ATENDIMENTO</span>
                 </div>
                 <p className="text-white/90 text-xs sm:text-sm leading-relaxed">
-                  Book today and receive a complimentary organic facial add-on worth ₹2,500
+                  Terça a Sexta: 9h às 19h | Sábado: 8h às 13h
                 </p>
               </motion.div>
             </motion.div>
