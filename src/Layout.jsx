@@ -207,7 +207,7 @@ export default function Layout({ children, currentPageName }) {
             <Link 
               to="/" 
               className="flex items-center gap-3 group transform transition-transform hover:scale-105"
-              aria-label="SERENITY Spa & Salon - Go to homepage"
+              aria-label="La Bonita - Salão de beleza - Go to homepage"
             >
               <div className="relative">
                 <Sparkles 
@@ -217,10 +217,10 @@ export default function Layout({ children, currentPageName }) {
               </div>
               <div>
                 <h1 className={`text-[#C8A882] text-lg font-bold font-serif text-center glow-text`}>
-                  SERENITY
+                  LA BONITA
                 </h1>
                 <p className={`text-xs text-center tracking-widest ${isScrolled || isMenuOpen ? 'text-[#C8A882]' : 'text-[#C8A882] text-shadow-dark'}`}>
-                  Spa & Salon
+                  Salão de beleza
                 </p>
               </div>
             </Link>
@@ -323,13 +323,13 @@ export default function Layout({ children, currentPageName }) {
               <div className="flex items-center gap-3 mb-6">
                 <Sparkles className="w-8 h-8 text-[#C8A882] sparkle-animation" aria-hidden="true" />
                 <div>
-                  <h2 className="font-serif text-2xl font-bold glow-text">SERENITY</h2>
-                  <p className="text-xs text-[#C8A882] tracking-widest">Luxury Spa & Salon</p>
+                  <h2 className="font-serif text-2xl font-bold glow-text">LA BONITA</h2>
+                  <p className="text-xs text-[#C8A882] tracking-widest">Salão de beleza</p>
                 </div>
               </div>
               <p className="text-sm leading-[1.618] text-gray-300 mb-6">
-                Kolkata's premier luxury wellness destination. Experience unparalleled service 
-                with our highly skilled professionals and state-of-the-art equipment.
+                Salão de beleza premium. Experimente um serviço incomparável 
+                com nossos profissionais altamente qualificados e equipamentos de ponta.
               </p>
               <div className="flex gap-4" role="list" aria-label="Social media links">
                 <a 
@@ -412,7 +412,7 @@ export default function Layout({ children, currentPageName }) {
           {/* Bottom Bar */}
           <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">
-              © 2024 Serenity Luxury Spa & Salon. All rights reserved.
+              © 2024 La Bonita - Salão de beleza. Todos os direitos reservados.
             </p>
             
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
