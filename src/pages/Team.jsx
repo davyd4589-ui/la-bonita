@@ -79,7 +79,7 @@ export default function Team() {
             >
               <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/5]">
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/687b36742c848dbd788ca716/0c96d7c03_Gemini_Generated_Image_kavr2wkavr2wkavr.png"
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/68ca62b21_ScreenShotTool-20251221190300.png"
                   alt="Juliany Borges, Fundadora da La Bonita Salão de Beleza em Goiânia"
                   className="w-full h-full object-cover object-center"
                 />
