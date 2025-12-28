@@ -80,7 +80,7 @@ export default function Team() {
               <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/5]">
                 <img
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/687b36742c848dbd788ca716/0c96d7c03_Gemini_Generated_Image_kavr2wkavr2wkavr.png"
-                  alt="Chami Chhakchhuak (Cece), Visionary Founder of SERENITY Luxury Spa & Salon in Kolkata"
+                  alt="Juliany Borges, Fundadora da La Bonita Salão de Beleza em Goiânia"
                   className="w-full h-full object-cover object-center"
                 />
               </div>
@@ -168,7 +168,7 @@ export default function Team() {
                   <div className="relative h-80 overflow-hidden">
                     <img
                       src={member.image_url}
-                      alt={`${member.name}, ${member.title} at SERENITY Luxury Spa & Salon Kolkata`}
+                      alt={`${member.name}, ${member.title} na La Bonita Salão de Beleza Goiânia`}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute top-4 right-4 bg-[#C8A882] text-white rounded-full px-3 py-1 flex items-center gap-1">
