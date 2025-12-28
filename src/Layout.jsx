@@ -212,8 +212,16 @@ export default function Layout({ children, currentPageName }) {
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/84a1bc056_ScreenShotTool-20251221150407.png"
                 alt="La Bonita Logo"
-                className="h-16 w-auto object-contain"
+                className="h-14 w-14 object-contain"
               />
+              <div className="flex flex-col">
+                <span className={`font-serif text-2xl font-bold leading-tight transition-colors ${isScrolled || isMenuOpen ? 'text-[#0F0F0F]' : 'text-white text-shadow-dark'} group-hover:text-[#C8A882]`}>
+                  La Bonita
+                </span>
+                <span className={`text-xs font-light tracking-wide transition-colors ${isScrolled || isMenuOpen ? 'text-gray-600' : 'text-white/90 text-shadow-dark'}`}>
+                  Salão de Beleza
+                </span>
+              </div>
             </Link>
 
             {/* Desktop Navigation with improved accessibility */}
