@@ -599,7 +599,7 @@ const servicesData = [
     alt_text: "Mega volume brasileiro de cílios no La Bonita"
   },
   {
-    id: 64,
+    id: 3,
     name: "Manutenção",
     category: "beauty",
     description: "Manutenção de cílios fio a fio",
@@ -609,7 +609,7 @@ const servicesData = [
     alt_text: "Manutenção de extensão de cílios no La Bonita"
   },
   {
-    id: 65,
+    id: 4,
     name: "Design de Sobrancelha",
     category: "beauty",
     description: "Modelagem e design profissional de sobrancelhas",
@@ -620,7 +620,7 @@ const servicesData = [
     alt_text: "Design de sobrancelha no La Bonita"
   },
   {
-    id: 66,
+    id: 5,
     name: "Buço",
     category: "beauty",
     description: "Depilação de buço",
@@ -630,7 +630,7 @@ const servicesData = [
     alt_text: "Depilação de buço no La Bonita"
   },
   {
-    id: 67,
+    id: 6,
     name: "Henna",
     category: "beauty",
     description: "Coloração de sobrancelhas com henna",
@@ -640,7 +640,7 @@ const servicesData = [
     alt_text: "Henna para sobrancelhas no La Bonita"
   },
   {
-    id: 68,
+    id: 7,
     name: "Tonalização de Sobrancelha",
     category: "beauty",
     description: "Coloração profissional de sobrancelhas",
@@ -650,7 +650,7 @@ const servicesData = [
     alt_text: "Tonalização de sobrancelha no La Bonita"
   },
   {
-    id: 69,
+    id: 8,
     name: "Bronzeamento Natural",
     category: "skin",
     description: "Bronze natural com produtos de alta qualidade",
@@ -660,7 +660,7 @@ const servicesData = [
     alt_text: "Bronzeamento natural no La Bonita"
   },
   {
-    id: 70,
+    id: 9,
     name: "Bronze na Máquina",
     category: "skin",
     description: "Bronzeamento com máquina profissional",
@@ -670,7 +670,7 @@ const servicesData = [
     alt_text: "Bronze na máquina no La Bonita"
   },
   {
-    id: 71,
+    id: 10,
     name: "Banho de Lua",
     category: "skin",
     description: "Iluminador corporal para pele radiante",
@@ -680,7 +680,7 @@ const servicesData = [
     alt_text: "Banho de lua no La Bonita"
   },
   {
-    id: 72,
+    id: 11,
     name: "Massagem Relaxante",
     category: "massage",
     description: "Massagem terapêutica para relaxamento completo",
@@ -690,7 +690,7 @@ const servicesData = [
     alt_text: "Massagem relaxante no La Bonita"
   },
   {
-    id: 73,
+    id: 12,
     name: "Pacote Essencial",
     category: "beauty",
     description: "Dia da noiva com serviços essenciais",
@@ -702,7 +702,7 @@ const servicesData = [
     alt_text: "Pacote essencial para noivas no La Bonita"
   },
   {
-    id: 74,
+    id: 13,
     name: "Combo Mechas",
     category: "hair",
     description: "Pacote completo de mechas com tratamento e finalização",
@@ -713,7 +713,7 @@ const servicesData = [
     alt_text: "Combo mechas no La Bonita"
   },
   {
-    id: 75,
+    id: 14,
     name: "Reconstrução + Escova",
     category: "hair",
     description: "Tratamento de reconstrução profunda com finalização em escova",
@@ -724,7 +724,7 @@ const servicesData = [
     alt_text: "Reconstrução e escova no La Bonita"
   },
   {
-    id: 76,
+    id: 15,
     name: "Nutrição + Escova",
     category: "hair",
     description: "Tratamento nutritivo intenso com finalização em escova",
@@ -734,7 +734,7 @@ const servicesData = [
     alt_text: "Nutrição e escova no La Bonita"
   },
   {
-    id: 77,
+    id: 16,
     name: "Hidratação + Escova",
     category: "hair",
     description: "Hidratação profunda com finalização em escova",
@@ -745,7 +745,7 @@ const servicesData = [
     alt_text: "Hidratação e escova no La Bonita"
   },
   {
-    id: 78,
+    id: 17,
     name: "Cronograma Capilar Premium",
     category: "hair",
     description: "Programa completo de 4 sessões para recuperação dos fios",
@@ -756,7 +756,7 @@ const servicesData = [
     alt_text: "Cronograma capilar premium no La Bonita"
   },
   {
-    id: 79,
+    id: 18,
     name: "Cronograma Capilar Luxury",
     category: "hair",
     description: "Programa premium com tratamentos avançados",
@@ -768,7 +768,7 @@ const servicesData = [
     alt_text: "Cronograma capilar luxury no La Bonita"
   },
   {
-    id: 80,
+    id: 19,
     name: "Pé + Mão",
     category: "nails",
     description: "Manicure e pedicure completos",
@@ -779,7 +779,7 @@ const servicesData = [
     alt_text: "Manicure e pedicure no La Bonita"
   },
   {
-    id: 81,
+    id: 20,
     name: "Mão",
     category: "nails",
     description: "Manicure completa",
@@ -789,7 +789,7 @@ const servicesData = [
     alt_text: "Manicure no La Bonita"
   },
   {
-    id: 82,
+    id: 21,
     name: "Pé",
     category: "nails",
     description: "Pedicure completa",
@@ -799,7 +799,7 @@ const servicesData = [
     alt_text: "Pedicure no La Bonita"
   },
   {
-    id: 83,
+    id: 22,
     name: "Corte",
     category: "hair",
     description: "Corte feminino com acabamento profissional",
@@ -810,7 +810,7 @@ const servicesData = [
     alt_text: "Corte feminino no La Bonita"
   },
   {
-    id: 84,
+    id: 23,
     name: "Escova",
     category: "hair",
     description: "Escova modeladora com finalização impecável. Selecione: Curto, Médio, Grande, Mega Hair",
@@ -822,7 +822,7 @@ const servicesData = [
     alt_text: "Escova modeladora no La Bonita"
   },
   {
-    id: 85,
+    id: 24,
     name: "Penteado",
     category: "hair",
     description: "Penteado sofisticado para eventos especiais",
@@ -834,7 +834,7 @@ const servicesData = [
     alt_text: "Penteado para noivas e eventos no La Bonita"
   },
   {
-    id: 86,
+    id: 25,
     name: "Maquiagem",
     category: "beauty",
     description: "Maquiagem profissional para todas as ocasiões",
@@ -846,7 +846,7 @@ const servicesData = [
     alt_text: "Maquiagem profissional no La Bonita"
   },
   {
-    id: 87,
+    id: 26,
     name: "Progressiva",
     category: "hair",
     description: "Alisamento progressivo com produtos de alta qualidade",
@@ -857,7 +857,7 @@ const servicesData = [
     alt_text: "Progressiva no La Bonita"
   },
   {
-    id: 88,
+    id: 27,
     name: "Realinhamento Capilar",
     category: "hair",
     description: "Manutenção do alisamento progressivo",
@@ -867,7 +867,7 @@ const servicesData = [
     alt_text: "Realinhamento capilar no La Bonita"
   },
   {
-    id: 89,
+    id: 28,
     name: "Esfumado de Raiz",
     category: "hair",
     description: "Técnica para disfarçar a raiz e transição de cores",
@@ -877,7 +877,7 @@ const servicesData = [
     alt_text: "Esfumado de raiz no La Bonita"
   },
   {
-    id: 90,
+    id: 29,
     name: "Coloração Global",
     category: "hair",
     description: "Coloração completa dos fios",
@@ -887,7 +887,7 @@ const servicesData = [
     alt_text: "Coloração global no La Bonita"
   },
   {
-    id: 91,
+    id: 30,
     name: "Banho de Brilho",
     category: "hair",
     description: "Tratamento para realçar o brilho e a cor",
