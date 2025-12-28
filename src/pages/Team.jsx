@@ -3,7 +3,17 @@ import { motion } from "framer-motion";
 import { Sparkles, Award, Droplets, Beaker, ShieldCheck, Instagram } from "lucide-react";
 
 // Static data for the team members
-const otherTeamMembers = [
+const teamMembers = [
+  {
+    id: 1,
+    name: "Juliany Borges",
+    title: "Fundadora",
+    bio: "Fundadora da La Bonita Spa Beauty. Dedicada a criar experiências únicas de beleza e bem-estar, com foco em atendimento personalizado e resultados excepcionais.",
+    image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/68ca62b21_ScreenShotTool-20251221190300.png",
+    specialties: ["Cortes", "Mechas", "Coloração", "Maquiagem Noivas", "Penteados"],
+    instagram: "@labonitaspabeauty",
+    years_experience: 10
+  },
   {
     id: 2,
     name: "Rafael Lemos",
@@ -67,93 +77,10 @@ export default function Team() {
           </p>
         </motion.div>
 
-        {/* Founder's Section */}
+        {/* Team Members */}
         <section className="mb-24">
-          <div className="grid lg:grid-cols-12 gap-12 items-center bg-white rounded-3xl p-8 lg:p-12 shadow-2xl shadow-[#C8A882]/10 border border-[#C8A882]/20">
-            {/* Founder Image */}
-            <motion.div 
-              className="lg:col-span-5"
-              initial={{ opacity: 0, scale: 0.8, x: -50 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-            >
-              <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/5]">
-                <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/68ca62b21_ScreenShotTool-20251221190300.png"
-                  alt="Juliany Borges, Fundadora da La Bonita Salão de Beleza em Goiânia"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-            </motion.div>
-            
-            {/* Founder's Story */}
-            <motion.div 
-              className="lg:col-span-7"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-            >
-              <h2 className="font-serif text-3xl lg:text-4xl font-bold text-[#0F0F0F] mb-2">Juliany Borges</h2>
-              <p className="font-sans text-lg text-[#C8A882] font-medium mb-6">Fundadora</p>
-              
-              <div className="space-y-6 font-sans text-gray-700 leading-relaxed text-base lg:text-lg">
-                <p>
-                  Fundadora da La Bonita Spa Beauty. Dedicada a criar experiências únicas de beleza e bem-estar, com foco em <strong>atendimento personalizado e resultados excepcionais.</strong> Com anos de experiência no setor, transformei o salão em um <strong>espaço acolhedor e moderno</strong>.
-                </p>
-
-                <div>
-                  <h3 className="font-serif text-xl lg:text-2xl font-semibold text-[#0F0F0F] mb-4 border-l-4 border-[#C8A882] pl-4">Especialidades</h3>
-                  <ul className="space-y-3 list-none pl-2 text-base">
-                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Cortes</span></li>
-                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Mechas</span></li>
-                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Coloração</span></li>
-                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Maquiagem Noivas</span></li>
-                    <li className="flex items-start"><Sparkles className="w-5 h-5 text-[#C8A882] mr-3 mt-1 flex-shrink-0" /><span>Penteados</span></li>
-                  </ul>
-                  <p className="mt-4">
-                    Minha abordagem combina técnica com arte, criando resultados que não apenas impressionam visualmente, mas também são duradouros e naturais.
-                  </p>
-                </div>
-              </div>
-
-              {/* Instagram Link */}
-              <div className="mt-6">
-                <a href="https://www.instagram.com/labonitaspabeauty/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#C8A882] hover:text-[#FF5C8D] transition-colors">
-                  <Instagram className="w-5 h-5" />
-                  <span>@labonitaspabeauty</span>
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Expertise Pillars */}
-        <section className="mb-24 text-center">
-            <h2 className="font-serif text-3xl font-bold text-[#0F0F0F] mb-12">Nossa Filosofia na Prática</h2>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                {expertisePillars.map((pillar, index) => (
-                    <motion.div
-                        key={pillar.title}
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: index * 0.2 + 0.5, ease: "easeOut" }}
-                        className="bg-white p-8 rounded-3xl shadow-lg border border-[#C8A882]/20 flex flex-col items-center"
-                    >
-                        <div className="w-16 h-16 bg-[#C8A882]/10 rounded-full flex items-center justify-center mb-4">
-                            <pillar.icon className="w-8 h-8 text-[#C8A882]" />
-                        </div>
-                        <h3 className="font-serif text-xl font-semibold text-[#0F0F0F] mb-2">{pillar.title}</h3>
-                        <p className="text-gray-600 text-sm text-center leading-relaxed">{pillar.description}</p>
-                    </motion.div>
-                ))}
-            </div>
-        </section>
-
-        {/* Other Team Members */}
-        <section>
-          <h2 className="font-serif text-3xl text-center font-bold text-[#0F0F0F] mb-12">Conheça Nossa Equipe</h2>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-[clamp(1rem,2vw,2.5rem)]">
-            {otherTeamMembers.map((member, index) => (
+            {teamMembers.map((member, index) => (
               <motion.div
                 key={member.id}
                 initial={{ opacity: 0, y: 60 }}
@@ -197,6 +124,28 @@ export default function Team() {
               </motion.div>
             ))}
           </div>
+        </section>
+
+        {/* Expertise Pillars */}
+        <section className="mb-24 text-center">
+            <h2 className="font-serif text-3xl font-bold text-[#0F0F0F] mb-12">Nossa Filosofia na Prática</h2>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {expertisePillars.map((pillar, index) => (
+                    <motion.div
+                        key={pillar.title}
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: index * 0.2 + 0.5, ease: "easeOut" }}
+                        className="bg-white p-8 rounded-3xl shadow-lg border border-[#C8A882]/20 flex flex-col items-center"
+                    >
+                        <div className="w-16 h-16 bg-[#C8A882]/10 rounded-full flex items-center justify-center mb-4">
+                            <pillar.icon className="w-8 h-8 text-[#C8A882]" />
+                        </div>
+                        <h3 className="font-serif text-xl font-semibold text-[#0F0F0F] mb-2">{pillar.title}</h3>
+                        <p className="text-gray-600 text-sm text-center leading-relaxed">{pillar.description}</p>
+                    </motion.div>
+                ))}
+            </div>
         </section>
 
       </div>
