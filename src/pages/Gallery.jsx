@@ -78,11 +78,7 @@ const galleryImages = [
     title: "Noiva na Recepção",
     category: "Noivas"
   },
-  {
-    src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/93a17ff64_WhatsAppImage2025-12-21at84454PM.jpeg",
-    title: "Chanel Hair",
-    category: "Corte"
-  },
+
   {
     src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/cbe43299b_WhatsAppImage2025-12-21at84340PM.jpg",
     title: "Noiva com Buquê",
