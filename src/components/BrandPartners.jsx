@@ -32,7 +32,7 @@ export default function BrandPartners() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
         <h3 className="text-sm font-sans font-bold uppercase tracking-widest text-gray-500 mb-12">
-          Featuring Products From The World's Finest Brands
+          Utilizando Produtos das Melhores Marcas do Mundo
         </h3>
         <div className="relative w-full overflow-hidden group">
           <style>{`

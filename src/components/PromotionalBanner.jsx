@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
@@ -66,7 +65,7 @@ export default function PromotionalBanner() {
             className="space-y-2"
           >
             <p className="font-sans text-xl md:text-2xl font-light text-white/90 tracking-wide">
-              An Exclusive Invitation to Year-Long Serenity
+              Um Convite Exclusivo para Beleza o Ano Todo
             </p>
             <motion.p
               initial={{ opacity: 0, scale: 0.8 }}
@@ -75,7 +74,7 @@ export default function PromotionalBanner() {
               viewport={{ once: true }}
               className="font-sans text-lg md:text-xl font-semibold text-white"
             >
-              Secure your annual membership at an exceptional value. Limited placements available.
+              Garanta sua assinatura anual com valor excepcional. Vagas limitadas disponíveis.
             </motion.p>
           </motion.div>
 
@@ -97,7 +96,7 @@ export default function PromotionalBanner() {
               onClick={() => window.dispatchEvent(new CustomEvent('open-booking-modal'))}
               className="group bg-black/80 backdrop-blur-sm text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-[#C8A882] transition-all duration-300 shadow-xl border border-white/20 flex items-center justify-center gap-3 mx-auto"
             >
-              CLAIM YOUR MEMBERSHIP
+              GARANTA SUA ASSINATURA
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.button>
           </motion.div>

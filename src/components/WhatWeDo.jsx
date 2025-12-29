@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Shield, Leaf, Award, Heart } from "lucide-react";
@@ -6,23 +5,23 @@ import { Shield, Leaf, Award, Heart } from "lucide-react";
 const features = [
   {
     icon: Shield,
-    title: "Advanced Equipment & Technology",
-    description: "State-of-the-art spa equipment for premium organic treatments in Kolkata"
+    title: "Equipamentos e Tecnologia Avançada",
+    description: "Equipamentos de última geração para tratamentos de beleza premium"
   },
   {
     icon: Leaf,
-    title: "100% Organic & Natural Products",
-    description: "Certified organic skincare products for safe, toxin-free beauty treatments"
+    title: "100% Produtos Orgânicos e Naturais",
+    description: "Produtos orgânicos certificados para tratamentos de beleza seguros e livres de toxinas"
   },
   {
     icon: Award,
-    title: "Expert Certified Therapists",
-    description: "Highly skilled professionals delivering luxury spa experiences since 2020"
+    title: "Profissionais Especializadas",
+    description: "Equipe altamente qualificada oferecendo experiências de beleza de luxo"
   },
   {
     icon: Heart,
-    title: "Personalized Wellness Solutions",
-    description: "Customized organic spa treatments tailored to your unique beauty needs"
+    title: "Soluções Personalizadas de Bem-Estar",
+    description: "Tratamentos personalizados adaptados às suas necessidades únicas de beleza"
   }
 ];
 
@@ -85,7 +84,7 @@ export default function WhatWeDo() {
             viewport={{ once: true }}
             className="font-sans text-sm text-gray-500 mb-4 tracking-wider uppercase"
           >
-            The Art & Science of Beauty
+            A Arte e Ciência da Beleza
           </motion.p>
           <motion.h2 
             initial={{ opacity: 0, y: 50, skewX: 10 }}
@@ -94,7 +93,7 @@ export default function WhatWeDo() {
             viewport={{ once: true }}
             className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-[#0F0F0F] leading-tight mb-6"
           >
-            The SERENITY Standard<br />
+            O Padrão La Bonita<br />
             <motion.span 
               initial={{ opacity: 0, scale: 0.5, color: "#C8A882" }}
               whileInView={{ opacity: 1, scale: 1, color: "#C8A882" }}
@@ -102,7 +101,7 @@ export default function WhatWeDo() {
               viewport={{ once: true }}
               className="text-[#C8A882]"
             >
-              Excellence in Every Detail
+              Excelência em Cada Detalhe
             </motion.span>
           </motion.h2>
           <motion.p 
@@ -112,7 +111,7 @@ export default function WhatWeDo() {
             viewport={{ once: true }}
             className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed"
           >
-            Welcome to SERENITY, Kolkata's premier luxury wellness sanctuary. We blend the expertise of master therapists with advanced technology and the purest organic ingredients. This is more than a treatment; it's a meticulously crafted experience designed to deliver profound results and restore your ultimate state of well-being.
+            Bem-vinda ao La Bonita, santuário de beleza e bem-estar premium em Goiânia. Combinamos a expertise de profissionais especializadas com tecnologia avançada e os mais puros ingredientes orgânicos. Isto é mais do que um tratamento; é uma experiência meticulosamente elaborada para entregar resultados profundos e restaurar seu estado máximo de bem-estar.
           </motion.p>
         </motion.div>
 
@@ -258,7 +257,7 @@ export default function WhatWeDo() {
             onClick={() => window.dispatchEvent(new CustomEvent('open-booking-modal'))}
             className="bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white px-8 py-4 rounded-full font-sans font-semibold hover:from-[#FF5C8D] hover:to-[#C8A882] transition-all duration-300 shadow-lg text-lg"
           >
-            Book Your Organic Spa Experience Today
+            Agende Sua Experiência de Beleza Hoje
           </motion.button>
         </motion.div>
       </div>

@@ -4,12 +4,12 @@ import { PawPrint, FlaskConical, Leaf, Beaker, ShieldOff, Droplets, WineOff } fr
 
 const specialtyItems = [
   { icon: PawPrint, text: "Cruelty Free" },
-  { icon: FlaskConical, text: "Sulfate Free" },
-  { icon: Leaf, text: "Organic" },
-  { icon: Beaker, text: "Lab Tested" },
-  { icon: ShieldOff, text: "No SLS" },
-  { icon: Droplets, text: "No Silicon" },
-  { icon: WineOff, text: "No Alcohol" }
+  { icon: FlaskConical, text: "Sem Sulfato" },
+  { icon: Leaf, text: "Orgânico" },
+  { icon: Beaker, text: "Testado" },
+  { icon: ShieldOff, text: "Sem SLS" },
+  { icon: Droplets, text: "Sem Silicone" },
+  { icon: WineOff, text: "Sem Álcool" }
 ];
 
 const LeafDecoration = () => (
@@ -69,9 +69,9 @@ export default function ProductSpecialty() {
             viewport={{ once: true }}
             className="font-serif text-4xl md:text-5xl font-bold leading-tight"
           >
-              <span className="text-[#0F0F0F]">Purely Potent, Naturally</span>
+              <span className="text-[#0F0F0F]">Pureza e Potência, Naturalmente</span>
               <br />
-              <span className="text-[#C8A882]">Our Organic Product Philosophy</span>
+              <span className="text-[#C8A882]">Nossa Filosofia de Produtos Orgânicos</span>
           </motion.h2>
         <motion.p 
           initial={{ opacity: 0, y: 30, scale: 0.8 }}
@@ -80,7 +80,7 @@ export default function ProductSpecialty() {
           viewport={{ once: true }}
           className="font-sans text-lg text-gray-600 mt-6 max-w-3xl mx-auto leading-relaxed"
         >
-          At SERENITY, we exclusively use lab-tested, cruelty-free, and certified organic products for our spa treatments in Kolkata. Our commitment to sulfate-free, paraben-free, and alcohol-free formulations ensures your skin receives only the purest ingredients for a truly radiant, healthy glow.
+          No La Bonita, utilizamos exclusivamente produtos testados, livres de crueldade animal e certificados como orgânicos. Nosso compromisso com formulações sem sulfato, sem parabenos e sem álcool garante que sua pele receba apenas os ingredientes mais puros para um brilho verdadeiramente radiante e saudável.
         </motion.p>
       </div>
 
