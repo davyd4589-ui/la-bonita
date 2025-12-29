@@ -271,8 +271,12 @@ Por favor responda como assistente virtual do La Bonita - Salão de Beleza. IMPO
                 >
                   <div className={`flex items-start gap-2 max-w-[85%]`}>
                     {message.sender === 'bot' && (
-                      <div className="w-8 h-8 rounded-full bg-[#FF5C8D] flex items-center justify-center flex-shrink-0">
-                        <Bot className="w-4 h-4 text-white" />
+                      <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 p-1">
+                        <img 
+                          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/84a1bc056_ScreenShotTool-20251221150407.png"
+                          alt="La Bonita"
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                     )}
                     <div className={`p-3 rounded-2xl ${message.sender === 'user' ? 'bg-[#C8A882] text-white ml-2' : 'bg-gray-100 text-gray-800'}`}>
