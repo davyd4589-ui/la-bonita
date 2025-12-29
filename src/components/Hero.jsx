@@ -150,7 +150,14 @@ export default function Hero() {
               {/* CTA Buttons - Super Responsive */}
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4 sm:pt-6">
                 <button
-                  onClick={() => window.dispatchEvent(new CustomEvent('open-booking-modal'))}
+                  onClick={() => {
+                    if (currentSlide.id === 2) {
+                      // Para o slide de noivas, redirecionar para a página de pacotes
+                      window.location.href = '/BridalPackages';
+                    } else {
+                      window.dispatchEvent(new CustomEvent('open-booking-modal'));
+                    }
+                  }}
                   className="group bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white px-6 sm:px-8 lg:px-10 py-4 sm:py-5 rounded-full font-sans font-semibold text-sm sm:text-base lg:text-lg hover:from-[#FF5C8D] hover:to-[#C8A882] transition-all duration-500 hover:scale-105 shadow-2xl hover:shadow-[#C8A882]/30 flex items-center justify-center gap-2 sm:gap-3 min-h-[48px] sm:min-h-[56px] lg:min-h-[60px] w-full sm:w-auto"
                 >
                   <span className="text-center leading-tight">
