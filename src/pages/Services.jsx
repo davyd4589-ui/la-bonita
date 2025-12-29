@@ -12,7 +12,7 @@ const servicesData = [
     description: "Aplicação de cílios fio a fio técnica brasileira",
     price: 160,
     duration: "2h",
-    image_url: "https://images.pexels.com/photos/7052952/pexels-photo-7052952.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/5128268/pexels-photo-5128268.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Extensão de cílios brasileiro no La Bonita Salão de Beleza"
   },
   {
@@ -23,7 +23,7 @@ const servicesData = [
     price: 200,
     duration: "2h30",
     badge: "Premium",
-    image_url: "https://images.pexels.com/photos/5614660/pexels-photo-5614660.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/7755520/pexels-photo-7755520.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Mega volume brasileiro de cílios no La Bonita"
   },
   {
@@ -33,7 +33,7 @@ const servicesData = [
     description: "Manutenção de cílios fio a fio",
     price: 110,
     duration: "1h - 1h30",
-    image_url: "https://images.pexels.com/photos/7702816/pexels-photo-7702816.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/5128220/pexels-photo-5128220.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Manutenção de extensão de cílios no La Bonita"
   },
   {
@@ -44,7 +44,7 @@ const servicesData = [
     price: 40,
     duration: "30min",
     badge: "Mais pedido",
-    image_url: "https://images.pexels.com/photos/3997378/pexels-photo-3997378.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/5128231/pexels-photo-5128231.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Design de sobrancelha no La Bonita"
   },
   {
@@ -54,7 +54,7 @@ const servicesData = [
     description: "Depilação de buço",
     price: 22,
     duration: "15min",
-    image_url: "https://images.pexels.com/photos/3997389/pexels-photo-3997389.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/5128180/pexels-photo-5128180.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Depilação de buço no La Bonita"
   },
   {
@@ -64,7 +64,7 @@ const servicesData = [
     description: "Coloração de sobrancelhas com henna",
     price: 20,
     duration: "30min",
-    image_url: "https://images.pexels.com/photos/3997394/pexels-photo-3997394.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/5128259/pexels-photo-5128259.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Henna para sobrancelhas no La Bonita"
   },
   {
@@ -74,7 +74,7 @@ const servicesData = [
     description: "Coloração profissional de sobrancelhas",
     price: 35,
     duration: "30min",
-    image_url: "https://images.pexels.com/photos/3997386/pexels-photo-3997386.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/5128259/pexels-photo-5128259.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Tonalização de sobrancelha no La Bonita"
   },
   {
@@ -137,7 +137,7 @@ const servicesData = [
     price: 780,
     duration: "4h - 6h",
     badge: "Pacote",
-    image_url: "https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/8468126/pexels-photo-8468126.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Combo mechas no La Bonita"
   },
   {
@@ -148,7 +148,7 @@ const servicesData = [
     price: 180,
     duration: "2h - 2h30",
     badge: "Mais pedido",
-    image_url: "https://images.pexels.com/photos/3993324/pexels-photo-3993324.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/8467970/pexels-photo-8467970.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Reconstrução e escova no La Bonita"
   },
   {
@@ -169,7 +169,7 @@ const servicesData = [
     price: 120,
     duration: "1h30 - 2h",
     badge: "Mais pedido",
-    image_url: "https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/5241044/pexels-photo-5241044.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Hidratação e escova no La Bonita"
   },
   {
@@ -180,7 +180,7 @@ const servicesData = [
     price: 420,
     duration: "4 sessões",
     badge: "Pacote",
-    image_url: "https://images.pexels.com/photos/3993324/pexels-photo-3993324.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/8467970/pexels-photo-8467970.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Cronograma capilar premium no La Bonita"
   },
   {
@@ -203,7 +203,7 @@ const servicesData = [
     price: 63,
     duration: "1h30",
     badge: "Mais pedido",
-    image_url: "https://images.pexels.com/photos/3997378/pexels-photo-3997378.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/6724306/pexels-photo-6724306.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Manicure e pedicure no La Bonita"
   },
   {
@@ -213,7 +213,7 @@ const servicesData = [
     description: "Manicure completa",
     price: 35,
     duration: "45min",
-    image_url: "https://images.pexels.com/photos/3997389/pexels-photo-3997389.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/6724448/pexels-photo-6724448.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Manicure no La Bonita"
   },
   {
@@ -223,7 +223,7 @@ const servicesData = [
     description: "Pedicure completa",
     price: 35,
     duration: "45min",
-    image_url: "https://images.pexels.com/photos/3997386/pexels-photo-3997386.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/6724446/pexels-photo-6724446.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Pedicure no La Bonita"
   },
   {
@@ -234,7 +234,7 @@ const servicesData = [
     price: 100,
     duration: "45min",
     badge: "Mais pedido",
-    image_url: "https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/3993447/pexels-photo-3993447.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Corte feminino no La Bonita"
   },
   {
@@ -246,7 +246,7 @@ const servicesData = [
     duration: "40min - 1h30",
     badge: "Mais pedida",
     priceNote: "a partir de",
-    image_url: "https://images.pexels.com/photos/3993324/pexels-photo-3993324.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/3065170/pexels-photo-3065170.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Escova modeladora no La Bonita"
   },
   {
@@ -281,7 +281,7 @@ const servicesData = [
     price: 190,
     duration: "3h - 5h",
     priceNote: "a partir de",
-    image_url: "https://images.pexels.com/photos/3993324/pexels-photo-3993324.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/973401/pexels-photo-973401.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Progressiva no La Bonita"
   },
   {
@@ -301,7 +301,7 @@ const servicesData = [
     description: "Técnica para disfarçar a raiz e transição de cores",
     price: 180,
     duration: "2h - 3h",
-    image_url: "https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/8468125/pexels-photo-8468125.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Esfumado de raiz no La Bonita"
   },
   {
@@ -311,7 +311,7 @@ const servicesData = [
     description: "Coloração completa dos fios",
     price: 140,
     duration: "2h - 3h",
-    image_url: "https://images.pexels.com/photos/3993324/pexels-photo-3993324.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/3993297/pexels-photo-3993297.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Coloração global no La Bonita"
   },
   {
@@ -321,7 +321,7 @@ const servicesData = [
     description: "Tratamento para realçar o brilho e a cor",
     price: 150,
     duration: "1h30 - 2h",
-    image_url: "https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
+    image_url: "https://images.pexels.com/photos/7440057/pexels-photo-7440057.jpeg?auto=compress&cs=tinysrgb&w=600&q=80",
     alt_text: "Banho de brilho no La Bonita"
   }
 ];
