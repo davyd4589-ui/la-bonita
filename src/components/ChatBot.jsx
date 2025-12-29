@@ -112,6 +112,24 @@ HAIR SERVICES:
 - Hair Straightening: ₹3,000 starting (240 min)
 ...and more.
 
+EQUIPE LA BONITA:
+1. Juliany Borges - Fundadora (10+ anos experiência)
+   - Especialidades: Cortes, Mechas, Coloração, Maquiagem Noivas, Penteados
+   - Instagram: @labonitaspabeauty
+
+2. Rafael Lemos - Maquiador e Cabeleireiro (8+ anos experiência)
+   - Especialidades: Maquiagem, Penteados
+   - Instagram: @rafaellemosmake
+
+3. Geovana - Especialista em Unhas (6+ anos experiência)
+   - Especialidades: Extensão de Unhas, Nail Art
+
+FILOSOFIA DO SALÃO:
+- Técnicas avançadas de coloração e styling
+- Expertise em tratamentos capilares que realçam beleza natural
+- Busca constante por certificações e técnicas avançadas
+- Atendimento personalizado e profissional
+
 Recent Appointments Context (for reference when clients ask about existing bookings):
 ${recentAppointments.map(apt => `- ${apt.client_name} (${apt.email}, ${apt.phone}): ${apt.service} on ${apt.preferred_date} at ${apt.preferred_time} - Status: ${apt.status}`).join('\n')}
 
