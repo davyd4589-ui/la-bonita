@@ -15,9 +15,9 @@ const slides = [
   {
     id: 2,
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/576c5d972_ScreenShotTool-20251229144553.png",
-    headline: "Espaço para Noivas",
-    subheading: "Seu Dia Especial Merece o Melhor",
-    description: "Ambiente exclusivo para preparação de noivas com todo conforto e elegância que você merece.",
+    headline: "Pacotes Dia da Noiva",
+    subheading: "Essencial R$ 400 • Premium R$ 700 • Luxo R$ 1200",
+    description: "Escolha o pacote perfeito para o seu grande dia. Da preparação básica ao luxo completo com acompanhamento exclusivo.",
     cta_text: "CONHEÇA NOSSOS PACOTES",
     isH1: false,
   },
