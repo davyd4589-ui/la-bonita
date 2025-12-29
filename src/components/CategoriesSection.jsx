@@ -105,6 +105,21 @@ const categories = [
       </svg>
     ),
     bgColor: "bg-[#F8E8F0]"
+  },
+  {
+    id: 6,
+    key: "BridalPackages",
+    title: "Dia das Noivas",
+    description: "Pacotes exclusivos para o seu grande dia brilhar",
+    icon: (
+      <svg className="w-8 h-8 md:w-10 md:h-10" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 8C24 8 28 12 28 16C28 20 24 24 24 24C24 24 20 20 20 16C20 12 24 8 24 8Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+        <circle cx="24" cy="24" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
+        <path d="M24 34L24 40" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        <circle cx="24" cy="16" r="2" fill="currentColor"/>
+      </svg>
+    ),
+    bgColor: "bg-[#FFE8F0]"
   }
 ];
 
