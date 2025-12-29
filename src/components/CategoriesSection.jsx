@@ -8,8 +8,8 @@ const categories = [
   {
     id: 1,
     key: "nail_polish",
-    title: "Artisanal Nail Care",
-    description: "Impeccable manicures and pedicures featuring organic, long-lasting polishes.",
+    title: "Cuidados com Unhas",
+    description: "Manicures e pedicures impecáveis com esmaltes orgânicos de longa duração.",
     icon: (
       <svg className="w-8 h-8 md:w-10 md:h-10" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 12L16 36C16 38.2091 17.7909 40 20 40L28 40C30.2091 40 32 38.2091 32 36L32 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -26,8 +26,8 @@ const categories = [
   {
     id: 2,
     key: "brow_polish",
-    title: "Brow Sculpting",
-    description: "Expert shaping and tinting to perfectly frame your features with master precision.",
+    title: "Design de Sobrancelhas",
+    description: "Modelagem e coloração especializada para realçar perfeitamente suas características com precisão profissional.",
     icon: (
       <svg className="w-8 h-8 md:w-10 md:h-10" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 20C16 16 20 18 24 20C28 18 32 16 36 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -47,8 +47,8 @@ const categories = [
   {
     id: 3,
     key: "hair_dresser",
-    title: "Signature Hairstyling",
-    description: "Transform your look with our master stylists, using only the finest organic hair care.",
+    title: "Cabelo Profissional",
+    description: "Transforme seu visual com nossas estilistas especialistas, usando apenas os melhores produtos capilares.",
     icon: (
       <svg className="w-8 h-8 md:w-10 md:h-10" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="24" cy="16" r="8" stroke="currentColor" strokeWidth="2" fill="none"/>
@@ -68,8 +68,8 @@ const categories = [
   {
     id: 4,
     key: "foot_massage",
-    title: "Restorative Massage",
-    description: "Melt away tension with therapeutic techniques designed for deep relaxation.",
+    title: "Massagem Restauradora",
+    description: "Elimine a tensão com técnicas terapêuticas projetadas para relaxamento profundo.",
     icon: (
       <svg className="w-8 h-8 md:w-10 md:h-10" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 20C16 16 18 12 22 12C26 12 28 16 28 20L28 30C28 34 26 38 22 38C18 38 16 34 16 30L16 20Z" stroke="currentColor" strokeWidth="2"/>
@@ -88,8 +88,8 @@ const categories = [
   {
     id: 5,
     key: "cosmetics",
-    title: "Radiant Skincare",
-    description: "Revitalize your skin with bespoke facials and premium, pure ingredients.",
+    title: "Cuidados com a Pele",
+    description: "Revitalize sua pele com tratamentos faciais personalizados e ingredientes premium e puros.",
     icon: (
       <svg className="w-8 h-8 md:w-10 md:h-10" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="20" cy="16" r="6" stroke="currentColor" strokeWidth="2" fill="none"/>
@@ -180,17 +180,17 @@ export default function CategoriesSection() {
         >
           <div className="inline-flex items-center gap-2 bg-[#C8A882]/10 rounded-full px-4 py-2 mb-6">
             <Sparkles className="w-4 h-4 text-[#C8A882]" />
-            <span className="font-sans text-sm text-[#C8A882] font-medium">Our Expertise</span>
+            <span className="font-sans text-sm text-[#C8A882] font-medium">Nossa Expertise</span>
           </div>
           
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            <span className="text-[#0F0F0F]">Curated Wellness</span>
+            <span className="text-[#0F0F0F]">Jornadas de Bem-Estar</span>
             <br />
-            <span className="text-[#C8A882]">Journeys</span>
+            <span className="text-[#C8A882]">Personalizadas</span>
           </h2>
           
           <p className="font-sans text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore our world of exclusive services, each designed to deliver profound results and a sense of deep tranquility.
+            Explore nosso mundo de serviços exclusivos, cada um projetado para entregar resultados profundos e uma sensação de tranquilidade profunda.
           </p>
         </motion.div>
 
@@ -245,7 +245,7 @@ export default function CategoriesSection() {
                     
                     {/* Read More Button */}
                     <div className="flex items-center gap-2 font-sans text-sm font-medium text-gray-500 hover:text-[#C8A882] transition-colors duration-300 group mt-auto">
-                      DISCOVER THE EXPERIENCE
+                      DESCUBRA A EXPERIÊNCIA
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   </div>
@@ -264,7 +264,7 @@ export default function CategoriesSection() {
           className="text-center mt-8"
         >
           <p className="font-sans text-sm text-gray-400">
-            Hover to pause • Auto-scrolling categories
+            Passe o mouse para pausar • Categorias com rolagem automática
           </p>
         </motion.div>
       </div>
