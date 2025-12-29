@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, X } from "lucide-react";
@@ -6,82 +5,82 @@ import { Star, X } from "lucide-react";
 const reviews = [
   {
     id: 1,
-    name: "Priya S.",
+    name: "Ana Clara M.",
     rating: 5,
-    text: "Amazing facial treatment! My skin feels incredible.",
-    service: "Signature Facial",
+    text: "Tratamento facial incrível! Minha pele está maravilhosa.",
+    service: "Limpeza de Pele",
     avatar: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/8e0908ef4_image.png?w=400&q=90"
   },
   {
     id: 2,
-    name: "Anjali D.",
+    name: "Juliana S.",
     rating: 5,
-    text: "Best massage experience in Kolkata. Highly recommend!",
-    service: "Deep Tissue Massage",
+    text: "Melhor experiência de massagem em Goiânia. Super recomendo!",
+    service: "Massagem Relaxante",
     avatar: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/845cb87f5_image.png?w=400&q=90"
   },
   {
     id: 3,
-    name: "Ritu B.",
+    name: "Beatriz L.",
     rating: 5,
-    text: "Professional staff and luxury ambiance. Perfect!",
-    service: "Hair Styling",
+    text: "Equipe profissional e ambiente luxuoso. Perfeito!",
+    service: "Penteado",
     avatar: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/1acf8ba01_image.png?w=400&q=90"
   },
   {
     id: 4,
-    name: "Meera K.",
-    rating: 4,
-    text: "Excellent service and attention to detail.",
-    service: "Nail Care",
+    name: "Mariana K.",
+    rating: 5,
+    text: "Serviço excelente e atenção aos detalhes impecável.",
+    service: "Manicure",
     avatar: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/088f1f218_image.png?w=400&q=90"
   },
   {
     id: 5,
-    name: "Kavita R.",
+    name: "Fernanda R.",
     rating: 5,
-    text: "SERENITY is my go-to place for all beauty needs.",
-    service: "Full Package",
+    text: "La Bonita é meu lugar preferido para todas necessidades de beleza.",
+    service: "Pacote Completo",
     avatar: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/7cf2b68ad_image.png?w=400&q=90"
   },
   {
     id: 6,
-    name: "Sneha R.",
-    rating: 4,
-    text: "Great experience! Will definitely come back.",
-    service: "Eyebrow Shaping",
+    name: "Camila P.",
+    rating: 5,
+    text: "Experiência incrível! Com certeza voltarei.",
+    service: "Design de Sobrancelha",
     avatar: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/2ffc407b6_image.png?w=400&q=90"
   },
   {
     id: 7,
-    name: "Aisha K.",
+    name: "Letícia A.",
     rating: 5,
-    text: "The facial treatments here are divine! My skin glows.",
-    service: "Signature Facial",
+    text: "Os tratamentos faciais aqui são divinos! Minha pele está radiante.",
+    service: "Limpeza de Pele",
     avatar: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/8e0908ef4_image.png?w=400&q=90"
   },
   {
     id: 8,
-    name: "Deepa N.",
-    rating: 4,
-    text: "Hair spa treatment was absolutely amazing. Loved it!",
-    service: "Hair Treatment",
+    name: "Daniela N.",
+    rating: 5,
+    text: "Tratamento capilar absolutamente incrível. Adorei!",
+    service: "Hidratação Capilar",
     avatar: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/845cb87f5_image.png?w=400&q=90"
   },
   {
     id: 9,
-    name: "Zara A.",
+    name: "Carolina B.",
     rating: 5,
-    text: "Best deep tissue massage ever! So relaxing.",
-    service: "Deep Tissue Massage",
+    text: "Melhor massagem relaxante de todas! Muito relaxante.",
+    service: "Massagem Relaxante",
     avatar: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/1acf8ba01_image.png?w=400&q=90"
   },
   {
     id: 10,
-    name: "Simran P.",
-    rating: 4,
-    text: "Complete wellness package. Highly recommended!",
-    service: "Full Package",
+    name: "Patrícia G.",
+    rating: 5,
+    text: "Pacote de bem-estar completo. Altamente recomendado!",
+    service: "Pacote Premium",
     avatar: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/088f1f218_image.png?w=400&q=90"
   }
 ];
@@ -205,9 +204,9 @@ export default function ReviewWidget() {
             <div className="absolute inset-0 rounded-xl border-2 border-[#C8A882]/30 animate-pulse pointer-events-none" />
           </div>
 
-          {/* SERENITY Badge */}
+          {/* LA BONITA Badge */}
           <div className="absolute -top-1 -right-1 bg-[#C8A882] text-white px-2 py-0.5 rounded-full text-xs font-medium shadow-lg">
-            SERENITY
+            LA BONITA
           </div>
         </motion.div>
       )}

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
@@ -6,50 +5,50 @@ import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    name: "Sunita Verma",
-    role: "Manager",
-    rating: 4,
-    text: "A truly professional and rejuvenating experience. The staff is courteous and the ambiance is perfect for relaxation. I left feeling refreshed and renewed. Highly recommended for anyone seeking a premium spa service in the city.",
+    name: "Ana Paula S.",
+    role: "Empresária",
+    rating: 5,
+    text: "Uma experiência verdadeiramente profissional e revigorante. A equipe é atenciosa e o ambiente é perfeito para relaxamento. Saí me sentindo renovada e revigorada. Altamente recomendado para quem busca um serviço premium de beleza.",
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/8e0908ef4_image.png?w=800&q=90"
   },
   {
     id: 2,
-    name: "Priya Sharma",
-    role: "Fashion Designer",
+    name: "Juliana Martins",
+    role: "Designer de Moda",
     rating: 5,
-    text: "SERENITY has completely transformed my beauty routine. The highly skilled professionals and premium equipment deliver results that exceed expectations. Every visit feels like a luxury retreat in the heart of Kolkata.",
+    text: "O La Bonita transformou completamente minha rotina de beleza. As profissionais altamente qualificadas e os equipamentos premium entregam resultados que superam as expectativas. Cada visita parece um retiro de luxo.",
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/845cb87f5_image.png?w=800&q=90"
   },
   {
     id: 3,
-    name: "Anjali Das",
-    role: "Corporate Executive",
-    rating: 4,
-    text: "The attention to detail and professional expertise at SERENITY is unmatched. Their state-of-the-art equipment and skilled staff make every treatment a perfect experience. I wouldn't trust my skin and wellness to anyone else.",
+    name: "Carla Ribeiro",
+    role: "Executiva",
+    rating: 5,
+    text: "A atenção aos detalhes e a expertise profissional no La Bonita são incomparáveis. Os equipamentos de ponta e a equipe qualificada fazem de cada tratamento uma experiência perfeita. Não confiaria minha pele a mais ninguém.",
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/1acf8ba01_image.png?w=800&q=90"
   },
   {
     id: 4,
-    name: "Ritu Banerjee",
-    role: "Entrepreneur",
+    name: "Marina Costa",
+    role: "Empreendedora",
     rating: 5,
-    text: "From the moment you enter SERENITY, you know you're in for something special. The combination of luxury ambiance, professional staff, and cutting-edge treatments creates an experience that's truly transformative.",
+    text: "Desde o momento em que você entra no La Bonita, você sabe que está prestes a viver algo especial. A combinação de ambiente luxuoso, equipe profissional e tratamentos de ponta cria uma experiência verdadeiramente transformadora.",
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/088f1f218_image.png?w=800&q=90"
   },
   {
     id: 5,
-    name: "Meera Singh",
-    role: "Doctor",
-    rating: 4,
-    text: "As a healthcare professional, I appreciate SERENITY's commitment to using premium equipment and maintaining the highest standards. The skilled therapists understand exactly what my body needs for complete rejuvenation.",
+    name: "Fernanda Lima",
+    role: "Médica",
+    rating: 5,
+    text: "Como profissional da saúde, aprecio o compromisso do La Bonita com o uso de equipamentos premium e manutenção dos mais altos padrões. As terapeutas qualificadas entendem exatamente o que meu corpo precisa para rejuvenescimento completo.",
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/7cf2b68ad_image.png?w=800&q=90"
   },
   {
     id: 6,
-    name: "Kavita Roy",
-    role: "Business Owner",
+    name: "Patrícia Santos",
+    role: "Empresária",
     rating: 5,
-    text: "SERENITY sets the gold standard for luxury wellness in Kolkata. The professional expertise combined with world-class equipment ensures every treatment delivers exceptional results. It's my personal sanctuary for beauty and wellness.",
+    text: "O La Bonita estabelece o padrão ouro para bem-estar de luxo em Goiânia. A expertise profissional combinada com equipamentos de classe mundial garante que cada tratamento entregue resultados excepcionais. É meu santuário pessoal de beleza.",
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/2ffc407b6_image.png?w=800&q=90"
   }
 ];
@@ -121,7 +120,7 @@ export default function TestimonialsSection() {
             <Quote className="absolute -top-2 -right-2 w-16 h-16 text-gray-200/80" />
             
             <h2 className="font-serif text-4xl lg:text-5xl font-light italic text-[#0F0F0F] mb-8 relative z-10">
-              Testimonials
+              Depoimentos
             </h2>
 
             <AnimatePresence mode="wait">
