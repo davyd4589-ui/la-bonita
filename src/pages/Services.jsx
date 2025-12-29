@@ -376,7 +376,7 @@ export default function Services() {
           </div>
           
           <h1 className="font-serif font-medium text-[length:var(--font-h1)] text-[#0F0F0F] mb-6 leading-tight">
-            Serviços de Beleza La Bonita
+            La Bonita
           </h1>
           
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-[1.618]">
