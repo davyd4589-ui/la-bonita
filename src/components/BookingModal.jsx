@@ -1,85 +1,47 @@
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, Clock, User, Mail, Phone, MessageSquare, Sparkles, Check, Download, Camera } from "lucide-react";
 import { Appointment } from "@/entities/Appointment";
 import { BookingNotification } from "@/entities/BookingNotification";
 
-// Complete SERENITY services list with accurate data
+// Serviços La Bonita
 const services = [
-  // Massage Services
-  { name: "Swedish Massage", price: 2500, duration: "60 min", category: "Massage" },
-  { name: "Japanese Head Spa", price: 3500, duration: "90 min", category: "Massage" },
-  { name: "Thai Dry Massage", price: 3000, duration: "75 min", category: "Massage" },
-  { name: "Foot Massage", price: 1500, duration: "45 min", category: "Massage" },
-  { name: "Head and Shoulder Massage", price: 1200, duration: "30 min", category: "Massage" },
-  { name: "Deep Tissue Massage", price: 3500, duration: "60 min", category: "Massage" },
-  
-  // Beauty & Cosmetic Services
-  { name: "Classic Lash Extension", price: 2000, duration: "120 min", category: "Beauty" },
-  { name: "Hybrid Lash Extension", price: 2200, duration: "135 min", category: "Beauty" },
-  { name: "Wispy Lash Extension", price: 2200, duration: "135 min", category: "Beauty" },
-  { name: "Volume Lash Extension", price: 2500, duration: "150 min", category: "Beauty" },
-  { name: "Lash Lift", price: 1500, duration: "60 min", category: "Beauty" },
-  { name: "Microblading", price: 6000, duration: "180 min", category: "Beauty" },
-  { name: "Microshading", price: 6000, duration: "180 min", category: "Beauty" },
-  { name: "Combine Brows", price: 7000, duration: "200 min", category: "Beauty" },
-  { name: "Brow Touch Up", price: 4500, duration: "90 min", category: "Beauty" },
-  { name: "Lip Neutralisation / Lip Blush", price: 5000, duration: "120 min", category: "Beauty" },
-  { name: "Lip Touch Up", price: 2500, duration: "75 min", category: "Beauty" },
-  { name: "Permanent Eyeliner", price: 5000, duration: "90 min", category: "Beauty" },
-  { name: "Permanent Eyeliner (Upper & Lower)", price: 9000, duration: "150 min", category: "Beauty" },
-  { name: "Eyeliner Touch Up", price: 2500, duration: "75 min", category: "Beauty", priceNote: "from" },
-  
-  // Skin Treatments
-  { name: "Hydra Facial", price: 2000, duration: "60 min", category: "Skin" },
-  { name: "Stayve Korean BBGlow", price: 2500, duration: "75 min", category: "Skin" },
-  { name: "Hydra & BBGlow Combo", price: 4000, duration: "120 min", category: "Skin" },
-  { name: "Cece’s Signature Facial", price: 3000, duration: "90 min", category: "Skin" },
-  
-  // Laser Hair Removal
-  { name: "Underarm Laser", price: 1000, duration: "30 min", category: "Laser" },
-  { name: "Bikini Laser", price: 2000, duration: "45 min", category: "Laser" },
-  { name: "Full Leg Laser", price: 2000, duration: "90 min", category: "Laser" },
-  { name: "Half Leg Laser", price: 1500, duration: "60 min", category: "Laser" },
-  { name: "Full Arm Laser", price: 1500, duration: "60 min", category: "Laser" },
-  { name: "Full Face Laser", price: 1500, duration: "45 min", category: "Laser" },
-  { name: "Full Back Laser", price: 2000, duration: "75 min", category: "Laser" },
-  { name: "Stomach Laser", price: 2000, duration: "45 min", category: "Laser" },
-  { name: "Upper Lip Laser", price: 900, duration: "15 min", category: "Laser" },
-  { name: "Full Body Laser", price: 12999, duration: "240 min", category: "Laser" },
-  
-  // Nail Services
-  { name: "Soft Gel Extension", price: 1500, duration: "90 min", category: "Nails" },
-  { name: "Acrylic Extension", price: 1800, duration: "120 min", category: "Nails" },
-  { name: "Douyin Nail Extension", price: 2500, duration: "150 min", category: "Nails", priceNote: "Starting" },
-  { name: "Gel Polish", price: 500, duration: "45 min", category: "Nails" },
-  { name: "Classic Care Manicure", price: 700, duration: "60 min", category: "Nails" },
-  { name: "Royal Korean Ritual Manicure", price: 1500, duration: "90 min", category: "Nails" },
-  { name: "Classic Care Pedicure", price: 1000, duration: "75 min", category: "Nails" },
-  { name: "Royal Korean Ritual Pedicure", price: 2000, duration: "100 min", category: "Nails" },
-  { name: "Royal Korean Ritual Duo", price: 3000, duration: "180 min", category: "Nails" },
-  { name: "Gel Remove", price: 200, duration: "30 min", category: "Nails" },
-  { name: "Nail Art / Add-Ons", price: 200, duration: "15 min", category: "Nails", priceNote: "Starting" },
-
-  // Hair Services
-  { name: "Women Hair Cut", price: 800, duration: "60 min", category: "Hair" },
-  { name: "Men Hair Cut", price: 500, duration: "45 min", category: "Hair" },
-  { name: "Hair Wash", price: 300, duration: "30 min", category: "Hair" },
-  { name: "Hair Wash & Style", price: 700, duration: "60 min", category: "Hair" },
-  { name: "Hair Perming", price: 2500, duration: "180 min", category: "Hair", priceNote: "Starting" },
-  { name: "Hair Straightening", price: 3000, duration: "240 min", category: "Hair", priceNote: "Starting" },
-  { name: "Hair Colouring", price: 3500, duration: "180 min", category: "Hair", priceNote: "Starting" },
-  { name: "Hair Highlight", price: 4000, duration: "240 min", category: "Hair", priceNote: "Starting" },
-  { name: "Hair Extension", price: 1499, duration: "120 min", category: "Hair", priceNote: "Starting" },
-  { name: "Hair Spa", price: 1500, duration: "90 min", category: "Hair", priceNote: "Starting" },
-  { name: "Keratin Treatment", price: 3000, duration: "240 min", category: "Hair", priceNote: "Starting" }
+  { name: "Cílios Brasileiro", price: 160, duration: "2h", category: "Beleza" },
+  { name: "Mega Brasileiro", price: 200, duration: "2h30", category: "Beleza" },
+  { name: "Manutenção", price: 110, duration: "1h - 1h30", category: "Beleza" },
+  { name: "Design de Sobrancelha", price: 40, duration: "30min", category: "Beleza" },
+  { name: "Buço", price: 22, duration: "15min", category: "Beleza" },
+  { name: "Henna", price: 20, duration: "30min", category: "Beleza" },
+  { name: "Tonalização de Sobrancelha", price: 35, duration: "30min", category: "Beleza" },
+  { name: "Bronzeamento Natural", price: 80, duration: "1h", category: "Pele" },
+  { name: "Bronze na Máquina", price: 120, duration: "30min", category: "Pele" },
+  { name: "Banho de Lua", price: 65, duration: "45min", category: "Pele" },
+  { name: "Massagem Relaxante", price: 100, duration: "1h", category: "Massagem" },
+  { name: "Pacote Essencial", price: 400, duration: "Variável", category: "Beleza" },
+  { name: "Combo Mechas", price: 780, duration: "4h - 6h", category: "Cabelo" },
+  { name: "Reconstrução + Escova", price: 180, duration: "2h - 2h30", category: "Cabelo" },
+  { name: "Nutrição + Escova", price: 160, duration: "2h - 2h30", category: "Cabelo" },
+  { name: "Hidratação + Escova", price: 120, duration: "1h30 - 2h", category: "Cabelo" },
+  { name: "Cronograma Capilar Premium", price: 420, duration: "4 sessões", category: "Cabelo" },
+  { name: "Cronograma Capilar Luxury", price: 720, duration: "4 sessões", category: "Cabelo" },
+  { name: "Pé + Mão", price: 63, duration: "1h30", category: "Unhas" },
+  { name: "Mão", price: 35, duration: "45min", category: "Unhas" },
+  { name: "Pé", price: 35, duration: "45min", category: "Unhas" },
+  { name: "Corte", price: 100, duration: "45min", category: "Cabelo" },
+  { name: "Escova", price: 60, duration: "40min - 1h30", category: "Cabelo", priceNote: "a partir de" },
+  { name: "Penteado", price: 200, duration: "1h - 2h", category: "Cabelo" },
+  { name: "Maquiagem", price: 180, duration: "1h - 1h30", category: "Beleza" },
+  { name: "Progressiva", price: 190, duration: "3h - 5h", category: "Cabelo", priceNote: "a partir de" },
+  { name: "Realinhamento Capilar", price: 240, duration: "2h - 3h", category: "Cabelo" },
+  { name: "Esfumado de Raiz", price: 180, duration: "2h - 3h", category: "Cabelo" },
+  { name: "Coloração Global", price: 140, duration: "2h - 3h", category: "Cabelo" },
+  { name: "Banho de Brilho", price: 150, duration: "1h30 - 2h", category: "Cabelo" }
 ];
 
 const timeSlots = [
-  "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
-  "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM",
-  "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM"
+  "9:00", "9:30", "10:00", "10:30", "11:00", "11:30",
+  "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+  "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00"
 ];
 
 export default function BookingModal({ isOpen, onClose, initialService }) {
@@ -101,7 +63,7 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
     if (isOpen) {
       if (initialService) {
         setFormData(prev => ({ ...prev, service: initialService.name }));
-        setStep(2); // Skip service selection
+        setStep(2);
       } else {
         resetForm();
       }
@@ -113,27 +75,26 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    if (error) setError(""); // Clear error when user starts typing
+    if (error) setError("");
   };
 
   const validateForm = () => {
     const { client_name, email, phone, service, preferred_date, preferred_time } = formData;
     
-    if (!client_name.trim()) return "Please enter your full name";
-    if (!email.trim()) return "Please enter your email address";
-    if (!email.includes("@")) return "Please enter a valid email address";
-    if (!phone.trim()) return "Please enter your phone number";
-    if (!service) return "Please select a service";
-    if (!preferred_date) return "Please select your preferred date";
-    if (!preferred_time) return "Please select your preferred time";
+    if (!client_name.trim()) return "Por favor, insira seu nome completo";
+    if (!email.trim()) return "Por favor, insira seu email";
+    if (!email.includes("@")) return "Por favor, insira um email válido";
+    if (!phone.trim()) return "Por favor, insira seu telefone";
+    if (!service) return "Por favor, selecione um serviço";
+    if (!preferred_date) return "Por favor, selecione uma data";
+    if (!preferred_time) return "Por favor, selecione um horário";
     
-    // Check if date is not in the past
     const selectedDate = new Date(preferred_date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
     if (selectedDate < today) {
-      return "Please select a future date";
+      return "Por favor, selecione uma data futura";
     }
     
     return null;
@@ -141,7 +102,7 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-IN', { 
+    return date.toLocaleDateString('pt-BR', { 
       weekday: 'long', 
       year: 'numeric', 
       month: 'long', 
@@ -162,7 +123,6 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
     setError("");
 
     try {
-      // Step 1: Create appointment record in the database
       const appointmentData = {
         ...formData,
         service_price: selectedService?.price,
@@ -173,25 +133,21 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
       const appointment = await Appointment.create(appointmentData);
       setCreatedAppointment(appointment);
 
-      // Step 2: Create internal notification for salon management
       try {
         await createInternalNotification(appointment, formData, selectedService);
       } catch (notificationError) {
         console.error('Internal notification creation failed:', notificationError);
-        // Don't block the user flow for this
       }
 
-      // Step 3: Show success to user
       setStep(3);
     } catch (error) {
       console.error('Booking submission failed:', error);
-      setError('A technical error occurred while submitting your booking. Please try again or call us directly at +91 98765 43210.');
+      setError('Erro ao enviar agendamento. Por favor, tente novamente ou ligue para (62) 98278-0894.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Create internal notification instead of sending external emails
   const createInternalNotification = async (appointment, formData, selectedService) => {
     const notificationData = {
       booking_id: appointment.id,
@@ -209,7 +165,6 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
     };
 
     await BookingNotification.create(notificationData);
-    console.log(`✅ Internal booking notification created for booking ID: ${appointment.id}`);
   };
 
   const resetForm = () => {
@@ -243,70 +198,68 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
   const downloadBookingDetails = () => {
     const bookingDetails = `
 ════════════════════════════════════════════════════
-           S E R E N I T Y   S P A   &   S A L O N
+           L A   B O N I T A
 ════════════════════════════════════════════════════
 
-                ** BOOKING CONFIRMATION **
+                 ** CONFIRMAÇÃO DE AGENDAMENTO **
 
-        We are delighted to confirm your upcoming
-        appointment. We look forward to welcoming you.
+         Estamos felizes em confirmar seu agendamento.
+         Aguardamos você!
 
 ════════════════════════════════════════════════════
-Booking Reference: ${createdAppointment?.id}
-Confirmation Date: ${new Date().toLocaleString('en-IN', { 
+Referência: ${createdAppointment?.id}
+Data de Confirmação: ${new Date().toLocaleString('pt-BR', { 
   dateStyle: 'full', 
   timeStyle: 'short' 
 })}
 ════════════════════════════════════════════════════
 
-CLIENT INFORMATION:
+INFORMAÇÕES DO CLIENTE:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Name:          ${formData.client_name}
+Nome:          ${formData.client_name}
 Email:         ${formData.email}
-Phone:         ${formData.phone}
+Telefone:      ${formData.phone}
 
-APPOINTMENT DETAILS:
+DETALHES DO AGENDAMENTO:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Service:       ${createdAppointment?.service}
-Investment:    ₹${selectedService?.price.toLocaleString('en-IN')}
-Duration:      ${selectedService?.duration}
-Date:          ${formatDate(createdAppointment?.preferred_date)}
-Time:          ${createdAppointment?.preferred_time}
-Special Notes: ${formData.message || 'None specified'}
+Serviço:       ${createdAppointment?.service}
+Valor:         R$ ${selectedService?.price.toLocaleString('pt-BR')}
+Duração:       ${selectedService?.duration}
+Data:          ${formatDate(createdAppointment?.preferred_date)}
+Horário:       ${createdAppointment?.preferred_time}
+Observações:   ${formData.message || 'Nenhuma'}
 
 ════════════════════════════════════════════════════
-                   IMPORTANT INSTRUCTIONS
+                    INSTRUÇÕES IMPORTANTES
 ════════════════════════════════════════════════════
 
-✓ Please arrive 10 minutes prior to your scheduled 
-  appointment time for a seamless experience.
+✓ Por favor, chegue 10 minutos antes do horário 
+  agendado.
 
-✓ This confirmation document MUST be presented at 
-  reception upon arrival (digital copy acceptable).
+✓ Este documento DEVE ser apresentado na recepção
+  (pode ser digital).
 
-✓ Please bring a valid government-issued photo ID.
-
-✓ For any changes or cancellations, please contact 
-  us at least 24 hours in advance.
+✓ Para alterações ou cancelamentos, entre em contato
+  com pelo menos 24 horas de antecedência.
 
 ════════════════════════════════════════════════════
-                      FIND US AT:
+                       ONDE NOS ENCONTRAR:
 ════════════════════════════════════════════════════
-Address:   P-145, Sector A, Metropolitan Co-operative 
-           Housing Society Limited, Tangra
-           Kolkata, West Bengal 700105
+Endereço:  R. SB 7, Qd.13 - Lt. 01
+           Res. Solar Bougainville
+           Goiânia - GO, 74393-385
 
-Phone:     +91 98765 43210
-Email:     info@serenitysalon.in
-Website:   www.serenitysalon.com
+Telefone:  (62) 98278-0894
+Site:      linktr.ee/labonitaspa
 
-Operating Hours:
-Monday - Saturday: 9:00 AM - 8:00 PM
-Sunday: 10:00 AM - 6:00 PM
+Horário de Atendimento:
+Segunda: Fechado
+Terça a Sexta: 9:00 - 19:00
+Sábado: 8:00 - 13:00
+Domingo: 8:00 - 13:00
 
 ════════════════════════════════════════════════════
-Thank you for choosing SERENITY. We look forward to 
-providing you with an exceptional wellness experience.
+Obrigada por escolher La Bonita. Esperamos você!
 ════════════════════════════════════════════════════
 `;
 
@@ -314,7 +267,7 @@ providing you with an exceptional wellness experience.
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `SERENITY_Appointment_Confirmation_${createdAppointment?.id}.txt`;
+    a.download = `La_Bonita_Confirmacao_${createdAppointment?.id}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -344,7 +297,7 @@ providing you with an exceptional wellness experience.
               <div className="flex items-center gap-3">
                 <Sparkles className="w-6 h-6 text-[#C8A882]" />
                 <h2 className="font-serif text-2xl font-bold text-[#0F0F0F]">
-                  Book Your Appointment
+                  Agendar Horário
                 </h2>
               </div>
               <button
@@ -374,7 +327,7 @@ providing you with an exceptional wellness experience.
                   className="space-y-6"
                 >
                   <div className="text-center mb-8">
-                    <p className="text-gray-600">Step 1 of 2: Select Your Service</p>
+                    <p className="text-gray-600">Passo 1 de 2: Selecione o Serviço</p>
                   </div>
 
                   <div className="grid gap-4 max-h-96 overflow-y-auto">
@@ -400,8 +353,8 @@ providing you with an exceptional wellness experience.
                           </div>
                           <div className="text-right">
                             <p className="font-serif text-xl font-bold text-[#C8A882]">
-                              ₹{service.price.toLocaleString('en-IN')}
-                              {service.priceNote && <span className="text-xs text-gray-600 ml-1">{service.priceNote}</span>}
+                              {service.priceNote && <span className="text-xs text-gray-600 mr-1">{service.priceNote}</span>}
+                              R$ {service.price.toLocaleString('pt-BR')}
                             </p>
                           </div>
                         </div>
@@ -418,10 +371,10 @@ providing you with an exceptional wellness experience.
                   className="space-y-6"
                 >
                   <div className="text-center mb-8">
-                    <p className="text-gray-600">Step 2 of 2: Your Details</p>
+                    <p className="text-gray-600">Passo 2 de 2: Seus Dados</p>
                     <div className="mt-4 p-4 bg-[#C8A882]/5 rounded-xl">
                       <p className="font-serif text-lg text-[#0F0F0F]">
-                        {formData.service} - ₹{selectedService?.price.toLocaleString('en-IN')}
+                        {formData.service} - R$ {selectedService?.price.toLocaleString('pt-BR')}
                         {selectedService?.priceNote && <span className="text-sm text-gray-600 ml-1">{selectedService.priceNote}</span>}
                       </p>
                       <p className="text-sm text-gray-600">{selectedService?.duration}</p>
@@ -433,7 +386,7 @@ providing you with an exceptional wellness experience.
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           <User className="w-4 h-4 inline mr-2" />
-                          Full Name *
+                          Nome Completo *
                         </label>
                         <input
                           type="text"
@@ -441,13 +394,13 @@ providing you with an exceptional wellness experience.
                           value={formData.client_name}
                           onChange={(e) => handleInputChange('client_name', e.target.value)}
                           className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
-                          placeholder="Your full name"
+                          placeholder="Seu nome completo"
                         />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           <Mail className="w-4 h-4 inline mr-2" />
-                          Email Address *
+                          Email *
                         </label>
                         <input
                           type="email"
@@ -455,7 +408,7 @@ providing you with an exceptional wellness experience.
                           value={formData.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
                           className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
-                          placeholder="your@email.com"
+                          placeholder="seu@email.com"
                         />
                       </div>
                     </div>
@@ -463,7 +416,7 @@ providing you with an exceptional wellness experience.
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         <Phone className="w-4 h-4 inline mr-2" />
-                        Phone Number *
+                        Telefone *
                       </label>
                       <input
                         type="tel"
@@ -471,7 +424,7 @@ providing you with an exceptional wellness experience.
                         value={formData.phone}
                         onChange={(e) => handleInputChange('phone', e.target.value)}
                         className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
-                        placeholder="+91 98765 43210"
+                        placeholder="(62) 98278-0894"
                       />
                     </div>
 
@@ -479,7 +432,7 @@ providing you with an exceptional wellness experience.
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           <Calendar className="w-4 h-4 inline mr-2" />
-                          Preferred Date *
+                          Data Preferida *
                         </label>
                         <input
                           type="date"
@@ -493,7 +446,7 @@ providing you with an exceptional wellness experience.
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           <Clock className="w-4 h-4 inline mr-2" />
-                          Preferred Time *
+                          Horário Preferido *
                         </label>
                         <select
                           required
@@ -501,7 +454,7 @@ providing you with an exceptional wellness experience.
                           onChange={(e) => handleInputChange('preferred_time', e.target.value)}
                           className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
                         >
-                          <option value="">Select time</option>
+                          <option value="">Selecione o horário</option>
                           {timeSlots.map((time) => (
                             <option key={time} value={time}>{time}</option>
                           ))}
@@ -512,14 +465,14 @@ providing you with an exceptional wellness experience.
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         <MessageSquare className="w-4 h-4 inline mr-2" />
-                        Special Requests (Optional)
+                        Observações (Opcional)
                       </label>
                       <textarea
                         value={formData.message}
                         onChange={(e) => handleInputChange('message', e.target.value)}
                         rows={3}
                         className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300 resize-none"
-                        placeholder="Any special requests or preferences..."
+                        placeholder="Alguma observação ou preferência..."
                       />
                     </div>
 
@@ -529,7 +482,7 @@ providing you with an exceptional wellness experience.
                         onClick={() => setStep(1)}
                         className="flex-1 py-3 px-6 border border-gray-300 rounded-xl font-sans font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-300"
                       >
-                        Back
+                        Voltar
                       </button>
                       <button
                         type="submit"
@@ -539,10 +492,10 @@ providing you with an exceptional wellness experience.
                         {isSubmitting ? (
                           <>
                             <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                            Confirming Booking...
+                            Confirmando...
                           </>
                         ) : (
-                          'Confirm Booking'
+                          'Confirmar Agendamento'
                         )}
                       </button>
                     </div>
@@ -562,18 +515,17 @@ providing you with an exceptional wellness experience.
                   
                   <div>
                     <h3 className="font-serif text-2xl md:text-3xl font-bold text-[#0F0F0F] mb-2">
-                      Booking Confirmed!
+                      Agendamento Confirmado!
                     </h3>
                     <p className="text-gray-600 px-2">
-                      Thank you, {formData.client_name}. We look forward to seeing you.
+                      Obrigada, {formData.client_name}. Aguardamos você!
                     </p>
                   </div>
 
-                  {/* Professional Booking Summary Card */}
                   <div className="bg-gradient-to-br from-[#C8A882]/10 to-[#FF5C8D]/10 rounded-2xl p-4 md:p-6 text-left border-2 border-[#C8A882]/30 mx-auto max-w-lg shadow-lg">
                     <div className="text-center mb-4">
                       <h4 className="font-serif text-xl font-bold text-[#0F0F0F] mb-1">
-                        📋 APPOINTMENT CONFIRMATION
+                        📋 CONFIRMAÇÃO DE AGENDAMENTO
                       </h4>
                       <div className="w-16 h-0.5 bg-[#C8A882] mx-auto"></div>
                     </div>
@@ -581,7 +533,7 @@ providing you with an exceptional wellness experience.
                     <div className="space-y-3 text-sm">
                       <div className="bg-white/70 rounded-lg p-3">
                         <div className="flex justify-between items-center mb-2">
-                          <strong className="text-gray-700">Booking Reference:</strong>
+                          <strong className="text-gray-700">Referência:</strong>
                           <span className="text-[#FF5C8D] font-bold font-mono text-xs bg-[#FF5C8D]/10 px-2 py-1 rounded">
                             #{createdAppointment?.id?.slice(-8)?.toUpperCase()}
                           </span>
@@ -589,73 +541,70 @@ providing you with an exceptional wellness experience.
                         <div className="w-full h-[1px] bg-[#C8A882]/30 mb-2"></div>
                         
                         <div className="flex justify-between items-start mb-2">
-                          <strong className="text-gray-700">Service:</strong>
+                          <strong className="text-gray-700">Serviço:</strong>
                           <span className="text-right pl-2 font-medium">{createdAppointment?.service}</span>
                         </div>
                         
                         <div className="flex justify-between items-center mb-2">
-                          <strong className="text-gray-700">Investment:</strong>
-                          <span className="text-[#C8A882] font-bold text-lg">₹{selectedService?.price.toLocaleString('en-IN')}</span>
+                          <strong className="text-gray-700">Valor:</strong>
+                          <span className="text-[#C8A882] font-bold text-lg">R$ {selectedService?.price.toLocaleString('pt-BR')}</span>
                         </div>
                         
                         <div className="flex justify-between items-center mb-2">
-                          <strong className="text-gray-700">Duration:</strong>
+                          <strong className="text-gray-700">Duração:</strong>
                           <span className="font-medium">{selectedService?.duration}</span>
                         </div>
                         
                         <div className="w-full h-[1px] bg-[#C8A882]/30 mb-2"></div>
                         
                         <div className="flex justify-between items-center mb-2">
-                          <strong className="text-gray-700">Date:</strong>
+                          <strong className="text-gray-700">Data:</strong>
                           <span className="text-right pl-2 font-medium">{formatDate(createdAppointment?.preferred_date)}</span>
                         </div>
                         
                         <div className="flex justify-between items-center">
-                          <strong className="text-gray-700">Time:</strong>
+                          <strong className="text-gray-700">Horário:</strong>
                           <span className="font-bold text-lg">{createdAppointment?.preferred_time}</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Enhanced Screenshot Instructions */}
                   <div className="bg-gradient-to-r from-orange-50 to-red-50 border-l-4 border-orange-400 p-4 rounded-lg mx-auto max-w-lg shadow-sm">
                     <div className="flex items-start gap-3">
                       <Camera className="w-8 h-8 text-orange-500 flex-shrink-0 mt-1" />
                       <div className="text-left">
-                        <h5 className="font-bold text-orange-800 mb-2 text-base">📱 IMPORTANT: Save This Confirmation</h5>
+                        <h5 className="font-bold text-orange-800 mb-2 text-base">📱 IMPORTANTE: Salve Esta Confirmação</h5>
                         <p className="text-sm text-orange-700 leading-relaxed">
-                          Please <strong>screenshot this page</strong> or download the confirmation document below. 
-                          You <strong>must present this</strong> at reception when you arrive for your appointment.
+                          Por favor, <strong>tire um print desta tela</strong> ou baixe o documento de confirmação. 
+                          Você <strong>deve apresentar</strong> na recepção quando chegar para seu atendimento.
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
                   <div className="space-y-3 pt-4 px-4">
                     <button
                       onClick={downloadBookingDetails}
                       className="w-full py-3 md:py-4 px-6 bg-[#C8A882] text-white rounded-xl font-sans font-medium hover:bg-[#FF5C8D] transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl text-base"
                     >
                       <Download className="w-5 h-5" />
-                      Download Confirmation Document
+                      Baixar Confirmação
                     </button>
 
                     <button
                       onClick={handleClose}
                       className="w-full py-3 px-6 bg-gray-100 text-gray-700 rounded-xl font-sans font-medium hover:bg-gray-200 transition-colors duration-300"
                     >
-                      Close
+                      Fechar
                     </button>
                   </div>
 
-                  {/* Professional Footer */}
                   <div className="text-xs text-gray-500 pt-6 border-t border-gray-200 space-y-1">
-                    <p className="font-bold text-[#C8A882] text-sm">SERENITY Luxury Spa & Salon</p>
-                    <p>P-145, Sector A, Metropolitan C.H.S. Ltd.</p>
-                    <p>Tangra, Kolkata 700105 | +91 98765 43210</p>
-                    <p className="text-[#C8A882] font-medium">Operating Hours: Mon-Sat 9AM-8PM | Sun 10AM-6PM</p>
+                    <p className="font-bold text-[#C8A882] text-sm">La Bonita Salão de Beleza</p>
+                    <p>R. SB 7, Qd.13 - Lt. 01, Res. Solar Bougainville</p>
+                    <p>Goiânia - GO, 74393-385 | (62) 98278-0894</p>
+                    <p className="text-[#C8A882] font-medium">Ter-Sex: 9h-19h | Sáb-Dom: 8h-13h</p>
                   </div>
                 </motion.div>
               )}
