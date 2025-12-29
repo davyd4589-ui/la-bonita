@@ -152,6 +152,142 @@ export default function BridalPackages() {
           ))}
         </div>
 
+        {/* Gallery Section - Emotional Journey */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-20 mb-16"
+        >
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-4xl font-bold text-[#0F0F0F] mb-4">
+              Momentos Inesquecíveis
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Cada noiva tem uma história única. Veja como tornamos esses momentos especiais ainda mais mágicos.
+            </p>
+          </div>
+
+          {/* Hero Image - Couple */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="mb-8 rounded-3xl overflow-hidden shadow-2xl"
+          >
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/086be425f_ScreenShotTool-20251221200807.png"
+              alt="Casal de noivos - Dia da Noiva La Bonita"
+              className="w-full h-[500px] object-cover"
+            />
+          </motion.div>
+
+          {/* Grid Gallery */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            >
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/709202390_WhatsAppImage2025-12-21at84638PM2.jpg"
+                alt="Noiva com buquê - Preparação no La Bonita"
+                className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            >
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/6445c3413_WhatsAppImage2025-12-21at84637PM1.jpg"
+                alt="Noiva admirando vestido - Espaço exclusivo La Bonita"
+                className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            >
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/73ffaca7c_WhatsAppImage2025-12-21at84638PM1.jpg"
+                alt="Noiva com buquê ao ar livre - Dia da Noiva completo"
+                className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            >
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/6ab9cf72e_ScreenShotTool-20251221200747.png"
+                alt="Maquiagem profissional de noiva - La Bonita"
+                className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            >
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/7544b8d0d_ScreenShotTool-20251221200723.png"
+                alt="Madrinhas e noiva - Preparação em grupo"
+                className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            >
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/059eddc24_ScreenShotTool-20251229144553.png"
+                alt="Vestido de noiva no espaço La Bonita"
+                className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </motion.div>
+          </div>
+
+          {/* Emotional Quote */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center bg-gradient-to-r from-pink-50 to-rose-50 rounded-3xl p-12"
+          >
+            <p className="font-serif text-2xl md:text-3xl text-gray-700 italic mb-4">
+              "Seu dia especial merece cuidados especiais"
+            </p>
+            <p className="text-gray-600 text-lg">
+              No La Bonita, cada detalhe é pensado para fazer você se sentir única e radiante
+            </p>
+          </motion.div>
+        </motion.div>
+
         {/* Bottom Info */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
