@@ -16,6 +16,7 @@ export default function ChatBot() {
   ]);
   const [inputText, setInputText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [showQuickActions, setShowQuickActions] = useState(true);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -124,19 +125,20 @@ Suas capacidades:
 7. Recomendar combinações de serviços para resultados ideais.
 8. Discutir cuidados pós-tratamento e manutenção.
 
-Diretrizes:
+Diretrizes IMPORTANTES:
 - SEMPRE responda em Português do Brasil.
-- Sempre use os preços NOVOS. Seja muito preciso.
-- Para preços combinados, calcule para o usuário (ex: "Um Corte Feminino é R$ 100 e uma Hidratação é R$ 120, totalizando R$ 220").
+- SEJA CONVERSACIONAL: Faça perguntas para entender o que o cliente precisa. Não envie listas longas de serviços.
+- Exemplo CERTO: "Que tipo de serviço você está procurando? Algo para cabelo, unhas, ou maquiagem? 💅✨"
+- Exemplo ERRADO: "Temos os seguintes serviços: 1. Corte... 2. Coloração... 3. Hidratação... [lista enorme]"
+- PERGUNTE ANTES DE LISTAR: Se alguém perguntar sobre serviços, pergunte qual categoria interessa (cabelo, unhas, sobrancelhas, etc).
+- Respostas devem ter no máximo 3-4 linhas. Seja concisa e direta.
+- Sempre use os preços NOVOS. Seja muito preciso quando mostrar preços.
 - Sempre seja calorosa, profissional e acolhedora no tom.
 - Use emojis com moderação mas efetivamente (✨, 💇‍♀️, 💅, etc.).
-- Promova os pacotes especiais com desconto quando apropriado.
 - Se não encontrar informação específica, sugira ligar para (62) 98278-0894 ou enviar WhatsApp.
 - Se alguém quiser agendar, oriente passo a passo mas explique que precisarão usar o formulário de reserva para confirmação final.
 - Para consultas de agendamento existente, busque por e-mail ou telefone nos agendamentos recentes.
-- Sempre mencione que estamos localizados em Goiânia quando relevante.
 - Sugira combinações de serviços quando apropriado (ex: Corte + Hidratação, Escova + Coloração).
-- Explique os benefícios de tratamentos regulares para melhores resultados.
 
 Data atual: ${new Date().toISOString().split('T')[0]}
 Horário atual: ${new Date().toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo' })}
@@ -147,6 +149,11 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
   const handleSendMessage = async (customText) => {
     const messageText = customText || inputText;
     if (!messageText.trim()) return;
+
+    // Hide quick actions after first interaction
+    if (showQuickActions) {
+      setShowQuickActions(false);
+    }
 
     const userMessage = {
       id: Date.now(),
@@ -167,7 +174,7 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
 
 Mensagem do usuário: ${messageText}
 
-Por favor responda como assistente virtual do La Bonita - Salão de Beleza. Seja prestativa, amigável, profissional e forneça informações precisas sobre serviços, agendamentos e tópicos relacionados à beleza. Mantenha respostas concisas e diretas. Use emojis moderadamente. SEMPRE responda em Português do Brasil.`,
+Por favor responda como assistente virtual do La Bonita - Salão de Beleza. IMPORTANTE: Seja conversacional e faça perguntas para entender as necessidades. NÃO envie listas longas. Mantenha respostas muito curtas (máximo 3-4 linhas). Use emojis moderadamente. SEMPRE responda em Português do Brasil.`,
         add_context_from_internet: false
       });
 
@@ -231,8 +238,12 @@ Por favor responda como assistente virtual do La Bonita - Salão de Beleza. Seja
             {/* Header */}
             <div className="bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white p-4 flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center relative">
-                  <Bot className="w-5 h-5" />
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center relative p-1">
+                  <img 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/84a1bc056_ScreenShotTool-20251221150407.png"
+                    alt="La Bonita"
+                    className="w-full h-full object-contain"
+                  />
                   <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
                 </div>
                 <div>
@@ -286,8 +297,12 @@ Por favor responda como assistente virtual do La Bonita - Salão de Beleza. Seja
                   className="flex justify-start"
                 >
                   <div className="flex items-start gap-2">
-                    <div className="w-8 h-8 rounded-full bg-[#FF5C8D] flex items-center justify-center">
-                      <Bot className="w-4 h-4 text-white" />
+                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center p-1">
+                      <img 
+                        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/84a1bc056_ScreenShotTool-20251221150407.png"
+                        alt="La Bonita"
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                     <div className="bg-gray-100 p-3 rounded-2xl">
                       <div className="flex gap-1">
@@ -303,8 +318,9 @@ Por favor responda como assistente virtual do La Bonita - Salão de Beleza. Seja
             </div>
 
             {/* Quick Actions */}
-            <div className="px-4 py-3 border-t border-gray-200 bg-gradient-to-r from-[#F8F2EC] to-white">
-              <div className="grid grid-cols-2 gap-2 mb-2">
+            {showQuickActions && (
+              <div className="px-4 py-3 border-t border-gray-200 bg-gradient-to-r from-[#F8F2EC] to-white">
+                <div className="grid grid-cols-2 gap-2 mb-2">
                 <button
                   onClick={() => handleSendMessage("Quero agendar um horário")}
                   className="flex items-center justify-center gap-2 px-3 py-2 bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white text-xs font-medium rounded-xl hover:shadow-lg transition-all"
@@ -342,7 +358,8 @@ Por favor responda como assistente virtual do La Bonita - Salão de Beleza. Seja
                   <span className="text-base">🕐</span> Horários
                 </button>
               </div>
-            </div>
+              </div>
+            )}
 
             {/* Input */}
             <div className="p-4 border-t border-gray-200">
