@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import TransitionCircle from "../components/TransitionCircle";
 import WhyChooseUs from "../components/WhyChooseUs";
 import PromotionalBanner from "../components/PromotionalBanner";
-import ProductSpecialty from "../components/ProductSpecialty";
+
 import WhatWeDo from "../components/WhatWeDo";
 import CategoriesSection from "../components/CategoriesSection";
 import TestimonialsSection from "../components/TestimonialsSection";
@@ -23,7 +23,6 @@ export default function Home() {
       </div>
       <CategoriesSection />
       <BridalPackagesHome />
-      <ProductSpecialty />
       <div className="bg-[#FDFCF9] relative">
         <WhatWeDo />
         <PromotionalBanner />
