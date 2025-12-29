@@ -17,7 +17,52 @@ export default function ChatBot() {
   const [inputText, setInputText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [showQuickActions, setShowQuickActions] = useState(true);
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [bookingData, setBookingData] = useState({
+    client_name: "",
+    email: "",
+    phone: "",
+    service: "",
+    preferred_date: "",
+    preferred_time: "",
+    message: ""
+  });
   const messagesEndRef = useRef(null);
+
+  const servicesMenu = [
+    { name: "Corte Feminino", price: 100, category: "Cabelo" },
+    { name: "Escova", price: 60, category: "Cabelo", note: "a partir de" },
+    { name: "Hidratação + Escova", price: 120, category: "Cabelo" },
+    { name: "Nutrição + Escova", price: 160, category: "Cabelo" },
+    { name: "Reconstrução + Escova", price: 180, category: "Cabelo" },
+    { name: "Coloração Global", price: 140, category: "Cabelo" },
+    { name: "Banho de Brilho", price: 150, category: "Cabelo" },
+    { name: "Esfumado de Raiz", price: 180, category: "Cabelo" },
+    { name: "Progressiva", price: 190, category: "Cabelo", note: "a partir de" },
+    { name: "Realinhamento Capilar", price: 240, category: "Cabelo" },
+    { name: "Penteado", price: 200, category: "Cabelo" },
+    { name: "Combo Mechas", price: 780, category: "Cabelo" },
+    { name: "Cronograma Premium", price: 420, category: "Cabelo" },
+    { name: "Cronograma Luxury", price: 720, category: "Cabelo" },
+    { name: "Design de Sobrancelha", price: 40, category: "Beleza" },
+    { name: "Tonalização de Sobrancelha", price: 35, category: "Beleza" },
+    { name: "Henna", price: 20, category: "Beleza" },
+    { name: "Buço", price: 22, category: "Beleza" },
+    { name: "Cílios Brasileiro", price: 160, category: "Beleza" },
+    { name: "Mega Brasileiro", price: 200, category: "Beleza" },
+    { name: "Manutenção Cílios", price: 110, category: "Beleza" },
+    { name: "Maquiagem", price: 180, category: "Beleza" },
+    { name: "Pé + Mão", price: 63, category: "Unhas" },
+    { name: "Mão", price: 35, category: "Unhas" },
+    { name: "Pé", price: 35, category: "Unhas" },
+    { name: "Bronzeamento Natural", price: 80, category: "Pele" },
+    { name: "Bronze na Máquina", price: 120, category: "Pele" },
+    { name: "Banho de Lua", price: 65, category: "Pele" },
+    { name: "Massagem Relaxante", price: 100, category: "Massagem" },
+    { name: "Pacote Essencial Noivas", price: 400, category: "Noivas" },
+    { name: "Pacote Premium Noivas", price: 700, category: "Noivas" },
+    { name: "Pacote Luxo Noivas", price: 1200, category: "Noivas" }
+  ];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -163,6 +208,46 @@ Horário atual: ${new Date().toLocaleTimeString('pt-BR', { timeZone: 'America/Sa
 Lembre-se: Você representa um salão de beleza premium, então mantenha um tom premium, acolhedor e conhecedor em todas as interações.`;
   };
 
+  const handleBookingSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      setIsTyping(true);
+      
+      await Appointment.create(bookingData);
+      
+      const successMessage = {
+        id: Date.now(),
+        text: "✅ Agendamento confirmado com sucesso!\n\nVocê receberá uma confirmação em breve. Obrigada por escolher o La Bonita! 💖",
+        sender: "bot",
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, successMessage]);
+      setShowBookingForm(false);
+      setBookingData({
+        client_name: "",
+        email: "",
+        phone: "",
+        service: "",
+        preferred_date: "",
+        preferred_time: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error('Booking error:', error);
+      const errorMessage = {
+        id: Date.now(),
+        text: "Ops! Houve um erro ao processar seu agendamento. Por favor, ligue para (62) 98278-0894. 😊",
+        sender: "bot",
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
   const handleSendMessage = async (customText) => {
     const messageText = customText || inputText;
     if (!messageText.trim()) return;
@@ -170,6 +255,29 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
     // Hide quick actions after first interaction
     if (showQuickActions) {
       setShowQuickActions(false);
+    }
+    
+    // Check if user wants to book
+    const bookingKeywords = ['agendar', 'marcar', 'horário', 'horario', 'reservar', 'booking'];
+    if (bookingKeywords.some(keyword => messageText.toLowerCase().includes(keyword))) {
+      const userMessage = {
+        id: Date.now(),
+        text: messageText,
+        sender: "user",
+        timestamp: new Date()
+      };
+      
+      const botMessage = {
+        id: Date.now() + 1,
+        text: "Perfeito! Preencha o formulário abaixo para agendar seu horário:",
+        sender: "bot",
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, userMessage, botMessage]);
+      setInputText("");
+      setShowBookingForm(true);
+      return;
     }
 
     const userMessage = {
