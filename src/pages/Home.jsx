@@ -8,6 +8,7 @@ import WhatWeDo from "../components/WhatWeDo";
 import CategoriesSection from "../components/CategoriesSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import BrandPartners from "../components/BrandPartners";
+import BridalPackagesHome from "../components/BridalPackagesHome";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <WhyChooseUs />
       </div>
       <CategoriesSection />
+      <BridalPackagesHome />
       <ProductSpecialty />
       <div className="bg-[#FDFCF9] relative">
         <WhatWeDo />
