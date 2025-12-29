@@ -317,6 +317,130 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                   </div>
                 </motion.div>
               ))}
+
+              {/* Booking Form */}
+              {showBookingForm && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-white rounded-2xl p-4 shadow-lg border-2 border-[#C8A882]"
+                >
+                  <form onSubmit={handleBookingSubmit} className="space-y-3">
+                    <div>
+                      <label className="text-xs font-medium text-gray-700 mb-1 block">Nome Completo *</label>
+                      <input
+                        type="text"
+                        value={bookingData.client_name}
+                        onChange={(e) => setBookingData({...bookingData, client_name: e.target.value})}
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
+                        required
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className="text-xs font-medium text-gray-700 mb-1 block">Email *</label>
+                        <input
+                          type="email"
+                          value={bookingData.email}
+                          onChange={(e) => setBookingData({...bookingData, email: e.target.value})}
+                          className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-medium text-gray-700 mb-1 block">Telefone *</label>
+                        <input
+                          type="tel"
+                          value={bookingData.phone}
+                          onChange={(e) => setBookingData({...bookingData, phone: e.target.value})}
+                          className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-xs font-medium text-gray-700 mb-1 block">Serviço *</label>
+                      <select
+                        value={bookingData.service}
+                        onChange={(e) => setBookingData({...bookingData, service: e.target.value})}
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
+                        required
+                      >
+                        <option value="">Selecione um serviço</option>
+                        {servicesMenu.map((service, idx) => (
+                          <option key={idx} value={service.name}>
+                            {service.name} - R$ {service.price} {service.note ? `(${service.note})` : ''}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className="text-xs font-medium text-gray-700 mb-1 block">Data *</label>
+                        <input
+                          type="date"
+                          value={bookingData.preferred_date}
+                          onChange={(e) => setBookingData({...bookingData, preferred_date: e.target.value})}
+                          min={new Date().toISOString().split('T')[0]}
+                          className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-medium text-gray-700 mb-1 block">Horário *</label>
+                        <select
+                          value={bookingData.preferred_time}
+                          onChange={(e) => setBookingData({...bookingData, preferred_time: e.target.value})}
+                          className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
+                          required
+                        >
+                          <option value="">Selecione</option>
+                          <option value="09:00">09:00</option>
+                          <option value="10:00">10:00</option>
+                          <option value="11:00">11:00</option>
+                          <option value="12:00">12:00</option>
+                          <option value="13:00">13:00</option>
+                          <option value="14:00">14:00</option>
+                          <option value="15:00">15:00</option>
+                          <option value="16:00">16:00</option>
+                          <option value="17:00">17:00</option>
+                          <option value="18:00">18:00</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-xs font-medium text-gray-700 mb-1 block">Observações</label>
+                      <textarea
+                        value={bookingData.message}
+                        onChange={(e) => setBookingData({...bookingData, message: e.target.value})}
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
+                        rows="2"
+                        placeholder="Alguma preferência especial?"
+                      />
+                    </div>
+
+                    <div className="flex gap-2 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setShowBookingForm(false)}
+                        className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors"
+                      >
+                        Cancelar
+                      </button>
+                      <button
+                        type="submit"
+                        className="flex-1 px-4 py-2 bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all"
+                      >
+                        Confirmar
+                      </button>
+                    </div>
+                  </form>
+                </motion.div>
+              )}
               
               {isTyping && (
                 <motion.div
