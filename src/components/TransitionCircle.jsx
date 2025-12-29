@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -59,7 +58,7 @@ export default function TransitionCircle() {
                   textShadow: '1px 1px 2px rgba(0,0,0,0.15)'
                 }}
               >
-                SERENITY
+                LA BONITA
               </h3>
               <p 
                 className="font-sans text-[#C8A882] tracking-wider"
@@ -68,7 +67,7 @@ export default function TransitionCircle() {
                   letterSpacing: '1px'
                 }}
               >
-                Spa & Salon
+                Salão de Beleza
               </p>
             </div>
           </div>
