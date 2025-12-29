@@ -9,7 +9,7 @@ export default function ChatBot() {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Olá! Sou a assistente virtual do La Bonita - Salão de Beleza. Posso ajudar você com:\n\n🔹 Agendar horários para nossos serviços\n🔹 Consultar preços e detalhes\n🔹 Informações sobre tratamentos\n🔹 Localização e contato\n🔹 Dúvidas sobre procedimentos\n\nComo posso ajudar você hoje?",
+      text: "Olá! 👋 Bem-vinda ao La Bonita!\n\nSelecione uma opção abaixo ou digite sua dúvida:",
       sender: "bot",
       timestamp: new Date()
     }
@@ -144,12 +144,13 @@ Horário atual: ${new Date().toLocaleTimeString('pt-BR', { timeZone: 'America/Sa
 Lembre-se: Você representa um salão de beleza premium, então mantenha um tom premium, acolhedor e conhecedor em todas as interações.`;
   };
 
-  const handleSendMessage = async () => {
-    if (!inputText.trim()) return;
+  const handleSendMessage = async (customText) => {
+    const messageText = customText || inputText;
+    if (!messageText.trim()) return;
 
     const userMessage = {
       id: Date.now(),
-      text: inputText,
+      text: messageText,
       sender: "user",
       timestamp: new Date()
     };
@@ -164,9 +165,9 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
       const response = await InvokeLLM({
         prompt: `${systemPrompt}
 
-Mensagem do usuário: ${inputText}
+Mensagem do usuário: ${messageText}
 
-Por favor responda como assistente virtual do La Bonita - Salão de Beleza. Seja prestativa, amigável, profissional e forneça informações precisas sobre serviços, agendamentos e tópicos relacionados à beleza. Formate sua resposta com quebras de linha quando apropriado para melhor legibilidade. SEMPRE responda em Português do Brasil.`,
+Por favor responda como assistente virtual do La Bonita - Salão de Beleza. Seja prestativa, amigável, profissional e forneça informações precisas sobre serviços, agendamentos e tópicos relacionados à beleza. Mantenha respostas concisas e diretas. Use emojis moderadamente. SEMPRE responda em Português do Brasil.`,
         add_context_from_internet: false
       });
 
@@ -302,25 +303,43 @@ Por favor responda como assistente virtual do La Bonita - Salão de Beleza. Seja
             </div>
 
             {/* Quick Actions */}
-            <div className="px-4 py-2 border-t border-gray-200 bg-gray-50">
-              <div className="flex gap-2 mb-2 overflow-x-auto">
+            <div className="px-4 py-3 border-t border-gray-200 bg-gradient-to-r from-[#F8F2EC] to-white">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <button
-                  onClick={() => setInputText("Quero agendar um horário")}
-                  className="px-3 py-1 bg-[#C8A882] text-white text-xs rounded-full whitespace-nowrap hover:bg-[#FF5C8D] transition-colors"
+                  onClick={() => handleSendMessage("Quero agendar um horário")}
+                  className="flex items-center justify-center gap-2 px-3 py-2 bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white text-xs font-medium rounded-xl hover:shadow-lg transition-all"
                 >
-                  📅 Agendar
+                  <span className="text-base">📅</span> Agendar
                 </button>
                 <button
-                  onClick={() => setInputText("Mostrar serviços e preços")}
-                  className="px-3 py-1 bg-[#C8A882] text-white text-xs rounded-full whitespace-nowrap hover:bg-[#FF5C8D] transition-colors"
+                  onClick={() => handleSendMessage("Mostrar todos os serviços")}
+                  className="flex items-center justify-center gap-2 px-3 py-2 bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white text-xs font-medium rounded-xl hover:shadow-lg transition-all"
                 >
-                  💰 Preços
+                  <span className="text-base">💅</span> Serviços
                 </button>
                 <button
-                  onClick={() => setInputText("Onde vocês ficam?")}
-                  className="px-3 py-1 bg-[#C8A882] text-white text-xs rounded-full whitespace-nowrap hover:bg-[#FF5C8D] transition-colors"
+                  onClick={() => handleSendMessage("Quais são os preços?")}
+                  className="flex items-center justify-center gap-2 px-3 py-2 bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white text-xs font-medium rounded-xl hover:shadow-lg transition-all"
                 >
-                  📍 Localização
+                  <span className="text-base">💰</span> Preços
+                </button>
+                <button
+                  onClick={() => handleSendMessage("Pacotes para noivas")}
+                  className="flex items-center justify-center gap-2 px-3 py-2 bg-gradient-to-r from-pink-400 to-pink-600 text-white text-xs font-medium rounded-xl hover:shadow-lg transition-all"
+                >
+                  <span className="text-base">👰</span> Noivas
+                </button>
+                <button
+                  onClick={() => handleSendMessage("Onde vocês ficam?")}
+                  className="flex items-center justify-center gap-2 px-3 py-2 bg-[#C8A882] text-white text-xs font-medium rounded-xl hover:bg-[#FF5C8D] transition-all"
+                >
+                  <span className="text-base">📍</span> Localização
+                </button>
+                <button
+                  onClick={() => handleSendMessage("Horários de atendimento")}
+                  className="flex items-center justify-center gap-2 px-3 py-2 bg-[#C8A882] text-white text-xs font-medium rounded-xl hover:bg-[#FF5C8D] transition-all"
+                >
+                  <span className="text-base">🕐</span> Horários
                 </button>
               </div>
             </div>
