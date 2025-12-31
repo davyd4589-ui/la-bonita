@@ -453,6 +453,19 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                   animate={{ opacity: 1, y: 0 }}
                   className="bg-white rounded-2xl p-4 shadow-lg border-2 border-[#C8A882]"
                 >
+                  {/* Calendário de Disponibilidade */}
+                  <div className="mb-4 rounded-lg overflow-hidden border border-gray-200">
+                    <div className="bg-[#C8A882] text-white px-3 py-2 text-sm font-medium">
+                      📅 Horários Disponíveis
+                    </div>
+                    <iframe 
+                      src="https://calendar.app.google/AMKWUaGWxFBXaVuv5"
+                      className="w-full h-64"
+                      frameBorder="0"
+                      title="Calendário de Disponibilidade"
+                    />
+                  </div>
+
                   <form onSubmit={handleBookingSubmit} className="space-y-3">
                     <div>
                       <label className="text-xs font-medium text-gray-700 mb-1 block">Nome Completo *</label>
@@ -508,14 +521,6 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                     <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="text-xs font-medium text-gray-700 mb-1 block">Data *</label>
-                        <a 
-                          href="https://calendar.app.google/AMKWUaGWxFBXaVuv5" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-xs text-[#C8A882] hover:text-[#FF5C8D] mb-1 inline-block"
-                        >
-                          📅 Ver disponibilidade
-                        </a>
                         <input
                           type="date"
                           value={bookingData.preferred_date}
