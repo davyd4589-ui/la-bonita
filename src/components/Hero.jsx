@@ -32,7 +32,7 @@ const slides = [
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/9f9e977cc_ScreenShotTool-20251229144531.png",
     headline: "Seu Refúgio de Beleza e Bem-Estar",
     subheading: "Onde Cada Detalhe é Pensado Para Você",
-    description: "Ambiente acolhedor, tecnologia avançada e profissionais dedicados ao seu relaxamento e beleza.",
+    description: "",
     cta_text: "AGENDAR HORÁRIO",
     isH1: false,
   }
