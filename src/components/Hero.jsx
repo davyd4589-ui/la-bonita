@@ -30,7 +30,7 @@ const slides = [
   {
     id: 3,
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/9f9e977cc_ScreenShotTool-20251229144531.png",
-    headline: "Instalações Modernas",
+    headline: "Um espaço feito para você relaxar e se sentir única",
     subheading: "Conforto e Sofisticação",
     description: "Estrutura completa com equipamentos de última geração e ambiente climatizado para seu bem-estar.",
     cta_text: "AGENDAR HORÁRIO",
