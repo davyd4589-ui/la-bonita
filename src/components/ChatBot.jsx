@@ -127,7 +127,7 @@ export default function ChatBot() {
 
 Informações do La Bonita:
 - Localização: R. SB 7, Qd.13 - Lt. 01, Res. Solar Bougainville, Goiânia - GO, 74393-385
-- Telefone/WhatsApp: (62) 98278-0894
+- Telefone/WhatsApp: (62) 99913-0894
 - Redes Sociais: linktr.ee/labonitaspa
 - Horários: 
   * Segunda: Fechado
@@ -312,7 +312,7 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
       console.error('Booking error:', error);
       const errorMessage = {
         id: Date.now(),
-        text: "Ops! Houve um erro ao processar seu agendamento. Por favor, ligue para (62) 98278-0894. 😊",
+        text: "Ops! Houve um erro ao processar seu agendamento. Por favor, entre em contato pelo WhatsApp (62) 99913-0894. 😊",
         sender: "bot",
         timestamp: new Date()
       };
@@ -396,7 +396,7 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
       console.error('Chat error:', error);
       const errorMessage = {
         id: Date.now() + 1,
-        text: "Desculpe, estou com dificuldades técnicas no momento. Por favor, ligue diretamente para (62) 98278-0894 ou envie WhatsApp. Nossa equipe terá prazer em ajudar você! ✨",
+        text: "Desculpe, estou com dificuldades técnicas no momento. Por favor, entre em contato diretamente pelo WhatsApp (62) 99913-0894. Nossa equipe terá prazer em ajudar você! ✨",
         sender: "bot",
         timestamp: new Date()
       };

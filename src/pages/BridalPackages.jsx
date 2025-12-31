@@ -300,11 +300,11 @@ export default function BridalPackages() {
               Dúvidas sobre os pacotes?
             </h2>
             <p className="text-gray-600 mb-6 leading-[1.618]">
-              Entre em contato conosco pelo WhatsApp (62) 98278-0894 para personalizar 
+              Entre em contato conosco pelo WhatsApp (62) 99913-0894 para personalizar 
               seu pacote ou tirar dúvidas. Estamos aqui para tornar seu dia inesquecível!
             </p>
             <a
-              href="https://linktr.ee/labonitaspa"
+              href="https://wa.me/5562999130894?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20pacotes%20de%20noivas"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-green-600 text-white px-8 py-3 rounded-full font-medium hover:bg-green-700 transition-all duration-300"

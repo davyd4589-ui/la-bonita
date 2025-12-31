@@ -61,10 +61,15 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-2">Telefone e WhatsApp</h3>
-                  <p className="leading-[1.618] text-gray-600">
-                    (62) 98278-0894<br />
-                    <span className="text-sm">Atendimento de qualidade</span>
-                  </p>
+                  <a 
+                    href="https://wa.me/5562999130894?text=Olá,%20gostaria%20de%20mais%20informações" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="leading-[1.618] text-gray-600 hover:text-[#C8A882] transition-colors"
+                  >
+                    (62) 99913-0894<br />
+                    <span className="text-sm">Clique para falar no WhatsApp</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -172,7 +177,7 @@ export default function Contact() {
                   type="tel"
                   id="phone"
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
-                  placeholder="(62) 98278-0894"
+                  placeholder="(62) 99913-0894"
                 />
               </div>
 

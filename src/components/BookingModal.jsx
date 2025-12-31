@@ -157,7 +157,7 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
       setStep(3);
     } catch (error) {
       console.error('Booking submission failed:', error);
-      setError('Erro ao enviar agendamento. Por favor, tente novamente ou ligue para (62) 98278-0894.');
+      setError('Erro ao enviar agendamento. Por favor, tente novamente ou entre em contato pelo WhatsApp (62) 99913-0894.');
     } finally {
       setIsSubmitting(false);
     }
@@ -264,7 +264,7 @@ Endereço:  R. SB 7, Qd.13 - Lt. 01
            Res. Solar Bougainville
            Goiânia - GO, 74393-385
 
-Telefone:  (62) 98278-0894
+Telefone:  (62) 99913-0894
 Site:      linktr.ee/labonitaspa
 
 Horário de Atendimento:
