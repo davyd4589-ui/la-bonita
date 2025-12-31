@@ -18,9 +18,8 @@ Deno.serve(async (req) => {
     // Get Google Sheets access token
     const accessToken = await base44.asServiceRole.connectors.getAccessToken('googlesheets');
 
-    // Your Google Sheets ID - replace this with your actual spreadsheet ID
-    // Get it from the URL: https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit
-    const SPREADSHEET_ID = Deno.env.get('GOOGLE_SHEETS_ID') || 'YOUR_SPREADSHEET_ID';
+    // Google Sheets ID from the spreadsheet URL
+    const SPREADSHEET_ID = Deno.env.get('GOOGLE_SHEETS_ID') || '1qJzbUHmfLPQjlyaRUFt9x1W2iEBI3OlxIrvjI5d6N_M';
     const SHEET_NAME = 'Agendamentos'; // You can change this to your sheet name
 
     // Prepare the row data
