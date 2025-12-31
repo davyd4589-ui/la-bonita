@@ -141,9 +141,12 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
 
       try {
         const { base44 } = await import("@/api/base44Client");
-        await base44.functions.invoke('syncToGoogleCalendar', { appointment: appointmentData });
-      } catch (calendarError) {
-        console.error('Google Calendar sync failed:', calendarError);
+        await Promise.all([
+          base44.functions.invoke('syncToGoogleCalendar', { appointment: appointmentData }),
+          base44.functions.invoke('syncToGoogleSheets', { appointment: appointmentData })
+        ]);
+      } catch (syncError) {
+        console.error('Sync failed:', syncError);
       }
 
       setStep(3);
