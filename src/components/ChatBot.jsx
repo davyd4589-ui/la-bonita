@@ -17,6 +17,13 @@ export default function ChatBot() {
   const [isTyping, setIsTyping] = useState(false);
   const [showQuickActions, setShowQuickActions] = useState(true);
   const [showBookingForm, setShowBookingForm] = useState(false);
+  const [showTestimonialForm, setShowTestimonialForm] = useState(false);
+  const [testimonialData, setTestimonialData] = useState({
+    client_name: "",
+    rating: 5,
+    review: "",
+    service: ""
+  });
   const [bookingData, setBookingData] = useState({
     client_name: "",
     email: "",
@@ -31,6 +38,12 @@ export default function ChatBot() {
     const today = new Date();
     return { year: today.getFullYear(), month: today.getMonth() };
   });
+  const [userBehavior, setUserBehavior] = useState({
+    servicesPageTime: 0,
+    hasInteracted: false,
+    lastPage: null
+  });
+  const [proactiveMessageSent, setProactiveMessageSent] = useState(false);
   const messagesEndRef = useRef(null);
 
   // Horários disponíveis por dia da semana (0=Domingo, 1=Segunda, etc)
@@ -113,6 +126,54 @@ export default function ChatBot() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Proactive behavior tracking
+  useEffect(() => {
+    let timeTracker = null;
+    let pageStartTime = Date.now();
+    
+    const trackPageBehavior = () => {
+      const currentPath = window.location.pathname;
+      const isServicesPage = currentPath.includes('Services') || currentPath.includes('services');
+      
+      if (isServicesPage) {
+        const timeSpent = Date.now() - pageStartTime;
+        setUserBehavior(prev => ({
+          ...prev,
+          servicesPageTime: timeSpent,
+          lastPage: 'services'
+        }));
+        
+        // Trigger proactive message after 15 seconds on services page
+        if (timeSpent > 15000 && !proactiveMessageSent && !isOpen) {
+          setProactiveMessageSent(true);
+          setIsOpen(true);
+          setTimeout(() => {
+            const proactiveMsg = {
+              id: Date.now(),
+              text: "Olá! 👋 Vi que você está interessada em nossos serviços. Posso ajudar você a escolher o tratamento ideal e agendar um horário?",
+              sender: "bot",
+              timestamp: new Date()
+            };
+            setMessages(prev => [...prev, proactiveMsg]);
+          }, 500);
+        }
+      }
+    };
+    
+    timeTracker = setInterval(trackPageBehavior, 2000);
+    
+    return () => {
+      if (timeTracker) clearInterval(timeTracker);
+    };
+  }, [isOpen, proactiveMessageSent]);
+
+  // Reset proactive message when user closes chat
+  useEffect(() => {
+    if (!isOpen && messages.length > 1) {
+      setUserBehavior(prev => ({ ...prev, hasInteracted: true }));
+    }
+  }, [isOpen, messages.length]);
 
   const getSystemPrompt = async () => {
     // Get current appointments for context
@@ -319,6 +380,58 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
     }
   };
 
+  const sendWhatsAppRecommendation = async (userPhone, userName, recommendedServices) => {
+    const servicesText = recommendedServices.map(s => `• ${s.name} - R$ ${s.price}`).join('\n');
+    const message = `Olá ${userName}! 😊\n\nObrigada por conversar com a gente!\n\nBaseado no nosso chat, recomendo especialmente:\n\n${servicesText}\n\nGostaria de agendar um desses serviços? Responda essa mensagem!`;
+    
+    const whatsappUrl = `https://wa.me/55${userPhone.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleTestimonialSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      setIsTyping(true);
+      
+      await base44.entities.Testimonial.create({
+        client_name: testimonialData.client_name,
+        rating: testimonialData.rating,
+        review: testimonialData.review,
+        service: testimonialData.service,
+        date: new Date().toISOString().split('T')[0],
+        featured: false
+      });
+      
+      const successMessage = {
+        id: Date.now(),
+        text: "🌟 Obrigada pelo seu depoimento! Sua opinião é muito importante para nós e ajuda outras clientes a conhecerem nosso trabalho. 💖",
+        sender: "bot",
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, successMessage]);
+      setShowTestimonialForm(false);
+      setTestimonialData({
+        client_name: "",
+        rating: 5,
+        review: "",
+        service: ""
+      });
+    } catch (error) {
+      console.error('Testimonial error:', error);
+      const errorMessage = {
+        id: Date.now(),
+        text: "Ops! Houve um erro ao enviar seu depoimento. Por favor, tente novamente.",
+        sender: "bot",
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
   const handleSendMessage = async (customText) => {
     const messageText = customText || inputText;
     if (!messageText.trim()) return;
@@ -326,6 +439,29 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
     // Hide quick actions after first interaction
     if (showQuickActions) {
       setShowQuickActions(false);
+    }
+    
+    // Check if user wants to leave testimonial
+    const testimonialKeywords = ['depoimento', 'avaliação', 'avaliar', 'opinião', 'feedback', 'review'];
+    if (testimonialKeywords.some(keyword => messageText.toLowerCase().includes(keyword))) {
+      const userMessage = {
+        id: Date.now(),
+        text: messageText,
+        sender: "user",
+        timestamp: new Date()
+      };
+      
+      const botMessage = {
+        id: Date.now() + 1,
+        text: "Que maravilha! Adoraríamos ouvir sua opinião! 🌟\n\nPreencha o formulário abaixo:",
+        sender: "bot",
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, userMessage, botMessage]);
+      setInputText("");
+      setShowTestimonialForm(true);
+      return;
     }
     
     // Check if user wants to book
@@ -389,6 +525,20 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
       };
 
       setMessages(prev => [...prev, botMessage]);
+
+      // After 3+ messages, offer WhatsApp recommendations if phone number was shared
+      if (messages.length >= 6 && !userBehavior.hasInteracted) {
+        setTimeout(() => {
+          const recommendationOffer = {
+            id: Date.now() + 2,
+            text: "💡 Gostaria de receber recomendações personalizadas de serviços via WhatsApp? É rápido e você pode agendar direto por lá!",
+            sender: "bot",
+            timestamp: new Date()
+          };
+          setMessages(prev => [...prev, recommendationOffer]);
+          setUserBehavior(prev => ({ ...prev, hasInteracted: true }));
+        }, 2000);
+      }
     } catch (error) {
       console.error('Chat error:', error);
       const errorMessage = {
@@ -496,6 +646,86 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                   </div>
                 </motion.div>
               ))}
+
+              {/* Testimonial Form */}
+              {showTestimonialForm && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-white rounded-2xl p-4 shadow-lg border-2 border-[#C8A882]"
+                >
+                  <form onSubmit={handleTestimonialSubmit} className="space-y-3">
+                    <div>
+                      <label className="text-xs font-medium text-gray-700 mb-1 block">Seu Nome *</label>
+                      <input
+                        type="text"
+                        value={testimonialData.client_name}
+                        onChange={(e) => setTestimonialData({...testimonialData, client_name: e.target.value})}
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-xs font-medium text-gray-700 mb-1 block">Qual serviço você fez? *</label>
+                      <input
+                        type="text"
+                        value={testimonialData.service}
+                        onChange={(e) => setTestimonialData({...testimonialData, service: e.target.value})}
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
+                        placeholder="Ex: Corte feminino, Manicure..."
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-xs font-medium text-gray-700 mb-2 block">Sua Avaliação *</label>
+                      <div className="flex gap-2 justify-center">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <button
+                            key={star}
+                            type="button"
+                            onClick={() => setTestimonialData({...testimonialData, rating: star})}
+                            className="transition-transform hover:scale-125"
+                          >
+                            <span className={`text-2xl ${star <= testimonialData.rating ? 'text-[#FFD700]' : 'text-gray-300'}`}>
+                              ⭐
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-xs font-medium text-gray-700 mb-1 block">Seu Depoimento *</label>
+                      <textarea
+                        value={testimonialData.review}
+                        onChange={(e) => setTestimonialData({...testimonialData, review: e.target.value})}
+                        className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
+                        rows="3"
+                        placeholder="Conte-nos sobre sua experiência..."
+                        required
+                      />
+                    </div>
+
+                    <div className="flex gap-2 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setShowTestimonialForm(false)}
+                        className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors"
+                      >
+                        Cancelar
+                      </button>
+                      <button
+                        type="submit"
+                        className="flex-1 px-4 py-2 bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all"
+                      >
+                        Enviar Depoimento
+                      </button>
+                    </div>
+                  </form>
+                </motion.div>
+              )}
 
               {/* Booking Form */}
               {showBookingForm && (
@@ -739,6 +969,12 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                   className="flex items-center justify-center gap-2 px-3 py-2 bg-gradient-to-r from-pink-400 to-pink-600 text-white text-xs font-medium rounded-xl hover:shadow-lg transition-all"
                 >
                   <span className="text-base">👰</span> Noivas
+                </button>
+                <button
+                  onClick={() => handleSendMessage("Quero deixar um depoimento")}
+                  className="flex items-center justify-center gap-2 px-3 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-medium rounded-xl hover:shadow-lg transition-all"
+                >
+                  <span className="text-base">⭐</span> Avaliar
                 </button>
                 <button
                   onClick={() => handleSendMessage("Onde vocês ficam?")}
