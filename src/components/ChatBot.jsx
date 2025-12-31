@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Sparkles, Bot, User } from "lucide-react";
-import { Appointment } from "@/entities/Appointment";
-import { InvokeLLM } from "@/integrations/Core";
+import { base44 } from "@/api/base44Client";
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -74,7 +73,12 @@ export default function ChatBot() {
 
   const getSystemPrompt = async () => {
     // Get current appointments for context
-    const recentAppointments = await Appointment.list("-created_date", 50);
+    let recentAppointments = [];
+    try {
+      recentAppointments = await base44.entities.Appointment.list("-created_date", 50);
+    } catch (error) {
+      console.warn('Could not load appointments for context:', error);
+    }
     
     return `Você é a assistente virtual do La Bonita - Salão de Beleza, localizado em Goiânia, especializado em tratamentos capilares, manicure, pedicure, maquiagem e sobrancelha. Você é amigável, profissional, conhecedora de beleza e sempre prestativa. SEMPRE responda em Português do Brasil.
 
@@ -214,14 +218,20 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
     try {
       setIsTyping(true);
       
-      const appointment = await Appointment.create(bookingData);
+      const appointment = await base44.entities.Appointment.create(bookingData);
       
       try {
-        const { base44 } = await import("@/api/base44Client");
-        await Promise.all([
-          base44.functions.invoke('syncToGoogleCalendar', { appointment: bookingData }),
-          base44.functions.invoke('syncToGoogleSheets', { appointment: bookingData })
-        ]);
+        const syncPromises = [
+          base44.functions.invoke('syncToGoogleCalendar', { appointment: bookingData }).catch(err => {
+            console.error('Google Calendar sync failed:', err);
+            return null;
+          }),
+          base44.functions.invoke('syncToGoogleSheets', { appointment: bookingData }).catch(err => {
+            console.error('Google Sheets sync failed:', err);
+            return null;
+          })
+        ];
+        await Promise.all(syncPromises);
       } catch (syncError) {
         console.error('Sync failed:', syncError);
       }
@@ -308,7 +318,7 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
         `${m.sender === 'user' ? 'Cliente' : 'Você'}: ${m.text}`
       ).join('\n');
 
-      const response = await InvokeLLM({
+      const response = await base44.integrations.Core.InvokeLLM({
         prompt: `${systemPrompt}
 
 HISTÓRICO DA CONVERSA (últimas 6 mensagens):
