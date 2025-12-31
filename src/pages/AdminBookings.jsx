@@ -4,8 +4,7 @@ import {
   Calendar, Clock, User, Mail, Phone, MessageSquare, CheckCircle, XCircle, Search, Download,
   AlertCircle, Star, MapPin, Sparkles, RefreshCw
 } from "lucide-react";
-import { Appointment } from "@/entities/Appointment";
-import { BookingNotification } from "@/entities/BookingNotification";
+import { base44 } from "@/api/base44Client";
 
 const statusColors = {
   pending: "bg-yellow-100 text-yellow-800 border-yellow-200",
@@ -43,7 +42,7 @@ export default function AdminBookings() {
       
       // Try to load appointments with better error handling
       try {
-        appointmentsData = await Appointment.list("-created_date", 100);
+        appointmentsData = await base44.entities.Appointment.list("-created_date", 100);
         console.log('Appointments loaded successfully:', appointmentsData?.length || 0);
       } catch (aptError) {
         console.warn('Failed to load appointments (this might be expected if no appointments exist yet):', aptError);
@@ -52,7 +51,7 @@ export default function AdminBookings() {
       
       // Try to load notifications with better error handling
       try {
-        notificationsData = await BookingNotification.list("-created_date", 100);
+        notificationsData = await base44.entities.BookingNotification.list("-created_date", 100);
         console.log('Notifications loaded successfully:', notificationsData?.length || 0);
       } catch (notError) {
         console.warn('Failed to load notifications (this might be expected if no notifications exist yet):', notError);
@@ -74,7 +73,7 @@ export default function AdminBookings() {
 
   const updateAppointmentStatus = async (appointmentId, newStatus) => {
     try {
-      await Appointment.update(appointmentId, { status: newStatus });
+      await base44.entities.Appointment.update(appointmentId, { status: newStatus });
       await loadData();
       console.log(`Appointment ${appointmentId} updated to ${newStatus}`);
     } catch (error) {
@@ -85,7 +84,7 @@ export default function AdminBookings() {
 
   const markNotificationAsViewed = async (notificationId) => {
     try {
-      await BookingNotification.update(notificationId, { notification_status: "viewed" });
+      await base44.entities.BookingNotification.update(notificationId, { notification_status: "viewed" });
       await loadData();
       console.log(`Notification ${notificationId} marked as viewed`);
     } catch (error) {
