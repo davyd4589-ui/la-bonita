@@ -261,13 +261,17 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
     try {
       setIsTyping(true);
       
-      // Encontrar serviço selecionado para obter preço e duração
       const selectedService = servicesMenu.find(s => s.name === bookingData.service);
       
-      // Criar appointment com todos os dados necessários
       const appointmentData = {
-        ...bookingData,
-        service_price: selectedService?.price,
+        client_name: bookingData.client_name,
+        email: bookingData.email,
+        phone: bookingData.phone,
+        service: bookingData.service,
+        preferred_date: bookingData.preferred_date,
+        preferred_time: bookingData.preferred_time,
+        message: bookingData.message || "",
+        service_price: selectedService?.price || 0,
         duration: "1h",
         status: "confirmed"
       };
@@ -275,17 +279,10 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
       const appointment = await base44.entities.Appointment.create(appointmentData);
       
       try {
-        const syncPromises = [
-          base44.functions.invoke('syncToGoogleCalendar', { appointment: appointmentData }).catch(err => {
-            console.error('Google Calendar sync failed:', err);
-            return null;
-          }),
-          base44.functions.invoke('syncToGoogleSheets', { appointment: appointmentData }).catch(err => {
-            console.error('Google Sheets sync failed:', err);
-            return null;
-          })
-        ];
-        await Promise.all(syncPromises);
+        await Promise.allSettled([
+          base44.functions.invoke('syncToGoogleCalendar', { appointment: appointmentData }),
+          base44.functions.invoke('syncToGoogleSheets', { appointment: appointmentData })
+        ]);
       } catch (syncError) {
         console.error('Sync failed:', syncError);
       }
