@@ -331,30 +331,31 @@ Obrigada por escolher La Bonita. Esperamos você!
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
           onClick={handleClose}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 50 }}
+            initial={{ opacity: 0, scale: 0.95, y: 100 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 50 }}
+            exit={{ opacity: 0, scale: 0.95, y: 100 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl w-full sm:max-w-2xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto touch-manipulation"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
-            <div className="sticky top-0 bg-white rounded-t-3xl border-b border-gray-100 p-6 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Sparkles className="w-6 h-6 text-[#C8A882]" />
-                <h2 className="font-serif text-2xl font-bold text-[#0F0F0F]">
+            {/* Header - Mobile Optimized */}
+            <div className="sticky top-0 bg-white rounded-t-3xl sm:rounded-t-3xl border-b border-gray-100 p-4 sm:p-6 flex items-center justify-between z-10">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-[#C8A882]" />
+                <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#0F0F0F]">
                   Agendar Horário
                 </h2>
               </div>
               <button
                 onClick={handleClose}
-                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200 flex items-center justify-center"
+                className="w-11 h-11 sm:w-10 sm:h-10 rounded-full bg-gray-100 active:bg-gray-300 transition-colors duration-200 flex items-center justify-center touch-manipulation"
+                aria-label="Fechar"
               >
-                <X className="w-5 h-5 text-gray-600" />
+                <X className="w-6 h-6 sm:w-5 sm:h-5 text-gray-600" />
               </button>
             </div>
 
@@ -431,8 +432,8 @@ Obrigada por escolher La Bonita. Esperamos você!
                     </div>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-4">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           <User className="w-4 h-4 inline mr-2" />
@@ -443,7 +444,7 @@ Obrigada por escolher La Bonita. Esperamos você!
                           required
                           value={formData.client_name}
                           onChange={(e) => handleInputChange('client_name', e.target.value)}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
+                          className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] focus:ring-2 focus:ring-[#C8A882]/20 transition-all duration-300 touch-manipulation"
                           placeholder="Seu nome completo"
                         />
                       </div>
@@ -457,7 +458,7 @@ Obrigada por escolher La Bonita. Esperamos você!
                           required
                           value={formData.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
+                          className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] focus:ring-2 focus:ring-[#C8A882]/20 transition-all duration-300 touch-manipulation"
                           placeholder="seu@email.com"
                         />
                       </div>
@@ -473,7 +474,7 @@ Obrigada por escolher La Bonita. Esperamos você!
                         required
                         value={formData.phone}
                         onChange={(e) => handleInputChange('phone', e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
+                        className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] focus:ring-2 focus:ring-[#C8A882]/20 transition-all duration-300 touch-manipulation"
                         placeholder="(62) 98278-0894"
                       />
                     </div>

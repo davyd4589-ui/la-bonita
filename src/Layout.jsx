@@ -7,6 +7,7 @@ import BookingModal from "@/components/BookingModal";
 import ReviewWidget from "@/components/ReviewWidget";
 import SeoSchema from "@/components/SeoSchema";
 import LoadingScreen from "@/components/LoadingScreen";
+import PerformanceOptimizer from "@/components/PerformanceOptimizer";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
@@ -82,6 +83,7 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <div className="min-h-screen bg-[#F8F2EC] font-sans text-[length:var(--font-body)] leading-[1.618]">
+      <PerformanceOptimizer />
       <style>{`
         :root {
           --obsidian: #0F0F0F;
@@ -171,22 +173,61 @@ export default function Layout({ children, currentPageName }) {
           image-rendering: optimize-contrast;
         }
 
+        /* Mobile-first optimizations */
+        @media (max-width: 768px) {
+          /* Touch targets minimum 44px */
+          button, a[role="button"], input[type="submit"], [role="menuitem"] {
+            min-height: 44px;
+            min-width: 44px;
+            padding: 0.75rem 1rem;
+          }
+
+          /* Larger text for readability */
+          body {
+            font-size: 16px;
+            line-height: 1.6;
+          }
+
+          /* Optimize tap zones */
+          .nav-link, button {
+            padding: 12px 16px;
+            margin: 4px;
+          }
+
+          /* Prevent text resize on orientation change */
+          html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+          }
+
+          /* Smooth scrolling */
+          * {
+            -webkit-overflow-scrolling: touch;
+          }
+        }
+
         @media (max-width: 375px) {
           button[class*="bg-gradient-to-r"],
           button[class*="bg-[#C8A882]"],
           button[class*="bg-black/80"] {
-            min-height: 44px;
-            padding: 0.75rem 1.25rem !important;
+            min-height: 48px;
+            padding: 0.875rem 1.25rem !important;
             font-size: clamp(0.9rem, 4.5vw, 1rem) !important;
             max-width: 100%;
             height: auto;
             white-space: normal;
-            line-height: 1.3;
+            line-height: 1.4;
             text-align: center;
           }
-          
+
           button[class*="bg-gradient-to-r"] {
             padding: 1rem 1.5rem !important;
+          }
+
+          /* Reduce spacing on small screens */
+          section {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
           }
         }
       `}</style>
