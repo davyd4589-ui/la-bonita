@@ -7,7 +7,7 @@ const slides = [
     id: 1,
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/118d6d338_ScreenShotTool-20251229144612.png",
     headline: "✨ Realce sua beleza com quem entende de você",
-    subheading: "Cabelo, estética e cuidados premium em um ambiente sofisticado em Goiânia.",
+    subheading: "Salão Premium em Goiânia",
     description: "Profissionais especializadas, produtos de alta qualidade e um espaço pensado para o seu bem-estar.",
     cta_text: "AGENDAR AGORA",
     isH1: true,
