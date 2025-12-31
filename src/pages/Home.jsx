@@ -9,6 +9,8 @@ import CategoriesSection from "../components/CategoriesSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import BrandPartners from "../components/BrandPartners";
 import BridalPackagesHome from "../components/BridalPackagesHome";
+import LocalSeoSection from "../components/LocalSeoSection";
+import FaqSection from "../components/FaqSection";
 
 export default function Home() {
   return (
@@ -21,6 +23,7 @@ export default function Home() {
       <div className="bg-[#FDFCF9] relative">
         <WhyChooseUs />
       </div>
+      <LocalSeoSection />
       <CategoriesSection />
       <BridalPackagesHome />
       <div className="bg-[#FDFCF9] relative">
@@ -29,6 +32,7 @@ export default function Home() {
         <BrandPartners />
         <TestimonialsSection />
       </div>
+      <FaqSection />
     </div>
   );
 }
