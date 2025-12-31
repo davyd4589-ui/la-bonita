@@ -214,7 +214,14 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
     try {
       setIsTyping(true);
       
-      await Appointment.create(bookingData);
+      const appointment = await Appointment.create(bookingData);
+      
+      try {
+        const { base44 } = await import("@/api/base44Client");
+        await base44.functions.invoke('syncToGoogleCalendar', { appointment: bookingData });
+      } catch (calendarError) {
+        console.error('Google Calendar sync failed:', calendarError);
+      }
       
       const successMessage = {
         id: Date.now(),

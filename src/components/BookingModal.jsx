@@ -139,6 +139,13 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
         console.error('Internal notification creation failed:', notificationError);
       }
 
+      try {
+        const { base44 } = await import("@/api/base44Client");
+        await base44.functions.invoke('syncToGoogleCalendar', { appointment: appointmentData });
+      } catch (calendarError) {
+        console.error('Google Calendar sync failed:', calendarError);
+      }
+
       setStep(3);
     } catch (error) {
       console.error('Booking submission failed:', error);
