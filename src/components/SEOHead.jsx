@@ -28,6 +28,10 @@ export default function SEOHead({
       <meta name="author" content="La Bonita Salão de Beleza" />
       <meta name="robots" content="index, follow" />
       <link rel="canonical" href={canonical} />
+      
+      {/* Favicon */}
+      <link rel="icon" type="image/png" href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/84a1bc056_ScreenShotTool-20251221150407.png" />
+      <link rel="apple-touch-icon" href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/84a1bc056_ScreenShotTool-20251221150407.png" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="business.business" />
