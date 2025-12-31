@@ -119,18 +119,26 @@ export default function Hero() {
               {currentSlide.isH1 ? (
                 <h1 className="font-serif font-medium leading-[1.1] text-white text-[clamp(2rem,8vw,5rem)]">
                   {currentSlide.headline}
-                  <br />
-                  <span className="block text-[#C8A882] enhanced-glow-text mt-4 sm:mt-6 text-[0.85em]">
-                    {currentSlide.subheading}
-                  </span>
+                  {currentSlide.subheading && (
+                    <>
+                      <br />
+                      <span className="block text-[#C8A882] enhanced-glow-text mt-4 sm:mt-6 text-[0.85em]">
+                        {currentSlide.subheading}
+                      </span>
+                    </>
+                  )}
                 </h1>
               ) : (
                 <h2 className="font-serif font-medium leading-[1.1] text-white text-[clamp(2rem,8vw,5rem)]">
                   {currentSlide.headline}
-                  <br />
-                  <span className="block text-[#C8A882] enhanced-glow-text mt-4 sm:mt-6 text-[0.85em]">
-                    {currentSlide.subheading}
-                  </span>
+                  {currentSlide.subheading && (
+                    <>
+                      <br />
+                      <span className="block text-[#C8A882] enhanced-glow-text mt-4 sm:mt-6 text-[0.85em]">
+                        {currentSlide.subheading}
+                      </span>
+                    </>
+                  )}
                 </h2>
               )}
 
