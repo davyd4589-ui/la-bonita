@@ -26,7 +26,49 @@ export default function ChatBot() {
     preferred_time: "",
     message: ""
   });
+  const [selectedDate, setSelectedDate] = useState(null);
   const messagesEndRef = useRef(null);
+
+  // Horários disponíveis por dia da semana (0=Domingo, 1=Segunda, etc)
+  const availableSlots = {
+    0: ["08:00", "09:00", "10:00", "11:00", "12:00"], // Domingo
+    1: [], // Segunda - Fechado
+    2: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Terça
+    3: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Quarta
+    4: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Quinta
+    5: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Sexta
+    6: ["08:00", "09:00", "10:00", "11:00", "12:00"], // Sábado
+  };
+
+  const getDaysInMonth = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const startingDayOfWeek = firstDay.getDay();
+    
+    return { daysInMonth, startingDayOfWeek, month, year };
+  };
+
+  const isDateAvailable = (date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const checkDate = new Date(date);
+    checkDate.setHours(0, 0, 0, 0);
+    
+    if (checkDate < today) return false;
+    
+    const dayOfWeek = checkDate.getDay();
+    return availableSlots[dayOfWeek] && availableSlots[dayOfWeek].length > 0;
+  };
+
+  const getAvailableTimesForDate = (date) => {
+    if (!date) return [];
+    const dayOfWeek = new Date(date).getDay();
+    return availableSlots[dayOfWeek] || [];
+  };
 
   const servicesMenu = [
     { name: "Corte Feminino", price: 100, category: "Cabelo" },
@@ -453,16 +495,6 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                   animate={{ opacity: 1, y: 0 }}
                   className="bg-white rounded-2xl p-4 shadow-lg border-2 border-[#C8A882]"
                 >
-                  {/* Link para Calendário */}
-                  <a
-                    href="https://calendar.app.google/AMKWUaGWxFBXaVuv5"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block mb-4 bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white px-4 py-3 rounded-lg text-center font-medium hover:shadow-lg transition-all"
-                  >
-                    📅 Ver Horários Disponíveis
-                  </a>
-
                   <form onSubmit={handleBookingSubmit} className="space-y-3">
                     <div>
                       <label className="text-xs font-medium text-gray-700 mb-1 block">Nome Completo *</label>
@@ -515,39 +547,103 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                       </select>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2">
-                      <div>
-                        <label className="text-xs font-medium text-gray-700 mb-1 block">Data *</label>
-                        <input
-                          type="date"
-                          value={bookingData.preferred_date}
-                          onChange={(e) => setBookingData({...bookingData, preferred_date: e.target.value})}
-                          min={new Date().toISOString().split('T')[0]}
-                          className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
-                          required
-                        />
+                    {/* Calendário de Disponibilidade */}
+                    <div className="mb-3">
+                      <label className="text-xs font-medium text-gray-700 mb-2 block">Selecione Data e Horário *</label>
+                      
+                      {/* Mini Calendário */}
+                      <div className="bg-gray-50 rounded-lg p-3 mb-3">
+                        <div className="text-center mb-2">
+                          <span className="text-sm font-semibold text-[#C8A882]">
+                            {new Date(getDaysInMonth().year, getDaysInMonth().month).toLocaleString('pt-BR', { month: 'long', year: 'numeric' })}
+                          </span>
+                        </div>
+                        
+                        {/* Dias da semana */}
+                        <div className="grid grid-cols-7 gap-1 mb-2">
+                          {['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].map((day, i) => (
+                            <div key={i} className="text-center text-xs font-medium text-gray-500">{day}</div>
+                          ))}
+                        </div>
+                        
+                        {/* Dias do mês */}
+                        <div className="grid grid-cols-7 gap-1">
+                          {Array.from({ length: getDaysInMonth().startingDayOfWeek }).map((_, i) => (
+                            <div key={`empty-${i}`} className="aspect-square"></div>
+                          ))}
+                          
+                          {Array.from({ length: getDaysInMonth().daysInMonth }).map((_, i) => {
+                            const day = i + 1;
+                            const date = new Date(getDaysInMonth().year, getDaysInMonth().month, day);
+                            const dateString = date.toISOString().split('T')[0];
+                            const available = isDateAvailable(date);
+                            const isSelected = bookingData.preferred_date === dateString;
+                            
+                            return (
+                              <button
+                                key={day}
+                                type="button"
+                                onClick={() => {
+                                  if (available) {
+                                    setBookingData({...bookingData, preferred_date: dateString, preferred_time: ""});
+                                    setSelectedDate(dateString);
+                                  }
+                                }}
+                                disabled={!available}
+                                className={`aspect-square rounded text-xs font-medium transition-all ${
+                                  isSelected
+                                    ? 'bg-[#C8A882] text-white scale-110 shadow-md'
+                                    : available
+                                    ? 'bg-white text-gray-700 hover:bg-[#C8A882]/20 hover:scale-105'
+                                    : 'bg-gray-100 text-gray-300 cursor-not-allowed'
+                                }`}
+                              >
+                                {day}
+                              </button>
+                            );
+                          })}
+                        </div>
+                        
+                        <div className="mt-2 flex items-center justify-center gap-3 text-xs">
+                          <div className="flex items-center gap-1">
+                            <div className="w-3 h-3 bg-[#C8A882] rounded"></div>
+                            <span className="text-gray-600">Selecionado</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <div className="w-3 h-3 bg-white border border-gray-300 rounded"></div>
+                            <span className="text-gray-600">Disponível</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <div className="w-3 h-3 bg-gray-100 rounded"></div>
+                            <span className="text-gray-600">Fechado</span>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <label className="text-xs font-medium text-gray-700 mb-1 block">Horário *</label>
-                        <select
-                          value={bookingData.preferred_time}
-                          onChange={(e) => setBookingData({...bookingData, preferred_time: e.target.value})}
-                          className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#C8A882]"
-                          required
-                        >
-                          <option value="">Selecione</option>
-                          <option value="09:00">09:00</option>
-                          <option value="10:00">10:00</option>
-                          <option value="11:00">11:00</option>
-                          <option value="12:00">12:00</option>
-                          <option value="13:00">13:00</option>
-                          <option value="14:00">14:00</option>
-                          <option value="15:00">15:00</option>
-                          <option value="16:00">16:00</option>
-                          <option value="17:00">17:00</option>
-                          <option value="18:00">18:00</option>
-                        </select>
-                      </div>
+                      
+                      {/* Horários Disponíveis */}
+                      {bookingData.preferred_date && (
+                        <div className="bg-white border border-gray-200 rounded-lg p-3">
+                          <p className="text-xs font-medium text-gray-700 mb-2">
+                            Horários para {new Date(bookingData.preferred_date + 'T12:00:00').toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}:
+                          </p>
+                          <div className="grid grid-cols-4 gap-2">
+                            {getAvailableTimesForDate(bookingData.preferred_date).map((time) => (
+                              <button
+                                key={time}
+                                type="button"
+                                onClick={() => setBookingData({...bookingData, preferred_time: time})}
+                                className={`px-2 py-2 rounded text-xs font-medium transition-all ${
+                                  bookingData.preferred_time === time
+                                    ? 'bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white shadow-md'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-[#C8A882]/20'
+                                }`}
+                              >
+                                {time}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     <div>
