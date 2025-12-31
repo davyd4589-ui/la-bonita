@@ -453,18 +453,15 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                   animate={{ opacity: 1, y: 0 }}
                   className="bg-white rounded-2xl p-4 shadow-lg border-2 border-[#C8A882]"
                 >
-                  {/* Calendário de Disponibilidade */}
-                  <div className="mb-4 rounded-lg overflow-hidden border border-gray-200">
-                    <div className="bg-[#C8A882] text-white px-3 py-2 text-sm font-medium">
-                      📅 Horários Disponíveis
-                    </div>
-                    <iframe 
-                      src="https://calendar.app.google/AMKWUaGWxFBXaVuv5"
-                      className="w-full h-64"
-                      frameBorder="0"
-                      title="Calendário de Disponibilidade"
-                    />
-                  </div>
+                  {/* Link para Calendário */}
+                  <a
+                    href="https://calendar.app.google/AMKWUaGWxFBXaVuv5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block mb-4 bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white px-4 py-3 rounded-lg text-center font-medium hover:shadow-lg transition-all"
+                  >
+                    📅 Ver Horários Disponíveis
+                  </a>
 
                   <form onSubmit={handleBookingSubmit} className="space-y-3">
                     <div>
