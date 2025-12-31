@@ -213,12 +213,12 @@ export default function Hero() {
                 </button>
                 
                 <a
-                  href="https://wa.me/5562982780894?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio."
+                  href="https://wa.me/5562999130894?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-6 sm:px-8 py-4 sm:py-5 rounded-full font-sans font-bold text-base sm:text-lg hover:bg-white hover:text-[#0F0F0F] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 min-h-[56px] touch-manipulation w-full sm:w-auto"
                 >
-                  <span className="text-sm sm:text-base">WhatsApp: (62) 98278-0894</span>
+                  <span className="text-sm sm:text-base">WhatsApp: (62) 99913-0894</span>
                 </a>
               </div>
 
