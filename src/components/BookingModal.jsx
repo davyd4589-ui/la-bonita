@@ -179,54 +179,104 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
         
         // Send email to client
         await base44.integrations.Core.SendEmail({
+          from_name: "La Bonita Salão de Beleza",
           to: formData.email,
-          subject: `Confirmação de Agendamento - La Bonita Salão de Beleza`,
+          subject: `✨ Agendamento Confirmado - ${formData.service} - ${new Date(formData.preferred_date + 'T12:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })} às ${formData.preferred_time}`,
           body: `
-Olá ${formData.client_name},
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║              ✨  L A   B O N I T A  ✨                    ║
+║            Salão de Beleza em Goiânia                      ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
 
-Seu agendamento no La Bonita Salão de Beleza foi confirmado com sucesso!
 
-═══════════════════════════════════════
-DETALHES DO AGENDAMENTO
-═══════════════════════════════════════
+Olá, ${formData.client_name}! 💕
 
-Serviço: ${formData.service}
-Data: ${formatDate(formData.preferred_date)}
-Horário: ${formData.preferred_time}
-Valor: R$ ${selectedService?.price.toLocaleString('pt-BR')}
-Duração: ${selectedService?.duration}
+Estamos muito felizes em confirmar seu agendamento! Prepare-se para 
+uma experiência única de beleza e bem-estar.
 
-═══════════════════════════════════════
-INFORMAÇÕES IMPORTANTES
-═══════════════════════════════════════
 
-✓ Por favor, chegue 10 minutos antes do horário agendado
-✓ Apresente esta confirmação na recepção
-✓ Para alterações ou cancelamentos, contate-nos com 24h de antecedência
+╔════════════════════════════════════════════════════════════╗
+║                 📋 DETALHES DO AGENDAMENTO                 ║
+╚════════════════════════════════════════════════════════════╝
 
-═══════════════════════════════════════
-LOCALIZAÇÃO
-═══════════════════════════════════════
+📌 SERVIÇO
+   ${formData.service}
 
-La Bonita Salão de Beleza
-R. SB 7, Qd.13 - Lt. 01
-Res. Solar Bougainville
-Goiânia - GO, 74393-385
+💰 INVESTIMENTO
+   R$ ${selectedService?.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 
-Telefone/WhatsApp: (62) 99913-0894
+⏱️ DURAÇÃO ESTIMADA
+   ${selectedService?.duration}
 
-Horário de Atendimento:
-• Terça a Sexta: 9h às 19h
-• Sábado: 8h às 13h
-• Domingo: 8h às 13h
-• Segunda: Fechado
+📅 DATA DO ATENDIMENTO
+   ${formatDate(formData.preferred_date)}
 
-═══════════════════════════════════════
+🕐 HORÁRIO
+   ${formData.preferred_time}
 
-Estamos ansiosas para te receber!
+${formData.message ? `📝 SUAS OBSERVAÇÕES\n   ${formData.message}\n\n` : ''}
 
-Atenciosamente,
-Equipe La Bonita Salão de Beleza
+╔════════════════════════════════════════════════════════════╗
+║              ⚠️  INFORMAÇÕES IMPORTANTES  ⚠️              ║
+╚════════════════════════════════════════════════════════════╝
+
+✅ Chegue com 10 minutos de antecedência para garantir que
+   seu atendimento comece no horário agendado
+
+✅ Apresente este e-mail (ou faça um print) na recepção
+
+✅ Para reagendar ou cancelar, entre em contato com no mínimo
+   24 horas de antecedência pelo WhatsApp (62) 99913-0894
+
+✅ Em caso de atraso superior a 15 minutos, o agendamento 
+   poderá ser cancelado
+
+
+╔════════════════════════════════════════════════════════════╗
+║                  📍 COMO CHEGAR                            ║
+╚════════════════════════════════════════════════════════════╝
+
+🏠 ENDEREÇO
+   R. SB 7, Quadra 13, Lote 01
+   Residencial Solar Bougainville
+   Goiânia - GO
+   CEP: 74393-385
+
+📱 CONTATO
+   WhatsApp: (62) 99913-0894
+   Instagram: @labonitaspabeauty
+   Facebook: /labonitaspabeauty
+
+🕐 HORÁRIO DE FUNCIONAMENTO
+   Segunda-feira: Fechado
+   Terça a Sexta: 9h às 19h
+   Sábado: 8h às 13h  
+   Domingo: 8h às 13h
+
+
+════════════════════════════════════════════════════════════
+
+              💝 Estamos ansiosas para receber você! 💝
+
+         Prepare-se para uma experiência de beleza única
+              e um atendimento personalizado.
+
+════════════════════════════════════════════════════════════
+
+
+Com carinho,
+Equipe La Bonita Salão de Beleza ✨
+
+Instagram: @labonitaspabeauty
+WhatsApp: (62) 99913-0894
+Site: linktr.ee/labonitaspa
+
+
+---
+Este é um e-mail automático de confirmação. Por favor, não responda.
+Para dúvidas ou alterações, entre em contato pelo WhatsApp.
           `,
         });
 
