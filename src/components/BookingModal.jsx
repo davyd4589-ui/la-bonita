@@ -449,6 +449,14 @@ Obrigada por escolher La Bonita. Esperamos você!
                           <Calendar className="w-4 h-4 inline mr-2" />
                           Data Preferida *
                         </label>
+                        <a 
+                          href="https://calendar.app.google/AMKWUaGWxFBXaVuv5" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-xs text-[#C8A882] hover:text-[#FF5C8D] mb-2 inline-block"
+                        >
+                          📅 Ver horários disponíveis
+                        </a>
                         <input
                           type="date"
                           required

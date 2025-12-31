@@ -508,6 +508,14 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                     <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="text-xs font-medium text-gray-700 mb-1 block">Data *</label>
+                        <a 
+                          href="https://calendar.app.google/AMKWUaGWxFBXaVuv5" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-xs text-[#C8A882] hover:text-[#FF5C8D] mb-1 inline-block"
+                        >
+                          📅 Ver disponibilidade
+                        </a>
                         <input
                           type="date"
                           value={bookingData.preferred_date}
