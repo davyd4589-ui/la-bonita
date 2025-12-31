@@ -261,15 +261,26 @@ Lembre-se: Você representa um salão de beleza premium, então mantenha um tom 
     try {
       setIsTyping(true);
       
-      const appointment = await base44.entities.Appointment.create(bookingData);
+      // Encontrar serviço selecionado para obter preço e duração
+      const selectedService = servicesMenu.find(s => s.name === bookingData.service);
+      
+      // Criar appointment com todos os dados necessários
+      const appointmentData = {
+        ...bookingData,
+        service_price: selectedService?.price,
+        duration: "1h",
+        status: "confirmed"
+      };
+      
+      const appointment = await base44.entities.Appointment.create(appointmentData);
       
       try {
         const syncPromises = [
-          base44.functions.invoke('syncToGoogleCalendar', { appointment: bookingData }).catch(err => {
+          base44.functions.invoke('syncToGoogleCalendar', { appointment: appointmentData }).catch(err => {
             console.error('Google Calendar sync failed:', err);
             return null;
           }),
-          base44.functions.invoke('syncToGoogleSheets', { appointment: bookingData }).catch(err => {
+          base44.functions.invoke('syncToGoogleSheets', { appointment: appointmentData }).catch(err => {
             console.error('Google Sheets sync failed:', err);
             return null;
           })
