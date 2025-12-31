@@ -20,7 +20,7 @@ Deno.serve(async (req) => {
 
     // Google Sheets ID from the spreadsheet URL
     const SPREADSHEET_ID = Deno.env.get('GOOGLE_SHEETS_ID') || '14i65WOLdouPH3nmATGVRqy2lSYvb5G8iy-dgDutIaqU';
-    const SHEET_NAME = 'Agendamentos'; // You can change this to your sheet name
+    const SHEET_NAME = 'NOVA';
 
     // Prepare the row data
     const rowData = [
