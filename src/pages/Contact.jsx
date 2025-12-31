@@ -44,11 +44,20 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-serif text-xl font-bold text-[#0F0F0F] mb-2">Visite Nosso Salão</h3>
-                  <p className="leading-[1.618] text-gray-600">
+                  <p className="leading-[1.618] text-gray-600 mb-3">
                     R. SB 7, Qd.13 - Lt. 01<br />
                     Res. Solar Bougainville<br />
                     Goiânia - GO, 74393-385
                   </p>
+                  <a 
+                    href="https://share.google/OCGdXSC1VWGHEf493" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-[#C8A882] hover:text-[#FF5C8D] font-medium transition-colors"
+                  >
+                    <MapPin className="w-4 h-4" />
+                    Ver no Google Maps
+                  </a>
                 </div>
               </div>
             </div>
