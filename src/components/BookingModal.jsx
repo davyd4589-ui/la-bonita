@@ -58,6 +58,42 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
   const [createdAppointment, setCreatedAppointment] = useState(null);
   const [error, setError] = useState("");
 
+  // Horários disponíveis por dia da semana
+  const availableSlots = {
+    0: ["08:00", "09:00", "10:00", "11:00", "12:00"], // Domingo
+    1: [], // Segunda - Fechado
+    2: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Terça
+    3: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Quarta
+    4: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Quinta
+    5: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Sexta
+    6: ["08:00", "09:00", "10:00", "11:00", "12:00"], // Sábado
+  };
+
+  const getNext15Days = () => {
+    const days = [];
+    const today = new Date();
+    
+    for (let i = 0; i < 15; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+      days.push(date);
+    }
+    
+    return days;
+  };
+
+  const isDateAvailable = (date) => {
+    const dayOfWeek = date.getDay();
+    return availableSlots[dayOfWeek] && availableSlots[dayOfWeek].length > 0;
+  };
+
+  const getAvailableTimesForDate = (dateString) => {
+    if (!dateString) return [];
+    const date = new Date(dateString + 'T12:00:00');
+    const dayOfWeek = date.getDay();
+    return availableSlots[dayOfWeek] || [];
+  };
+
   useEffect(() => {
     if (isOpen) {
       if (initialService) {
@@ -443,46 +479,96 @@ Obrigada por escolher La Bonita. Esperamos você!
                       />
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          <Calendar className="w-4 h-4 inline mr-2" />
-                          Data Preferida *
-                        </label>
-                        <a 
-                          href="https://calendar.app.google/AMKWUaGWxFBXaVuv5" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-xs text-[#C8A882] hover:text-[#FF5C8D] mb-2 inline-block"
-                        >
-                          📅 Ver horários disponíveis
-                        </a>
-                        <input
-                          type="date"
-                          required
-                          value={formData.preferred_date}
-                          onChange={(e) => handleInputChange('preferred_date', e.target.value)}
-                          min={getTomorrowDate()}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
-                        />
+                    {/* Seleção de Data e Horário */}
+                    <div className="mb-4">
+                      <label className="block text-sm font-medium text-gray-700 mb-3">
+                        <Calendar className="w-4 h-4 inline mr-2" />
+                        Selecione Data e Horário *
+                      </label>
+
+                      {/* Calendário Visual - Próximos 15 dias */}
+                      <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-4 mb-4 border border-gray-200">
+                        <p className="text-sm font-semibold text-[#C8A882] mb-3 text-center">
+                          📅 Próximos 15 dias disponíveis
+                        </p>
+
+                        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-3">
+                          {getNext15Days().map((date, index) => {
+                            const dateString = date.toISOString().split('T')[0];
+                            const available = isDateAvailable(date);
+                            const isSelected = formData.preferred_date === dateString;
+                            const dayName = date.toLocaleDateString('pt-BR', { weekday: 'short' });
+                            const dayNum = date.getDate();
+                            const monthName = date.toLocaleDateString('pt-BR', { month: 'short' });
+
+                            return (
+                              <button
+                                key={index}
+                                type="button"
+                                onClick={() => {
+                                  if (available) {
+                                    handleInputChange('preferred_date', dateString);
+                                    handleInputChange('preferred_time', '');
+                                  }
+                                }}
+                                disabled={!available}
+                                className={`p-3 rounded-xl text-center transition-all duration-200 ${
+                                  isSelected
+                                    ? 'bg-gradient-to-br from-[#C8A882] to-[#FF5C8D] text-white shadow-lg scale-105'
+                                    : available
+                                    ? 'bg-white text-gray-700 hover:bg-[#C8A882]/10 hover:scale-105 shadow-sm border border-gray-200'
+                                    : 'bg-gray-100 text-gray-300 cursor-not-allowed opacity-50'
+                                }`}
+                              >
+                                <div className="text-xs font-medium uppercase">{dayName}</div>
+                                <div className="text-xl font-bold my-1">{dayNum}</div>
+                                <div className="text-xs capitalize">{monthName}</div>
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        <div className="flex items-center justify-center gap-4 text-xs text-gray-600">
+                          <div className="flex items-center gap-1">
+                            <div className="w-3 h-3 bg-gradient-to-br from-[#C8A882] to-[#FF5C8D] rounded"></div>
+                            <span>Selecionado</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <div className="w-3 h-3 bg-white border border-gray-200 rounded"></div>
+                            <span>Disponível</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <div className="w-3 h-3 bg-gray-100 rounded"></div>
+                            <span>Fechado</span>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          <Clock className="w-4 h-4 inline mr-2" />
-                          Horário Preferido *
-                        </label>
-                        <select
-                          required
-                          value={formData.preferred_time}
-                          onChange={(e) => handleInputChange('preferred_time', e.target.value)}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300"
-                        >
-                          <option value="">Selecione o horário</option>
-                          {timeSlots.map((time) => (
-                            <option key={time} value={time}>{time}</option>
-                          ))}
-                        </select>
-                      </div>
+
+                      {/* Horários Disponíveis */}
+                      {formData.preferred_date && (
+                        <div className="bg-white border-2 border-[#C8A882]/30 rounded-2xl p-4">
+                          <p className="text-sm font-medium text-gray-700 mb-3 flex items-center">
+                            <Clock className="w-4 h-4 mr-2 text-[#C8A882]" />
+                            Horários para {new Date(formData.preferred_date + 'T12:00:00').toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}
+                          </p>
+                          <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
+                            {getAvailableTimesForDate(formData.preferred_date).map((time) => (
+                              <button
+                                key={time}
+                                type="button"
+                                onClick={() => handleInputChange('preferred_time', time)}
+                                className={`px-3 py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                                  formData.preferred_time === time
+                                    ? 'bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white shadow-md scale-110'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-[#C8A882] hover:text-white hover:scale-105'
+                                }`}
+                              >
+                                {time}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     <div>
