@@ -27,6 +27,10 @@ export default function ChatBot() {
     message: ""
   });
   const [selectedDate, setSelectedDate] = useState(null);
+  const [calendarMonth, setCalendarMonth] = useState(() => {
+    const today = new Date();
+    return { year: today.getFullYear(), month: today.getMonth() };
+  });
   const messagesEndRef = useRef(null);
 
   // Horários disponíveis por dia da semana (0=Domingo, 1=Segunda, etc)
@@ -40,17 +44,14 @@ export default function ChatBot() {
     6: ["08:00", "09:00", "10:00", "11:00", "12:00"], // Sábado
   };
 
-  const getDaysInMonth = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
+  const calendarData = React.useMemo(() => {
+    const firstDay = new Date(calendarMonth.year, calendarMonth.month, 1);
+    const lastDay = new Date(calendarMonth.year, calendarMonth.month + 1, 0);
     const daysInMonth = lastDay.getDate();
     const startingDayOfWeek = firstDay.getDay();
     
-    return { daysInMonth, startingDayOfWeek, month, year };
-  };
+    return { daysInMonth, startingDayOfWeek, month: calendarMonth.month, year: calendarMonth.year };
+  }, [calendarMonth]);
 
   const isDateAvailable = (date) => {
     const today = new Date();
@@ -555,7 +556,7 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                       <div className="bg-gray-50 rounded-lg p-3 mb-3">
                         <div className="text-center mb-2">
                           <span className="text-sm font-semibold text-[#C8A882]">
-                            {new Date(getDaysInMonth().year, getDaysInMonth().month).toLocaleString('pt-BR', { month: 'long', year: 'numeric' })}
+                            {new Date(calendarData.year, calendarData.month).toLocaleString('pt-BR', { month: 'long', year: 'numeric' })}
                           </span>
                         </div>
                         
@@ -568,13 +569,13 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                         
                         {/* Dias do mês */}
                         <div className="grid grid-cols-7 gap-1">
-                          {Array.from({ length: getDaysInMonth().startingDayOfWeek }).map((_, i) => (
+                          {Array.from({ length: calendarData.startingDayOfWeek }).map((_, i) => (
                             <div key={`empty-${i}`} className="aspect-square"></div>
                           ))}
                           
-                          {Array.from({ length: getDaysInMonth().daysInMonth }).map((_, i) => {
+                          {Array.from({ length: calendarData.daysInMonth }).map((_, i) => {
                             const day = i + 1;
-                            const date = new Date(getDaysInMonth().year, getDaysInMonth().month, day);
+                            const date = new Date(calendarData.year, calendarData.month, day);
                             const dateString = date.toISOString().split('T')[0];
                             const available = isDateAvailable(date);
                             const isSelected = bookingData.preferred_date === dateString;
@@ -624,7 +625,7 @@ RESPONDA: Máximo 2 linhas. Vá direto ao ponto. NÃO repita o que já foi dito.
                       {bookingData.preferred_date && (
                         <div className="bg-white border border-gray-200 rounded-lg p-3">
                           <p className="text-xs font-medium text-gray-700 mb-2">
-                            Horários para {new Date(bookingData.preferred_date + 'T12:00:00').toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}:
+                            Horários disponíveis:
                           </p>
                           <div className="grid grid-cols-4 gap-2">
                             {getAvailableTimesForDate(bookingData.preferred_date).map((time) => (
