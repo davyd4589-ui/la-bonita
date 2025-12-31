@@ -15,8 +15,8 @@ const slides = [
   {
     id: 2,
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/576c5d972_ScreenShotTool-20251229144553.png",
-    headline: "Seu Dia da Noiva começa com tranquilidade e perfeição",
-    subheading: "Do preparo ao altar, cuidamos de cada detalhe para você se sentir única.",
+    headline: "Seu Dia da Noiva Perfeito",
+    subheading: "Cuidamos de cada detalhe para você se sentir única",
     description: "",
     highlights: [
       "Atendimento exclusivo",
