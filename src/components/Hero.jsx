@@ -15,9 +15,15 @@ const slides = [
   {
     id: 2,
     image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/576c5d972_ScreenShotTool-20251229144553.png",
-    headline: "Pacotes Dia da Noiva",
-    subheading: "Essencial R$ 400 • Premium R$ 700 • Luxo R$ 1200",
-    description: "Escolha o pacote perfeito para o seu grande dia. Da preparação básica ao luxo completo com acompanhamento exclusivo.",
+    headline: "Seu Dia da Noiva começa com tranquilidade e perfeição",
+    subheading: "Do preparo ao altar, cuidamos de cada detalhe para você se sentir única.",
+    description: "",
+    highlights: [
+      "Atendimento exclusivo",
+      "Profissionais especializados",
+      "Ambiente reservado"
+    ],
+    price: "Pacotes a partir de R$ 400",
     cta_text: "CONHEÇA NOSSOS PACOTES",
     isH1: false,
   },
@@ -129,9 +135,40 @@ export default function Hero() {
               )}
 
               {/* Description - Responsive Text */}
-              <p className="text-gray-100 text-[clamp(1.125rem,4vw,1.5rem)] font-light leading-relaxed max-w-4xl">
-                {currentSlide.description}
-              </p>
+              {currentSlide.description && (
+                <p className="text-gray-100 text-[clamp(1.125rem,4vw,1.5rem)] font-light leading-relaxed max-w-4xl">
+                  {currentSlide.description}
+                </p>
+              )}
+
+              {/* Highlights for bridal slide */}
+              {currentSlide.highlights && (
+                <div className="flex flex-wrap gap-3 pt-2">
+                  {currentSlide.highlights.map((highlight, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.3 + idx * 0.1 }}
+                      className="bg-white/20 backdrop-blur-md px-5 py-2.5 rounded-full text-white text-sm sm:text-base font-medium border border-white/30"
+                    >
+                      ✨ {highlight}
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+
+              {/* Price for bridal slide */}
+              {currentSlide.price && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="text-white/70 text-sm sm:text-base font-sans italic"
+                >
+                  {currentSlide.price}
+                </motion.p>
+              )}
               
               {/* Trust Indicators - Responsive Layout */}
               <div className="flex flex-wrap gap-4 sm:gap-6 pt-2 sm:pt-4">
