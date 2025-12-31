@@ -157,38 +157,39 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
     setIsSubmitting(true);
     setError("");
 
-    const appointmentData = {
-      client_name: formData.client_name,
-      email: formData.email,
-      phone: formData.phone,
-      service: formData.service,
-      preferred_date: formData.preferred_date,
-      preferred_time: formData.preferred_time,
-      message: formData.message || "",
-      service_price: selectedService?.price || 0,
-      duration: selectedService?.duration || "1h",
-      status: "confirmed"
-    };
-
-    const appointment = await base44.entities.Appointment.create(appointmentData);
-    setCreatedAppointment(appointment);
-
     try {
-      await createInternalNotification(appointment, formData, selectedService);
-    } catch (notificationError) {
-      console.error('Internal notification creation failed:', notificationError);
-    }
+      const appointmentData = {
+        client_name: formData.client_name,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        preferred_date: formData.preferred_date,
+        preferred_time: formData.preferred_time,
+        message: formData.message || "",
+        service_price: selectedService?.price || 0,
+        duration: selectedService?.duration || "1h",
+        status: "confirmed"
+      };
 
-    try {
-      await Promise.allSettled([
-        base44.functions.invoke('syncToGoogleCalendar', { appointment: appointmentData }),
-        base44.functions.invoke('syncToGoogleSheets', { appointment: appointmentData })
-      ]);
-    } catch (syncError) {
-      console.error('Sync failed:', syncError);
-    }
+      const appointment = await base44.entities.Appointment.create(appointmentData);
+      setCreatedAppointment(appointment);
 
-    setStep(3);
+      try {
+        await createInternalNotification(appointment, formData, selectedService);
+      } catch (notificationError) {
+        console.error('Internal notification creation failed:', notificationError);
+      }
+
+      try {
+        await Promise.allSettled([
+          base44.functions.invoke('syncToGoogleCalendar', { appointment: appointmentData }),
+          base44.functions.invoke('syncToGoogleSheets', { appointment: appointmentData })
+        ]);
+      } catch (syncError) {
+        console.error('Sync failed:', syncError);
+      }
+
+      setStep(3);
     } catch (error) {
       console.error('Booking submission failed:', error);
       setError('Erro ao enviar agendamento. Por favor, tente novamente ou entre em contato pelo WhatsApp (62) 99913-0894.');
