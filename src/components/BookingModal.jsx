@@ -176,8 +176,62 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
 
       try {
         await createInternalNotification(appointment, formData, selectedService);
-      } catch (notificationError) {
-        console.error('Internal notification creation failed:', notificationError);
+        
+        // Send email to client
+        await base44.integrations.Core.SendEmail({
+          to: formData.email,
+          subject: `Confirmação de Agendamento - La Bonita Salão de Beleza`,
+          body: `
+Olá ${formData.client_name},
+
+Seu agendamento no La Bonita Salão de Beleza foi confirmado com sucesso!
+
+═══════════════════════════════════════
+DETALHES DO AGENDAMENTO
+═══════════════════════════════════════
+
+Serviço: ${formData.service}
+Data: ${formatDate(formData.preferred_date)}
+Horário: ${formData.preferred_time}
+Valor: R$ ${selectedService?.price.toLocaleString('pt-BR')}
+Duração: ${selectedService?.duration}
+
+═══════════════════════════════════════
+INFORMAÇÕES IMPORTANTES
+═══════════════════════════════════════
+
+✓ Por favor, chegue 10 minutos antes do horário agendado
+✓ Apresente esta confirmação na recepção
+✓ Para alterações ou cancelamentos, contate-nos com 24h de antecedência
+
+═══════════════════════════════════════
+LOCALIZAÇÃO
+═══════════════════════════════════════
+
+La Bonita Salão de Beleza
+R. SB 7, Qd.13 - Lt. 01
+Res. Solar Bougainville
+Goiânia - GO, 74393-385
+
+Telefone/WhatsApp: (62) 99913-0894
+
+Horário de Atendimento:
+• Terça a Sexta: 9h às 19h
+• Sábado: 8h às 13h
+• Domingo: 8h às 13h
+• Segunda: Fechado
+
+═══════════════════════════════════════
+
+Estamos ansiosas para te receber!
+
+Atenciosamente,
+Equipe La Bonita Salão de Beleza
+          `,
+        });
+
+      } catch (notificationOrEmailError) {
+        console.error('Notification or email sending failed:', notificationOrEmailError);
       }
 
       try {
@@ -475,7 +529,7 @@ Obrigada por escolher La Bonita. Esperamos você!
                         value={formData.phone}
                         onChange={(e) => handleInputChange('phone', e.target.value)}
                         className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] focus:ring-2 focus:ring-[#C8A882]/20 transition-all duration-300 touch-manipulation"
-                        placeholder="(62) 98278-0894"
+                        placeholder="(62) 99913-0894"
                       />
                     </div>
 
@@ -712,7 +766,7 @@ Obrigada por escolher La Bonita. Esperamos você!
                   <div className="text-xs text-gray-500 pt-6 border-t border-gray-200 space-y-1">
                     <p className="font-bold text-[#C8A882] text-sm">La Bonita Salão de Beleza</p>
                     <p>R. SB 7, Qd.13 - Lt. 01, Res. Solar Bougainville</p>
-                    <p>Goiânia - GO, 74393-385 | (62) 98278-0894</p>
+                    <p>Goiânia - GO, 74393-385 | (62) 99913-0894</p>
                     <p className="text-[#C8A882] font-medium">Ter-Sex: 9h-19h | Sáb-Dom: 8h-13h</p>
                   </div>
                 </motion.div>
