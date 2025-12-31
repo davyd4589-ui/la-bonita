@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, Clock, User, Mail, Phone, MessageSquare, Sparkles, Check, Download, Camera } from "lucide-react";
-import { Appointment } from "@/entities/Appointment";
-import { BookingNotification } from "@/entities/BookingNotification";
+import { base44 } from "@/api/base44Client";
 
 // Serviços La Bonita
 const services = [
@@ -130,7 +129,7 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
         status: "confirmed"
       };
 
-      const appointment = await Appointment.create(appointmentData);
+      const appointment = await base44.entities.Appointment.create(appointmentData);
       setCreatedAppointment(appointment);
 
       try {
@@ -140,7 +139,6 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
       }
 
       try {
-        const { base44 } = await import("@/api/base44Client");
         const syncPromises = [
           base44.functions.invoke('syncToGoogleCalendar', { appointment: appointmentData }).catch(err => {
             console.error('Google Calendar sync failed:', err);
@@ -181,7 +179,7 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
       priority: "normal"
     };
 
-    await BookingNotification.create(notificationData);
+    await base44.entities.BookingNotification.create(notificationData);
   };
 
   const resetForm = () => {
