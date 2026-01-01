@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Sitemap from './pages/Sitemap';
 import Team from './pages/Team';
+import Layout from './pages/Layout';
+import index from './pages/index';
 import __Layout from './Layout.jsx';
 
 
@@ -20,6 +22,8 @@ export const PAGES = {
     "Services": Services,
     "Sitemap": Sitemap,
     "Team": Team,
+    "Layout": Layout,
+    "index": index,
 }
 
 export const pagesConfig = {

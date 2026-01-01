@@ -18,7 +18,7 @@ import Sitemap from "./Sitemap";
 
 import Team from "./Team";
 
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 const PAGES = {
     
@@ -42,51 +42,21 @@ const PAGES = {
     
 }
 
-function _getCurrentPage(url) {
-    if (url.endsWith('/')) {
-        url = url.slice(0, -1);
-    }
-    let urlLastPart = url.split('/').pop();
-    if (urlLastPart.includes('?')) {
-        urlLastPart = urlLastPart.split('?')[0];
-    }
-
-    const pageName = Object.keys(PAGES).find(page => page.toLowerCase() === urlLastPart.toLowerCase());
-    return pageName || Object.keys(PAGES)[0];
-}
-
-// Create a wrapper component that uses useLocation inside the Router context
 function PagesContent() {
-    const location = useLocation();
-    const currentPage = _getCurrentPage(location.pathname);
-    
     return (
-        <Layout currentPageName={currentPage}>
-            <Routes>            
-                
-                    <Route path="/" element={<AdminBookings />} />
-                
-                
-                <Route path="/AdminBookings" element={<AdminBookings />} />
-                
-                <Route path="/BookingNotifications" element={<BookingNotifications />} />
-                
-                <Route path="/BridalPackages" element={<BridalPackages />} />
-                
-                <Route path="/Contact" element={<Contact />} />
-                
-                <Route path="/Gallery" element={<Gallery />} />
-                
-                <Route path="/Home" element={<Home />} />
-                
-                <Route path="/Services" element={<Services />} />
-                
-                <Route path="/Sitemap" element={<Sitemap />} />
-                
-                <Route path="/Team" element={<Team />} />
-                
-            </Routes>
-        </Layout>
+        <Routes>            
+            <Route path="/" element={<Layout currentPageName="Home"><Home /></Layout>} />
+            <Route path="/AdminBookings" element={<Layout currentPageName="AdminBookings"><AdminBookings /></Layout>} />
+            <Route path="/BookingNotifications" element={<Layout currentPageName="BookingNotifications"><BookingNotifications /></Layout>} />
+            <Route path="/BridalPackages" element={<Layout currentPageName="BridalPackages"><BridalPackages /></Layout>} />
+            <Route path="/Contact" element={<Layout currentPageName="Contact"><Contact /></Layout>} />
+            <Route path="/Gallery" element={<Layout currentPageName="Gallery"><Gallery /></Layout>} />
+            <Route path="/Home" element={<Navigate to="/" replace />} />
+            <Route path="/Services" element={<Layout currentPageName="Services"><Services /></Layout>} />
+            <Route path="/Sitemap" element={<Layout currentPageName="Sitemap"><Sitemap /></Layout>} />
+            <Route path="/Team" element={<Layout currentPageName="Team"><Team /></Layout>} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
     );
 }
 
