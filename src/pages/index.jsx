@@ -63,10 +63,7 @@ function PagesContent() {
     return (
         <Layout currentPageName={currentPage}>
             <Routes>            
-                
-                    <Route path="/" element={<AdminBookings />} />
-                
-                
+                <Route path="/" element={<Home />} />
                 <Route path="/AdminBookings" element={<AdminBookings />} />
                 
                 <Route path="/BookingNotifications" element={<BookingNotifications />} />
