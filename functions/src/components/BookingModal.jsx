@@ -1,0 +1,830 @@
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Calendar, Clock, User, Mail, Phone, MessageSquare, Sparkles, Check, Download, Camera } from "lucide-react";
+import { base44 } from "@/api/base44Client";
+
+// Serviços La Bonita
+const services = [
+  { name: "Cílios Brasileiro", price: 160, duration: "2h", category: "Beleza" },
+  { name: "Mega Brasileiro", price: 200, duration: "2h30", category: "Beleza" },
+  { name: "Manutenção", price: 110, duration: "1h - 1h30", category: "Beleza" },
+  { name: "Design de Sobrancelha", price: 40, duration: "30min", category: "Beleza" },
+  { name: "Buço", price: 22, duration: "15min", category: "Beleza" },
+  { name: "Henna", price: 20, duration: "30min", category: "Beleza" },
+  { name: "Tonalização de Sobrancelha", price: 35, duration: "30min", category: "Beleza" },
+  { name: "Bronzeamento Natural", price: 80, duration: "1h", category: "Pele" },
+  { name: "Bronze na Máquina", price: 120, duration: "30min", category: "Pele" },
+  { name: "Banho de Lua", price: 65, duration: "45min", category: "Pele" },
+  { name: "Massagem Relaxante", price: 100, duration: "1h", category: "Massagem" },
+  { name: "Pacote Essencial", price: 400, duration: "Variável", category: "Beleza" },
+  { name: "Combo Mechas", price: 780, duration: "4h - 6h", category: "Cabelo" },
+  { name: "Reconstrução + Escova", price: 180, duration: "2h - 2h30", category: "Cabelo" },
+  { name: "Nutrição + Escova", price: 160, duration: "2h - 2h30", category: "Cabelo" },
+  { name: "Hidratação + Escova", price: 120, duration: "1h30 - 2h", category: "Cabelo" },
+  { name: "Cronograma Capilar Premium", price: 420, duration: "4 sessões", category: "Cabelo" },
+  { name: "Cronograma Capilar Luxury", price: 720, duration: "4 sessões", category: "Cabelo" },
+  { name: "Pé + Mão", price: 63, duration: "1h30", category: "Unhas" },
+  { name: "Mão", price: 35, duration: "45min", category: "Unhas" },
+  { name: "Pé", price: 35, duration: "45min", category: "Unhas" },
+  { name: "Corte", price: 100, duration: "45min", category: "Cabelo" },
+  { name: "Escova", price: 60, duration: "40min - 1h30", category: "Cabelo", priceNote: "a partir de" },
+  { name: "Penteado", price: 200, duration: "1h - 2h", category: "Cabelo" },
+  { name: "Maquiagem", price: 180, duration: "1h - 1h30", category: "Beleza" },
+  { name: "Progressiva", price: 190, duration: "3h - 5h", category: "Cabelo", priceNote: "a partir de" },
+  { name: "Realinhamento Capilar", price: 240, duration: "2h - 3h", category: "Cabelo" },
+  { name: "Esfumado de Raiz", price: 180, duration: "2h - 3h", category: "Cabelo" },
+  { name: "Coloração Global", price: 140, duration: "2h - 3h", category: "Cabelo" },
+  { name: "Banho de Brilho", price: 150, duration: "1h30 - 2h", category: "Cabelo" }
+];
+
+const timeSlots = [
+  "9:00", "9:30", "10:00", "10:30", "11:00", "11:30",
+  "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+  "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00"
+];
+
+export default function BookingModal({ isOpen, onClose, initialService }) {
+  const [formData, setFormData] = useState({
+    client_name: "",
+    email: "",
+    phone: "",
+    service: "",
+    preferred_date: "",
+    preferred_time: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [step, setStep] = useState(1);
+  const [createdAppointment, setCreatedAppointment] = useState(null);
+  const [error, setError] = useState("");
+
+  // Horários disponíveis por dia da semana
+  const availableSlots = {
+    0: ["08:00", "09:00", "10:00", "11:00", "12:00"], // Domingo
+    1: [], // Segunda - Fechado
+    2: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Terça
+    3: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Quarta
+    4: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Quinta
+    5: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"], // Sexta
+    6: ["08:00", "09:00", "10:00", "11:00", "12:00"], // Sábado
+  };
+
+  const getNext15Days = () => {
+    const days = [];
+    const today = new Date();
+    
+    for (let i = 0; i < 15; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+      days.push(date);
+    }
+    
+    return days;
+  };
+
+  const isDateAvailable = (date) => {
+    const dayOfWeek = date.getDay();
+    return availableSlots[dayOfWeek] && availableSlots[dayOfWeek].length > 0;
+  };
+
+  const getAvailableTimesForDate = (dateString) => {
+    if (!dateString) return [];
+    const date = new Date(dateString + 'T12:00:00');
+    const dayOfWeek = date.getDay();
+    return availableSlots[dayOfWeek] || [];
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      if (initialService) {
+        setFormData(prev => ({ ...prev, service: initialService.name }));
+        setStep(2);
+      } else {
+        resetForm();
+      }
+      setError("");
+    }
+  }, [isOpen, initialService]);
+
+  const selectedService = services.find(s => s.name === formData.service);
+
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (error) setError("");
+  };
+
+  const validateForm = () => {
+    const { client_name, email, phone, service, preferred_date, preferred_time } = formData;
+    
+    if (!client_name.trim()) return "Por favor, insira seu nome completo";
+    if (!email.trim()) return "Por favor, insira seu email";
+    if (!email.includes("@")) return "Por favor, insira um email válido";
+    if (!phone.trim()) return "Por favor, insira seu telefone";
+    if (!service) return "Por favor, selecione um serviço";
+    if (!preferred_date) return "Por favor, selecione uma data";
+    if (!preferred_time) return "Por favor, selecione um horário";
+    
+    const selectedDate = new Date(preferred_date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    if (selectedDate < today) {
+      return "Por favor, selecione uma data futura";
+    }
+    
+    return null;
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('pt-BR', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const validationError = validateForm();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const appointmentData = {
+        client_name: formData.client_name,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        preferred_date: formData.preferred_date,
+        preferred_time: formData.preferred_time,
+        message: formData.message || "",
+        service_price: selectedService?.price || 0,
+        duration: selectedService?.duration || "1h",
+        status: "confirmed"
+      };
+
+      const appointment = await base44.entities.Appointment.create(appointmentData);
+      setCreatedAppointment(appointment);
+
+      try {
+        await createInternalNotification(appointment, formData, selectedService);
+        
+        // Send email to client
+        await base44.integrations.Core.SendEmail({
+          from_name: "La Bonita Salão de Beleza",
+          to: formData.email,
+          subject: `✨ Agendamento Confirmado - ${formData.service} - ${new Date(formData.preferred_date + 'T12:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })} às ${formData.preferred_time}`,
+          body: `
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║              ✨  L A   B O N I T A  ✨                    ║
+║            Salão de Beleza em Goiânia                      ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+
+Olá, ${formData.client_name}! 💕
+
+Estamos muito felizes em confirmar seu agendamento! Prepare-se para 
+uma experiência única de beleza e bem-estar.
+
+
+╔════════════════════════════════════════════════════════════╗
+║                 📋 DETALHES DO AGENDAMENTO                 ║
+╚════════════════════════════════════════════════════════════╝
+
+📌 SERVIÇO
+   ${formData.service}
+
+💰 INVESTIMENTO
+   R$ ${selectedService?.price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+
+⏱️ DURAÇÃO ESTIMADA
+   ${selectedService?.duration}
+
+📅 DATA DO ATENDIMENTO
+   ${formatDate(formData.preferred_date)}
+
+🕐 HORÁRIO
+   ${formData.preferred_time}
+
+${formData.message ? `📝 SUAS OBSERVAÇÕES\n   ${formData.message}\n\n` : ''}
+
+╔════════════════════════════════════════════════════════════╗
+║              ⚠️  INFORMAÇÕES IMPORTANTES  ⚠️              ║
+╚════════════════════════════════════════════════════════════╝
+
+✅ Chegue com 10 minutos de antecedência para garantir que
+   seu atendimento comece no horário agendado
+
+✅ Apresente este e-mail (ou faça um print) na recepção
+
+✅ Para reagendar ou cancelar, entre em contato com no mínimo
+   24 horas de antecedência pelo WhatsApp (62) 99913-0894
+
+✅ Em caso de atraso superior a 15 minutos, o agendamento 
+   poderá ser cancelado
+
+
+╔════════════════════════════════════════════════════════════╗
+║                  📍 COMO CHEGAR                            ║
+╚════════════════════════════════════════════════════════════╝
+
+🏠 ENDEREÇO
+   R. SB 7, Quadra 13, Lote 01
+   Residencial Solar Bougainville
+   Goiânia - GO
+   CEP: 74393-385
+
+📱 CONTATO
+   WhatsApp: (62) 99913-0894
+   Instagram: @labonitaspabeauty
+   Facebook: /labonitaspabeauty
+
+🕐 HORÁRIO DE FUNCIONAMENTO
+   Segunda-feira: Fechado
+   Terça a Sexta: 9h às 19h
+   Sábado: 8h às 13h  
+   Domingo: 8h às 13h
+
+
+════════════════════════════════════════════════════════════
+
+              💝 Estamos ansiosas para receber você! 💝
+
+         Prepare-se para uma experiência de beleza única
+              e um atendimento personalizado.
+
+════════════════════════════════════════════════════════════
+
+
+Com carinho,
+Equipe La Bonita Salão de Beleza ✨
+
+Instagram: @labonitaspabeauty
+WhatsApp: (62) 99913-0894
+Site: linktr.ee/labonitaspa
+
+
+---
+Este é um e-mail automático de confirmação. Por favor, não responda.
+Para dúvidas ou alterações, entre em contato pelo WhatsApp.
+          `,
+        });
+
+      } catch (notificationOrEmailError) {
+        console.error('Notification or email sending failed:', notificationOrEmailError);
+      }
+
+      try {
+        await Promise.allSettled([
+          base44.functions.invoke('syncToGoogleCalendar', { appointment: appointmentData }),
+          base44.functions.invoke('syncToGoogleSheets', { appointment: appointmentData })
+        ]);
+      } catch (syncError) {
+        console.error('Sync failed:', syncError);
+      }
+
+      setStep(3);
+    } catch (error) {
+      console.error('Booking submission failed:', error);
+      setError('Erro ao enviar agendamento. Por favor, tente novamente ou entre em contato pelo WhatsApp (62) 99913-0894.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const createInternalNotification = async (appointment, formData, selectedService) => {
+    const notificationData = {
+      booking_id: appointment.id,
+      client_name: formData.client_name,
+      client_email: formData.email,
+      client_phone: formData.phone,
+      service_name: formData.service,
+      service_price: selectedService?.price,
+      service_duration: selectedService?.duration,
+      appointment_date: formData.preferred_date,
+      appointment_time: formData.preferred_time,
+      special_requests: formData.message || "",
+      notification_status: "pending",
+      priority: "normal"
+    };
+
+    await base44.entities.BookingNotification.create(notificationData);
+  };
+
+  const resetForm = () => {
+    setFormData({
+      client_name: "",
+      email: "",
+      phone: "",
+      service: "",
+      preferred_date: "",
+      preferred_time: "",
+      message: ""
+    });
+    setStep(1);
+    setCreatedAppointment(null);
+    setError("");
+  };
+
+  const handleClose = () => {
+    if (step === 3) {
+      resetForm();
+    }
+    onClose();
+  };
+
+  const getTomorrowDate = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split('T')[0];
+  };
+
+  const downloadBookingDetails = () => {
+    const bookingDetails = `
+════════════════════════════════════════════════════
+           L A   B O N I T A
+════════════════════════════════════════════════════
+
+                 ** CONFIRMAÇÃO DE AGENDAMENTO **
+
+         Estamos felizes em confirmar seu agendamento.
+         Aguardamos você!
+
+════════════════════════════════════════════════════
+Referência: ${createdAppointment?.id}
+Data de Confirmação: ${new Date().toLocaleString('pt-BR', { 
+  dateStyle: 'full', 
+  timeStyle: 'short' 
+})}
+════════════════════════════════════════════════════
+
+INFORMAÇÕES DO CLIENTE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Nome:          ${formData.client_name}
+Email:         ${formData.email}
+Telefone:      ${formData.phone}
+
+DETALHES DO AGENDAMENTO:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Serviço:       ${createdAppointment?.service}
+Valor:         R$ ${selectedService?.price.toLocaleString('pt-BR')}
+Duração:       ${selectedService?.duration}
+Data:          ${formatDate(createdAppointment?.preferred_date)}
+Horário:       ${createdAppointment?.preferred_time}
+Observações:   ${formData.message || 'Nenhuma'}
+
+════════════════════════════════════════════════════
+                    INSTRUÇÕES IMPORTANTES
+════════════════════════════════════════════════════
+
+✓ Por favor, chegue 10 minutos antes do horário 
+  agendado.
+
+✓ Este documento DEVE ser apresentado na recepção
+  (pode ser digital).
+
+✓ Para alterações ou cancelamentos, entre em contato
+  com pelo menos 24 horas de antecedência.
+
+════════════════════════════════════════════════════
+                       ONDE NOS ENCONTRAR:
+════════════════════════════════════════════════════
+Endereço:  R. SB 7, Qd.13 - Lt. 01
+           Res. Solar Bougainville
+           Goiânia - GO, 74393-385
+
+Telefone:  (62) 99913-0894
+Site:      linktr.ee/labonitaspa
+
+Horário de Atendimento:
+Segunda: Fechado
+Terça a Sexta: 9:00 - 19:00
+Sábado: 8:00 - 13:00
+Domingo: 8:00 - 13:00
+
+════════════════════════════════════════════════════
+Obrigada por escolher La Bonita. Esperamos você!
+════════════════════════════════════════════════════
+`;
+
+    const blob = new Blob([bookingDetails], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `La_Bonita_Confirmacao_${createdAppointment?.id}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
+          onClick={handleClose}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 100 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 100 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl w-full sm:max-w-2xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto touch-manipulation"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header - Mobile Optimized */}
+            <div className="sticky top-0 bg-white rounded-t-3xl sm:rounded-t-3xl border-b border-gray-100 p-4 sm:p-6 flex items-center justify-between z-10">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-[#C8A882]" />
+                <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#0F0F0F]">
+                  Agendar Horário
+                </h2>
+              </div>
+              <button
+                onClick={handleClose}
+                className="w-11 h-11 sm:w-10 sm:h-10 rounded-full bg-gray-100 active:bg-gray-300 transition-colors duration-200 flex items-center justify-center touch-manipulation"
+                aria-label="Fechar"
+              >
+                <X className="w-6 h-6 sm:w-5 sm:h-5 text-gray-600" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              {/* Error Message */}
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm"
+                >
+                  {error}
+                </motion.div>
+              )}
+
+              {step === 1 && (
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="space-y-6"
+                >
+                  <div className="text-center mb-8">
+                    <p className="text-gray-600">Passo 1 de 2: Selecione o Serviço</p>
+                  </div>
+
+                  <div className="grid gap-4 max-h-96 overflow-y-auto">
+                    {services.map((service) => (
+                      <div
+                        key={service.name}
+                        onClick={() => {
+                          handleInputChange('service', service.name);
+                          setStep(2);
+                        }}
+                        className={`p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:shadow-md ${
+                          formData.service === service.name
+                            ? 'border-[#C8A882] bg-[#C8A882]/5'
+                            : 'border-gray-200 hover:border-[#C8A882]/50'
+                        }`}
+                      >
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <h3 className="font-serif text-lg font-semibold text-[#0F0F0F]">
+                              {service.name}
+                            </h3>
+                            <p className="text-sm text-gray-500">{service.duration}</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="font-serif text-xl font-bold text-[#C8A882]">
+                              {service.priceNote && <span className="text-xs text-gray-600 mr-1">{service.priceNote}</span>}
+                              R$ {service.price.toLocaleString('pt-BR')}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {step === 2 && (
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="space-y-6"
+                >
+                  <div className="text-center mb-8">
+                    <p className="text-gray-600">Passo 2 de 2: Seus Dados</p>
+                    <div className="mt-4 p-4 bg-[#C8A882]/5 rounded-xl">
+                      <p className="font-serif text-lg text-[#0F0F0F]">
+                        {formData.service} - R$ {selectedService?.price.toLocaleString('pt-BR')}
+                        {selectedService?.priceNote && <span className="text-sm text-gray-600 ml-1">{selectedService.priceNote}</span>}
+                      </p>
+                      <p className="text-sm text-gray-600">{selectedService?.duration}</p>
+                    </div>
+                  </div>
+
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <User className="w-4 h-4 inline mr-2" />
+                          Nome Completo *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.client_name}
+                          onChange={(e) => handleInputChange('client_name', e.target.value)}
+                          className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] focus:ring-2 focus:ring-[#C8A882]/20 transition-all duration-300 touch-manipulation"
+                          placeholder="Seu nome completo"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <Mail className="w-4 h-4 inline mr-2" />
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => handleInputChange('email', e.target.value)}
+                          className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] focus:ring-2 focus:ring-[#C8A882]/20 transition-all duration-300 touch-manipulation"
+                          placeholder="seu@email.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <Phone className="w-4 h-4 inline mr-2" />
+                        Telefone *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] focus:ring-2 focus:ring-[#C8A882]/20 transition-all duration-300 touch-manipulation"
+                        placeholder="(62) 99913-0894"
+                      />
+                    </div>
+
+                    {/* Seleção de Data e Horário */}
+                    <div className="mb-4">
+                      <label className="block text-sm font-medium text-gray-700 mb-3">
+                        <Calendar className="w-4 h-4 inline mr-2" />
+                        Selecione Data e Horário *
+                      </label>
+
+                      {/* Calendário Visual - Próximos 15 dias */}
+                      <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-4 mb-4 border border-gray-200">
+                        <p className="text-sm font-semibold text-[#C8A882] mb-3 text-center">
+                          📅 Próximos 15 dias disponíveis
+                        </p>
+
+                        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-3">
+                          {getNext15Days().map((date, index) => {
+                            const dateString = date.toISOString().split('T')[0];
+                            const available = isDateAvailable(date);
+                            const isSelected = formData.preferred_date === dateString;
+                            const dayName = date.toLocaleDateString('pt-BR', { weekday: 'short' });
+                            const dayNum = date.getDate();
+                            const monthName = date.toLocaleDateString('pt-BR', { month: 'short' });
+
+                            return (
+                              <button
+                                key={index}
+                                type="button"
+                                onClick={() => {
+                                  if (available) {
+                                    handleInputChange('preferred_date', dateString);
+                                    handleInputChange('preferred_time', '');
+                                  }
+                                }}
+                                disabled={!available}
+                                className={`p-3 rounded-xl text-center transition-all duration-200 ${
+                                  isSelected
+                                    ? 'bg-gradient-to-br from-[#C8A882] to-[#FF5C8D] text-white shadow-lg scale-105'
+                                    : available
+                                    ? 'bg-white text-gray-700 hover:bg-[#C8A882]/10 hover:scale-105 shadow-sm border border-gray-200'
+                                    : 'bg-gray-100 text-gray-300 cursor-not-allowed opacity-50'
+                                }`}
+                              >
+                                <div className="text-xs font-medium uppercase">{dayName}</div>
+                                <div className="text-xl font-bold my-1">{dayNum}</div>
+                                <div className="text-xs capitalize">{monthName}</div>
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        <div className="flex items-center justify-center gap-4 text-xs text-gray-600">
+                          <div className="flex items-center gap-1">
+                            <div className="w-3 h-3 bg-gradient-to-br from-[#C8A882] to-[#FF5C8D] rounded"></div>
+                            <span>Selecionado</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <div className="w-3 h-3 bg-white border border-gray-200 rounded"></div>
+                            <span>Disponível</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <div className="w-3 h-3 bg-gray-100 rounded"></div>
+                            <span>Fechado</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Horários Disponíveis */}
+                      {formData.preferred_date && (
+                        <div className="bg-white border-2 border-[#C8A882]/30 rounded-2xl p-4">
+                          <p className="text-sm font-medium text-gray-700 mb-3 flex items-center">
+                            <Clock className="w-4 h-4 mr-2 text-[#C8A882]" />
+                            Horários para {new Date(formData.preferred_date + 'T12:00:00').toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}
+                          </p>
+                          <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
+                            {getAvailableTimesForDate(formData.preferred_date).map((time) => (
+                              <button
+                                key={time}
+                                type="button"
+                                onClick={() => handleInputChange('preferred_time', time)}
+                                className={`px-3 py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                                  formData.preferred_time === time
+                                    ? 'bg-gradient-to-r from-[#C8A882] to-[#FF5C8D] text-white shadow-md scale-110'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-[#C8A882] hover:text-white hover:scale-105'
+                                }`}
+                              >
+                                {time}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <MessageSquare className="w-4 h-4 inline mr-2" />
+                        Observações (Opcional)
+                      </label>
+                      <textarea
+                        value={formData.message}
+                        onChange={(e) => handleInputChange('message', e.target.value)}
+                        rows={3}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-[#C8A882] transition-colors duration-300 resize-none"
+                        placeholder="Alguma observação ou preferência..."
+                      />
+                    </div>
+
+                    <div className="flex gap-4">
+                      <button
+                        type="button"
+                        onClick={() => setStep(1)}
+                        className="flex-1 py-3 px-6 border border-gray-300 rounded-xl font-sans font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-300"
+                      >
+                        Voltar
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="flex-1 py-3 px-6 bg-[#C8A882] text-white rounded-xl font-sans font-medium hover:bg-[#FF5C8D] transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                            Confirmando...
+                          </>
+                        ) : (
+                          'Confirmar Agendamento'
+                        )}
+                      </button>
+                    </div>
+                  </form>
+                </motion.div>
+              )}
+
+              {step === 3 && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center space-y-4 md:space-y-6 py-6 md:py-8 px-4"
+                >
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                    <Check className="w-8 h-8 md:w-10 md:h-10 text-green-600" />
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-serif text-2xl md:text-3xl font-bold text-[#0F0F0F] mb-2">
+                      Agendamento Confirmado!
+                    </h3>
+                    <p className="text-gray-600 px-2">
+                      Obrigada, {formData.client_name}. Aguardamos você!
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-[#C8A882]/10 to-[#FF5C8D]/10 rounded-2xl p-4 md:p-6 text-left border-2 border-[#C8A882]/30 mx-auto max-w-lg shadow-lg">
+                    <div className="text-center mb-4">
+                      <h4 className="font-serif text-xl font-bold text-[#0F0F0F] mb-1">
+                        📋 CONFIRMAÇÃO DE AGENDAMENTO
+                      </h4>
+                      <div className="w-16 h-0.5 bg-[#C8A882] mx-auto"></div>
+                    </div>
+                    
+                    <div className="space-y-3 text-sm">
+                      <div className="bg-white/70 rounded-lg p-3">
+                        <div className="flex justify-between items-center mb-2">
+                          <strong className="text-gray-700">Referência:</strong>
+                          <span className="text-[#FF5C8D] font-bold font-mono text-xs bg-[#FF5C8D]/10 px-2 py-1 rounded">
+                            #{createdAppointment?.id?.slice(-8)?.toUpperCase()}
+                          </span>
+                        </div>
+                        <div className="w-full h-[1px] bg-[#C8A882]/30 mb-2"></div>
+                        
+                        <div className="flex justify-between items-start mb-2">
+                          <strong className="text-gray-700">Serviço:</strong>
+                          <span className="text-right pl-2 font-medium">{createdAppointment?.service}</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center mb-2">
+                          <strong className="text-gray-700">Valor:</strong>
+                          <span className="text-[#C8A882] font-bold text-lg">R$ {selectedService?.price.toLocaleString('pt-BR')}</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center mb-2">
+                          <strong className="text-gray-700">Duração:</strong>
+                          <span className="font-medium">{selectedService?.duration}</span>
+                        </div>
+                        
+                        <div className="w-full h-[1px] bg-[#C8A882]/30 mb-2"></div>
+                        
+                        <div className="flex justify-between items-center mb-2">
+                          <strong className="text-gray-700">Data:</strong>
+                          <span className="text-right pl-2 font-medium">{formatDate(createdAppointment?.preferred_date)}</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center">
+                          <strong className="text-gray-700">Horário:</strong>
+                          <span className="font-bold text-lg">{createdAppointment?.preferred_time}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-orange-50 to-red-50 border-l-4 border-orange-400 p-4 rounded-lg mx-auto max-w-lg shadow-sm">
+                    <div className="flex items-start gap-3">
+                      <Camera className="w-8 h-8 text-orange-500 flex-shrink-0 mt-1" />
+                      <div className="text-left">
+                        <h5 className="font-bold text-orange-800 mb-2 text-base">📱 IMPORTANTE: Salve Esta Confirmação</h5>
+                        <p className="text-sm text-orange-700 leading-relaxed">
+                          Por favor, <strong>tire um print desta tela</strong> ou baixe o documento de confirmação. 
+                          Você <strong>deve apresentar</strong> na recepção quando chegar para seu atendimento.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 pt-4 px-4">
+                    <button
+                      onClick={downloadBookingDetails}
+                      className="w-full py-3 md:py-4 px-6 bg-[#C8A882] text-white rounded-xl font-sans font-medium hover:bg-[#FF5C8D] transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl text-base"
+                    >
+                      <Download className="w-5 h-5" />
+                      Baixar Confirmação
+                    </button>
+
+                    <button
+                      onClick={handleClose}
+                      className="w-full py-3 px-6 bg-gray-100 text-gray-700 rounded-xl font-sans font-medium hover:bg-gray-200 transition-colors duration-300"
+                    >
+                      Fechar
+                    </button>
+                  </div>
+
+                  <div className="text-xs text-gray-500 pt-6 border-t border-gray-200 space-y-1">
+                    <p className="font-bold text-[#C8A882] text-sm">La Bonita Salão de Beleza</p>
+                    <p>R. SB 7, Qd.13 - Lt. 01, Res. Solar Bougainville</p>
+                    <p>Goiânia - GO, 74393-385 | (62) 99913-0894</p>
+                    <p className="text-[#C8A882] font-medium">Ter-Sex: 9h-19h | Sáb-Dom: 8h-13h</p>
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}

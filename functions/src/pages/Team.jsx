@@ -1,0 +1,154 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Sparkles, Award, Droplets, Beaker, ShieldCheck, Instagram } from "lucide-react";
+
+// Static data for the team members
+const teamMembers = [
+  {
+    id: 1,
+    name: "Juliany Borges",
+    title: "Fundadora",
+    bio: "Fundadora da La Bonita Spa Beauty. Dedicada a criar experiências únicas de beleza e bem-estar, com foco em atendimento personalizado e resultados excepcionais.",
+    image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/68ca62b21_ScreenShotTool-20251221190300.png",
+    specialties: ["Cortes", "Mechas", "Coloração", "Maquiagem Noivas", "Penteados"],
+    instagram: "@labonitaspabeauty",
+    years_experience: 10
+  },
+  {
+    id: 2,
+    name: "Rafael Lemos",
+    title: "Maquiador e Cabeleireiro",
+    bio: "Especialista em maquiagem e hair styling, com anos de experiência em transformar clientes com técnicas modernas e cuidado personalizado.",
+    image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/3cdf67cc1_ScreenShotTool-20251221191102.png",
+    specialties: ["Maquiagem", "Penteados"],
+    instagram: "@rafaellemosmake",
+    years_experience: 8
+  },
+  {
+    id: 3,
+    name: "Geovana",
+    title: "Especialista em Unhas",
+    bio: "Especialista em extensão de unhas e nail art, Geovana traz técnicas avançadas e um olhar artístico para cada cliente.",
+    image_url: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6951a887caa37598382ff43f/f942d9ca2_WhatsAppImage2025-12-21at84454PM.jpeg",
+    specialties: ["Extensão de Unhas", "Nail Office"],
+    years_experience: 6
+  }
+];
+
+const expertisePillars = [
+  {
+    icon: ShieldCheck,
+    title: "Técnicas Avançadas",
+    description: "Domínio de técnicas modernas de coloração, corte e styling para resultados seguros, duradouros e personalizados."
+  },
+  {
+    icon: Droplets,
+    title: "Arte Restauradora",
+    description: "Expertise em tratamentos capilares e técnicas de beleza que realçam, não mascaram, sua beleza natural."
+  },
+  {
+    icon: Beaker,
+    title: "Excelência Profissional",
+    description: "Busca constante pelas melhores certificações e técnicas mais avançadas em beleza e bem-estar."
+  }
+];
+
+export default function Team() {
+  return (
+    <div className="pt-32 pb-24 bg-gradient-to-b from-[#F8F2EC] to-white min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        {/* Page Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 bg-[#C8A882]/10 rounded-full px-4 py-2 mb-6">
+            <Sparkles className="w-4 h-4 text-[#C8A882]" />
+            <span className="text-sm text-[#C8A882] font-medium">Nossa Equipe</span>
+          </div>
+          <h1 className="font-serif font-medium text-[length:var(--font-h1)] text-[#0F0F0F] mb-6 leading-tight">
+            Nossa Equipe
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-[1.618]">
+            Profissionais experientes e apaixonados, dedicados a proporcionar a melhor experiência para você.
+          </p>
+        </motion.div>
+
+        {/* Team Members */}
+        <section className="mb-24">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-[clamp(1rem,2vw,2.5rem)]">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={member.id}
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2, ease: "easeOut" }}
+                className="group"
+              >
+                <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={member.image_url}
+                      alt={`${member.name}, ${member.title} na La Bonita Salão de Beleza Goiânia`}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 right-4 bg-[#C8A882] text-white rounded-full px-3 py-1 flex items-center gap-1">
+                      <Award className="w-3 h-3" />
+                      <span className="text-xs font-medium">{member.years_experience}+ Anos</span>
+                    </div>
+                  </div>
+                  <div className="p-8">
+                    <h3 className="font-serif text-2xl font-bold text-[#0F0F0F] mb-2 group-hover:text-[#C8A882] transition-colors duration-300">
+                      {member.name}
+                    </h3>
+                    <p className="text-[#C8A882] font-medium mb-4">{member.title}</p>
+                    <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3">{member.bio}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {member.specialties.map((specialty, idx) => (
+                        <span key={idx} className="bg-[#C8A882]/10 text-[#C8A882] px-3 py-1 rounded-full text-xs font-medium">
+                          {specialty}
+                        </span>
+                      ))}
+                    </div>
+                    {member.instagram && (
+                      <a href={`https://instagram.com/${member.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#C8A882] hover:text-[#FF5C8D] transition-colors text-sm">
+                        <Instagram className="w-4 h-4" />
+                        <span>{member.instagram}</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Expertise Pillars */}
+        <section className="mb-24 text-center">
+            <h2 className="font-serif text-3xl font-bold text-[#0F0F0F] mb-12">Nossa Filosofia na Prática</h2>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {expertisePillars.map((pillar, index) => (
+                    <motion.div
+                        key={pillar.title}
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: index * 0.2 + 0.5, ease: "easeOut" }}
+                        className="bg-white p-8 rounded-3xl shadow-lg border border-[#C8A882]/20 flex flex-col items-center"
+                    >
+                        <div className="w-16 h-16 bg-[#C8A882]/10 rounded-full flex items-center justify-center mb-4">
+                            <pillar.icon className="w-8 h-8 text-[#C8A882]" />
+                        </div>
+                        <h3 className="font-serif text-xl font-semibold text-[#0F0F0F] mb-2">{pillar.title}</h3>
+                        <p className="text-gray-600 text-sm text-center leading-relaxed">{pillar.description}</p>
+                    </motion.div>
+                ))}
+            </div>
+        </section>
+
+      </div>
+    </div>
+  );
+}
