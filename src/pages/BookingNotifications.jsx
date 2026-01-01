@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { BookingNotification } from "@/entities/BookingNotification";
+import { base44 } from "@/api/base44Client";
 import { Bell, Phone, Mail, Calendar, User, CheckCircle, Star } from "lucide-react";
 
 export default function BookingNotifications() {
@@ -14,7 +14,7 @@ export default function BookingNotifications() {
 
   const loadNotifications = async () => {
     try {
-      const data = await BookingNotification.list('-created_date', 50);
+      const data = await base44.entities.BookingNotification.list('-created_date', 50);
       setNotifications(data);
     } catch (error) {
       console.error('Failed to load notifications:', error);
@@ -25,7 +25,7 @@ export default function BookingNotifications() {
 
   const updateNotificationStatus = async (id, status) => {
     try {
-      await BookingNotification.update(id, { notification_status: status });
+      await base44.entities.BookingNotification.update(id, { notification_status: status });
       loadNotifications();
     } catch (error) {
       console.error('Failed to update notification:', error);
